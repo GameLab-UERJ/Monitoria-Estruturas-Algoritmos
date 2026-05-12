@@ -10,8 +10,30 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+
 func _on_button_pressed():
-		get_tree().change_scene_to_file("res://cena_inical_do_jogo.tscn")
+	var cena_do_jogo = load("res://cena_inical_do_jogo.tscn").instantiate()
+	
+	var l = int(%linhas.text)
+	var c = int(%colunas.text)
+	
+	
+	var grid = cena_do_jogo.get_node("GridContainer")
+	
+	grid.linhas_custom = l if l > 0 else 4
+	grid.colunas_custom = c if c > 0 else 4
+	
+	
+	get_tree().root.add_child(cena_do_jogo)
+	get_tree().current_scene.queue_free()
+	get_tree().current_scene = cena_do_jogo
+
+	
+	
 
 func _on_pressed() -> void:
 	_on_button_pressed()
+
+
+func _on_colunas_text_changed(new_text: String) -> void:
+	pass # Replace with function body.
