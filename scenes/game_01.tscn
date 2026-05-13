@@ -1,7 +1,10 @@
 [gd_scene format=3 uid="uid://dowpl0vy1m6kg"]
 
+[ext_resource type="Script" uid="uid://d13xfkm4i5pch" path="res://scripts/game_manager.gd" id="1_416t1"]
 [ext_resource type="PackedScene" uid="uid://bak0ffhbmmxm7" path="res://scenes/player.tscn" id="1_qjjbu"]
+[ext_resource type="PackedScene" uid="uid://7bc7k15rsha2" path="res://scenes/fruit.tscn" id="2_hoxb2"]
 [ext_resource type="Texture2D" uid="uid://xjegqstew3x2" path="res://assets/sprites/tileset.png" id="2_runhf"]
+[ext_resource type="FontFile" uid="uid://d1qxu1xnpd1e2" path="res://assets/fonts/PixelOperator8.ttf" id="5_00t63"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hoxb2"]
 texture = ExtResource("2_runhf")
@@ -64,14 +67,42 @@ sources/0 = SubResource("TileSetAtlasSource_hoxb2")
 [node name="Game01" type="Node2D" unique_id=186649093]
 position = Vector2(0, -9)
 
+[node name="GameManager" type="Node" parent="." unique_id=1396587534]
+unique_name_in_owner = true
+script = ExtResource("1_416t1")
+
+[node name="FruitLabel" type="Label" parent="GameManager" unique_id=1222850811]
+offset_left = -69.0
+offset_top = -94.0
+offset_right = 185.0
+offset_bottom = -71.0
+theme_override_colors/font_color = Color(0.03137255, 0.06666667, 1, 1)
+theme_override_fonts/font = ExtResource("5_00t63")
+theme_override_font_sizes/font_size = 8
+text = "Você colheu 0 frutas"
+
 [node name="TileMap" type="TileMap" parent="." unique_id=639078724]
 tile_set = SubResource("TileSet_qjjbu")
 format = 2
 layer_0/tile_data = PackedInt32Array(-2, 0, 2, 131070, 0, 2, -131074, 0, 2, -131076, 0, 0, -4, 0, 0, 131068, 0, 0, -65540, 0, 0, 65532, 0, 0, 65536, 0, 2, -65536, 0, 2, -196608, 0, 2, 65538, 262144, 2, -65534, 262144, 2, -196606, 262144, 2, 65540, 393216, 2, -65532, 393216, 2, -196604, 393216, 2, -262146, 262144, 0, -262148, 0, 0, -327680, 0, 0, -327678, 393216, 0, -327676, 524288, 0, -327674, 0, 0, -196602, 131072, 0, -65530, 0, 0, 65542, 131072, 0, 196612, 262144, 0, 196614, 393216, 0, 196610, 524288, 0, 196608, 131072, 0, 262142, 0, 0, 262140, 0, 0)
 
-[node name="Player" parent="." unique_id=1531125137 instance=ExtResource("1_qjjbu")]
-position = Vector2(19, 5)
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1973231755]
+[node name="Camera2D" type="Camera2D" parent="TileMap" unique_id=1973231755]
 position = Vector2(18, -8)
 zoom = Vector2(4, 4)
+
+[node name="Player" parent="." unique_id=1531125137 instance=ExtResource("1_qjjbu")]
+position = Vector2(26, 1)
+
+[node name="FruitNode" type="Node" parent="." unique_id=446581725]
+
+[node name="Fruit3" parent="FruitNode" unique_id=1004908566 instance=ExtResource("2_hoxb2")]
+position = Vector2(-24, 16)
+
+[node name="Fruit4" parent="FruitNode" unique_id=1403502400 instance=ExtResource("2_hoxb2")]
+position = Vector2(8, 17)
+
+[node name="Fruit2" parent="FruitNode" unique_id=1628511275 instance=ExtResource("2_hoxb2")]
+position = Vector2(73, 17)
+
+[node name="Fruit" parent="FruitNode" unique_id=1513353356 instance=ExtResource("2_hoxb2")]
+position = Vector2(40, 16)
