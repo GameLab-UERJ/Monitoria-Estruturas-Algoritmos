@@ -1,22 +1,77 @@
 [gd_scene format=3 uid="uid://dowpl0vy1m6kg"]
 
 [ext_resource type="PackedScene" uid="uid://bak0ffhbmmxm7" path="res://scenes/player.tscn" id="1_qjjbu"]
+[ext_resource type="Texture2D" uid="uid://xjegqstew3x2" path="res://assets/sprites/tileset.png" id="2_runhf"]
 
-[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_qjjbu"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hoxb2"]
+texture = ExtResource("2_runhf")
+2:8/0 = 0
+3:8/0 = 0
+2:9/0 = 0
+3:9/0 = 0
+0:2/size_in_atlas = Vector2i(2, 2)
+0:2/0 = 0
+2:2/size_in_atlas = Vector2i(2, 2)
+2:2/0 = 0
+4:2/size_in_atlas = Vector2i(2, 2)
+4:2/0 = 0
+6:2/size_in_atlas = Vector2i(2, 2)
+6:2/0 = 0
+8:2/size_in_atlas = Vector2i(2, 2)
+8:2/0 = 0
+0:4/size_in_atlas = Vector2i(2, 2)
+0:4/0 = 0
+2:4/size_in_atlas = Vector2i(2, 2)
+2:4/0 = 0
+4:4/size_in_atlas = Vector2i(2, 2)
+4:4/0 = 0
+6:4/size_in_atlas = Vector2i(2, 2)
+6:4/0 = 0
+8:4/size_in_atlas = Vector2i(2, 2)
+8:4/0 = 0
+0:6/size_in_atlas = Vector2i(2, 2)
+0:6/0 = 0
+2:6/size_in_atlas = Vector2i(2, 2)
+2:6/0 = 0
+4:6/size_in_atlas = Vector2i(2, 2)
+4:6/0 = 0
+6:6/size_in_atlas = Vector2i(2, 2)
+6:6/0 = 0
+8:6/size_in_atlas = Vector2i(2, 2)
+8:6/0 = 0
+0:8/size_in_atlas = Vector2i(2, 2)
+0:8/0 = 0
+0:0/size_in_atlas = Vector2i(2, 2)
+0:0/0 = 0
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.557781, -15.647709, 15.557781, -15.46785, 16.097355, 15.108133, -15.917498, 15.2879925)
+2:0/size_in_atlas = Vector2i(2, 2)
+2:0/0 = 0
+2:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.557781, -15.647709, 15.557781, -15.46785, 16.097355, 15.108133, -15.917498, 15.2879925)
+4:0/size_in_atlas = Vector2i(2, 2)
+4:0/0 = 0
+4:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.557781, -15.647709, 15.557781, -15.46785, 16.097355, 15.108133, -15.917498, 15.2879925)
+6:0/size_in_atlas = Vector2i(2, 2)
+6:0/0 = 0
+6:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.557781, -15.647709, 15.557781, -15.46785, 16.097355, 15.108133, -15.917498, 15.2879925)
+8:0/size_in_atlas = Vector2i(2, 2)
+8:0/0 = 0
+8:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-15.557781, -15.647709, 15.557781, -15.46785, 16.097355, 15.108133, -15.917498, 15.2879925)
+
+[sub_resource type="TileSet" id="TileSet_qjjbu"]
+physics_layer_0/collision_layer = 1
+sources/0 = SubResource("TileSetAtlasSource_hoxb2")
 
 [node name="Game01" type="Node2D" unique_id=186649093]
 position = Vector2(0, -9)
 
+[node name="TileMap" type="TileMap" parent="." unique_id=639078724]
+tile_set = SubResource("TileSet_qjjbu")
+format = 2
+layer_0/tile_data = PackedInt32Array(-2, 0, 2, 131070, 0, 2, -131074, 0, 2, -131076, 0, 0, -4, 0, 0, 131068, 0, 0, -65540, 0, 0, 65532, 0, 0, 65536, 0, 2, -65536, 0, 2, -196608, 0, 2, 65538, 262144, 2, -65534, 262144, 2, -196606, 262144, 2, 65540, 393216, 2, -65532, 393216, 2, -196604, 393216, 2, -262146, 262144, 0, -262148, 0, 0, -327680, 0, 0, -327678, 393216, 0, -327676, 524288, 0, -327674, 0, 0, -196602, 131072, 0, -65530, 0, 0, 65542, 131072, 0, 196612, 262144, 0, 196614, 393216, 0, 196610, 524288, 0, 196608, 131072, 0, 262142, 0, 0, 262140, 0, 0)
+
 [node name="Player" parent="." unique_id=1531125137 instance=ExtResource("1_qjjbu")]
-position = Vector2(2, 8)
+position = Vector2(19, 5)
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1973231755]
-position = Vector2(0, -7)
+position = Vector2(18, -8)
 zoom = Vector2(4, 4)
-
-[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=547644898]
-position = Vector2(1, 4)
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=393164426]
-position = Vector2(0, 12)
-shape = SubResource("WorldBoundaryShape2D_qjjbu")
