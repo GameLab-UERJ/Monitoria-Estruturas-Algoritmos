@@ -47,7 +47,7 @@ collision_layer = 2
 script = ExtResource("1_g2els")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=744433924]
-position = Vector2(-0.9999999, -0.99999994)
+position = Vector2(-5.9604645e-08, 6.9999995)
 scale = Vector2(0.41666663, 0.4375)
 sprite_frames = SubResource("SpriteFrames_tuyoq")
 animation = &"idle"
@@ -55,5 +55,7 @@ autoplay = "idle"
 frame_progress = 0.41589326
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=91582623]
-position = Vector2(-1, -7)
 shape = SubResource("CircleShape2D_fjrip")
+
+[node name="RayCast2D" type="RayCast2D" parent="." unique_id=1129516570]
+target_position = Vector2(0, 25)

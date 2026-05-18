@@ -1,17 +1,21 @@
 extends CharacterBody2D
 
-@export var speed: float = 200.0
+@onready var ray = $RayCast2D
+var tile_size = 32
+var inputs = {
+	"ui_right": Vector2.RIGHT,
+	"ui_left": Vector2.LEFT,
+	"ui_up": Vector2.UP,
+	"ui_down": Vector2.DOWN
+}
 
-func _physics_process(_delta: float) -> void:
-	var direction = Vector2.ZERO
+func _unhandled_input(event):
+	for dir in inputs.keys():
+		if event.is_action_pressed(dir):
+			move2(dir)
 
-	# Ler comando do jogador
-	direction.x = Input.get_axis("ui_left", "ui_right")
-	direction.y = Input.get_axis("ui_up", "ui_down")
-
-	# Estabilizar velocidade em diagonal
-	if direction != Vector2.ZERO:
-		direction = direction.normalized()
-
-	velocity = direction * speed
-	move_and_slide()
+func move2(dir):
+	ray.target_position = inputs[dir] * tile_size
+	ray.force_raycast_update()
+	if !ray.is_colliding():
+		position += inputs[dir] * tile_size
