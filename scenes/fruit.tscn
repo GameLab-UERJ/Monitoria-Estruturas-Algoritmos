@@ -1,20 +1,23 @@
 [gd_scene format=3 uid="uid://7bc7k15rsha2"]
 
-[ext_resource type="Texture2D" uid="uid://c48d18uiox67p" path="res://assets/sprites/fruit.png" id="1_lfepc"]
 [ext_resource type="Script" uid="uid://cq8x7fqsp8mdx" path="res://scripts/fruit.gd" id="1_yvtr8"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_lfepc"]
+load_path = "res://.godot/imported/tileset.png-b50fc1806457686cf91872f682d34a54.ctex"
+
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_yvtr8"]
-radius = 4.0
-height = 12.0
+height = 20.0
 
 [node name="Fruit" type="Area2D" unique_id=1004908566]
 collision_mask = 2
 script = ExtResource("1_yvtr8")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=1281365441]
-texture = ExtResource("1_lfepc")
+position = Vector2(-0.32812434, 1)
+scale = Vector2(0.7439905, 0.6875)
+texture = SubResource("CompressedTexture2D_lfepc")
 region_enabled = true
-region_rect = Rect2(33.48333, 32.38518, 13.255592, 15.937294)
+region_rect = Rect2(131.11629, 34.935333, 26.79895, 26.439236)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=381525770]
 position = Vector2(0, 1)
