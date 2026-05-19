@@ -1,0 +1,18 @@
+[gd_scene format=3 uid="uid://dsaiw67eby2sv"]
+
+[ext_resource type="Script" uid="uid://dywl8q8ar46gt" path="res://scripts/grid_container.gd" id="1_xv861"]
+
+[node name="GridContainer" type="GridContainer" unique_id=1327010294]
+texture_filter = 2
+offset_right = 448.0
+offset_bottom = 320.0
+theme_override_constants/h_separation = 0
+theme_override_constants/v_separation = 0
+script = ExtResource("1_xv861")
+linhas_custom = 4
+colunas_custom = 4
+
+[node name="Timer" type="Timer" parent="." unique_id=283884369]
+autostart = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
