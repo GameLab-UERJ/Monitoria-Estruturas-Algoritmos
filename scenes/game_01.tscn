@@ -65,7 +65,6 @@ physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_hoxb2")
 
 [node name="Game01" type="Node2D" unique_id=186649093]
-position = Vector2(0, -9)
 
 [node name="GameManager" type="Node" parent="." unique_id=1396587534]
 unique_name_in_owner = true
