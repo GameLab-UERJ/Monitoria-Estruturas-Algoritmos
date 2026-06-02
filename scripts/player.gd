@@ -1,7 +1,7 @@
 extends CharacterBody2D
 
 @onready var ray = $RayCast2D
-var tile_size = 16
+var tile_size = 32
 var grid_position: Vector2
 var is_moving: bool = false
 

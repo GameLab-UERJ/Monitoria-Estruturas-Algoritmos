@@ -4,26 +4,24 @@ extends TileMapLayer
 @export var linhas_custom: int = 4
 @export var colunas_custom: int = 4
 
+# Aponte para o timer que agora está no mesmo nível que o TileMap
+@onready var timer = get_parent().get_node("Timer")
+
 var dados_plantas = {} 
 
 func _ready() -> void:
+    # Mantenha o scale se precisar, mas lembre-se que o Player não deve estar dentro
+    # do TileMapLayer para não ser afetado por esse scale
     self.scale = Vector2(3, 3)
     
-  
-    var timer_node = get_node_or_null("Timer")
-    
-    if timer_node:
-        
-        if not timer_node.timeout.is_connected(_on_timer_timeout):
-            timer_node.timeout.connect(_on_timer_timeout)
+    if timer:
+        if not timer.timeout.is_connected(_on_timer_timeout):
+            timer.timeout.connect(_on_timer_timeout)
             
-    else:
-       pass
-        
     gerar_grid()
 
 func gerar_grid():
-    print("Gerando grid de ", colunas_custom, "x", linhas_custom)
+    
     for x in range(colunas_custom):
         for y in range(linhas_custom):
             var pos = Vector2i(x, y)
@@ -33,12 +31,12 @@ func gerar_grid():
                 
                 set_cell(pos, 0, Vector2i(2, 1)) 
                 dados_plantas[pos] = {"status": "broto", "segundos": 0}
-                print("Desenhando BROTO em: ", pos)
+                
             else:
                 
                 set_cell(pos, 0, Vector2i(0, 0)) 
                 dados_plantas[pos] = {"status": "terra", "segundos": 0}
-                print("Desenhando TERRA em: ", pos)
+                
 
 func processar_crescimento():
     
