@@ -4,14 +4,14 @@ extends TileMapLayer
 @export var linhas_custom: int = 4
 @export var colunas_custom: int = 4
 
-# Aponte para o timer que agora está no mesmo nível que o TileMap
+
 @onready var timer = get_parent().get_node("Timer")
 
 var dados_plantas = {} 
 
 func _ready() -> void:
-    # Mantenha o scale se precisar, mas lembre-se que o Player não deve estar dentro
-    # do TileMapLayer para não ser afetado por esse scale
+   
+   
     self.scale = Vector2(3, 3)
     
     if timer:
