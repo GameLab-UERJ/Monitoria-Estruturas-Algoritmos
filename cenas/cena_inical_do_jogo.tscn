@@ -52,7 +52,6 @@ size_flags_horizontal = 3
 [node name="LineEdit" type="LineEdit" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=2043520562]
 layout_mode = 2
 size_flags_vertical = 3
-alignment = 3
 
 [node name="Button" type="Button" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=2137265797]
 layout_mode = 2
