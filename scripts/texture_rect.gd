@@ -1,5 +1,5 @@
 extends TextureRect
-var tileset_resource = preload("res://Imagens/tileset.png")
+var tileset_resource = preload("res://assets/sprites/tileset.png")
 
 var tamanho_tile = 32
 
