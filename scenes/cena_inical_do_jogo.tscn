@@ -14,8 +14,8 @@ tile_set = ExtResource("1_lbr3u")
 rendering_quadrant_size = 32
 script = ExtResource("2_ilbva")
 
-[node name="Player" parent="." unique_id=1531125137 instance=ExtResource("3_ilbva")]
-position = Vector2(398, 148)
+[node name="Player" parent="." unique_id=1531125137 groups=["player"] instance=ExtResource("3_ilbva")]
+position = Vector2(349, 220)
 scale = Vector2(3, 3)
 
 [node name="Timer" type="Timer" parent="." unique_id=283884369]
