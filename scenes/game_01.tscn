@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://dowpl0vy1m6kg"]
+[gd_scene format=4 uid="uid://dowpl0vy1m6kg"]
 
 [ext_resource type="Script" uid="uid://d13xfkm4i5pch" path="res://scripts/game_manager.gd" id="1_416t1"]
 [ext_resource type="PackedScene" uid="uid://bak0ffhbmmxm7" path="res://scenes/player.tscn" id="1_qjjbu"]
@@ -71,23 +71,26 @@ unique_name_in_owner = true
 script = ExtResource("1_416t1")
 
 [node name="FruitLabel" type="Label" parent="GameManager" unique_id=1222850811]
-offset_left = -27.0
-offset_top = -92.0
-offset_right = 227.0
-offset_bottom = -69.0
+offset_left = -9.0
+offset_top = -78.0
+offset_right = 245.0
+offset_bottom = -55.0
 theme_override_colors/font_color = Color(0.38434958, 0, 0.008503549, 1)
 theme_override_fonts/font = ExtResource("5_00t63")
 theme_override_font_sizes/font_size = 8
 text = "Você colheu 0 plantas"
 
-[node name="TileMap" type="TileMap" parent="." unique_id=639078724]
+[node name="TileMap" type="TileMapLayer" parent="." unique_id=2062895695]
 tile_set = SubResource("TileSet_qjjbu")
-format = 2
-layer_0/tile_data = PackedInt32Array(-2, 0, 0, 131070, 0, 0, -131074, 0, 0, 65536, 0, 2, -65536, 0, 2, -196608, 0, 2, 65538, 0, 2, -65534, 0, 2, -196606, 0, 2, 65540, 0, 2, -65532, 0, 2, -196604, 0, 2, -262146, 262144, 0, -327680, 0, 0, -327678, 393216, 0, -327676, 524288, 0, -327674, 0, 0, -196602, 0, 2, -65530, 0, 2, 65542, 0, 2, 196612, 262144, 0, 196614, 393216, 0, 196610, 524288, 0, 196608, 131072, 0, 262142, 0, 0, 196616, 0, 0, 65544, 0, 0, -65528, 0, 0, -196600, 0, 0, -327672, 0, 0)
 
 [node name="Camera2D" type="Camera2D" parent="TileMap" unique_id=1973231755]
 position = Vector2(51, -6)
 zoom = Vector2(4, 4)
+
+[node name="Layer0" type="TileMapLayer" parent="TileMap" unique_id=2062949736]
+use_parent_material = true
+tile_map_data = PackedByteArray("AAD+////AAAAAAAAAAD+/wEAAAAAAAAAAAD+//3/AAAAAAAAAAAAAAEAAAAAAAIAAAAAAP//AAAAAAIAAAAAAP3/AAAAAAIAAAACAAEAAAAAAAIAAAACAP//AAAAAAIAAAACAP3/AAAAAAIAAAAEAAEAAAAAAAIAAAAEAP//AAAAAAIAAAAEAP3/AAAAAAIAAAD+//v/AAAEAAAAAAAAAPv/AAAAAAAAAAACAPv/AAAGAAAAAAAEAPv/AAAIAAAAAAAGAPv/AAAAAAAAAAAGAP3/AAAAAAIAAAAGAP//AAAAAAIAAAAGAAEAAAAAAAIAAAAEAAMAAAAEAAAAAAAGAAMAAAAGAAAAAAACAAMAAAAIAAAAAAAAAAMAAAACAAAAAAD+/wMAAAAAAAAAAAAIAAMAAAAAAAAAAAAIAAEAAAAAAAAAAAAIAP//AAAAAAAAAAAIAP3/AAAAAAAAAAAIAPv/AAAAAAAAAAA=")
+tile_set = SubResource("TileSet_qjjbu")
 
 [node name="Player" parent="." unique_id=1531125137 instance=ExtResource("1_qjjbu")]
 position = Vector2(72, -41)
@@ -95,13 +98,13 @@ position = Vector2(72, -41)
 [node name="FruitNode" type="Node" parent="." unique_id=446581725]
 
 [node name="Fruit3" parent="FruitNode" unique_id=1004908566 instance=ExtResource("2_hoxb2")]
-position = Vector2(104, 16)
+position = Vector2(104, 24)
 
 [node name="Fruit4" parent="FruitNode" unique_id=1403502400 instance=ExtResource("2_hoxb2")]
-position = Vector2(8, 17)
+position = Vector2(8, 24)
 
 [node name="Fruit2" parent="FruitNode" unique_id=1628511275 instance=ExtResource("2_hoxb2")]
-position = Vector2(73, 17)
+position = Vector2(72, 24)
 
 [node name="Fruit" parent="FruitNode" unique_id=1513353356 instance=ExtResource("2_hoxb2")]
-position = Vector2(40, 16)
+position = Vector2(40, 24)

@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="ProjetoMonitor"
-run/main_scene="uid://dowpl0vy1m6kg"
+config/name="Projeto do jogo da manotoria"
+run/main_scene="uid://b5su0docfg3lv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 

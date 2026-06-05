@@ -1,0 +1,68 @@
+[gd_scene format=3 uid="uid://b5su0docfg3lv"]
+
+[ext_resource type="Script" uid="uid://cpw37n04j1ksv" path="res://scripts/iniciar_jogo.gd" id="1_jlqjh"]
+
+[node name="Interface inicial" type="Control" unique_id=1494513182]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=746753486]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 3.0
+offset_right = 3.0
+offset_bottom = 6.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="TextureRect" unique_id=2054249205]
+layout_mode = 0
+offset_left = 184.0
+offset_top = 39.0
+offset_right = 1023.0
+offset_bottom = 108.0
+text = "Interface Inicial
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1640290617]
+layout_mode = 0
+offset_left = 363.0
+offset_top = 195.0
+offset_right = 863.0
+offset_bottom = 331.0
+
+[node name="Iniciar jogo" type="Button" parent="TextureRect/VBoxContainer" unique_id=1743248683]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+text = "Iniciar jogo"
+script = ExtResource("1_jlqjh")
+
+[node name="configurações" type="Button" parent="TextureRect/VBoxContainer" unique_id=1059359620]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+text = "Configurações"
+
+[node name="linhas" type="LineEdit" parent="TextureRect/VBoxContainer" unique_id=665989900]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+placeholder_text = "linhas"
+alignment = 1
+
+[node name="colunas" type="LineEdit" parent="TextureRect/VBoxContainer" unique_id=2141609299]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+placeholder_text = "colunas"
+alignment = 1
+
+[connection signal="pressed" from="TextureRect/VBoxContainer/Iniciar jogo" to="TextureRect/VBoxContainer/Iniciar jogo" method="_on_pressed"]
+[connection signal="text_changed" from="TextureRect/VBoxContainer/colunas" to="TextureRect/VBoxContainer/Iniciar jogo" method="_on_colunas_text_changed"]
