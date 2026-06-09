@@ -49,7 +49,7 @@ offset_bottom = 316.5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="LineEdit" type="LineEdit" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=2043520562]
+[node name="EntradaComandos" type="TextEdit" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=1254594417]
 layout_mode = 2
 size_flags_vertical = 3
 
