@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://blgil7r7q0b6q" path="res://assets/sprites/texturas-chao.tres" id="1_lbr3u"]
 [ext_resource type="Script" uid="uid://b2ur6olh40cr6" path="res://scripts/tile_map_layer.gd" id="2_ilbva"]
 [ext_resource type="PackedScene" uid="uid://bak0ffhbmmxm7" path="res://scenes/player.tscn" id="3_ilbva"]
-[ext_resource type="Script" uid="uid://coplpd7rldiyi" path="res://scenes/timer.gd" id="3_ucqhn"]
+[ext_resource type="Script" uid="uid://coplpd7rldiyi" path="res://scripts/timer.gd" id="3_ucqhn"]
 [ext_resource type="Script" uid="uid://bi0wfad5ly3er" path="res://scripts/promptde_comando.gd" id="5_ucqhn"]
 
 [node name="Node2D" type="Node2D" unique_id=1904403614]
