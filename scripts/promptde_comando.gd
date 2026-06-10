@@ -14,10 +14,12 @@ func _ready():
 func _on_button_pressed() -> void:
 	var texto_completo = editor.text
 	var linhas = texto_completo.split("\n")
+
 	
 	historico.text += "--- Processando Bloco ---\n"
 	
 	
+
 	for linha in linhas:
 		var comando = linha.strip_edges()
 		if not comando.is_empty():
@@ -27,10 +29,12 @@ func _on_button_pressed() -> void:
 			else:
 				historico.text += "ERRO: Comando '" + comando + "' inválido!\n"
 	
+
 	
 	editor.clear()
 	
 	
+
 	executar_acoes()
 
 func executar_acoes():
