@@ -5,4 +5,3 @@ extends Area2D
 func _on_body_entered(_body):
 	game_manager.add_fruit()
 	queue_free()
-	

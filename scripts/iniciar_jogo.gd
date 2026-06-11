@@ -21,12 +21,8 @@ func _on_button_pressed():
 	get_tree().current_scene.queue_free()
 	get_tree().current_scene = cena_do_jogo
 
-	
-	
-
 func _on_pressed() -> void:
 	_on_button_pressed()
-
 
 func _on_colunas_text_changed(new_text: String) -> void:
 	pass 
