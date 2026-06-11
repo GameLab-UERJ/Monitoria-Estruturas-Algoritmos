@@ -7,7 +7,7 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_button_pressed():
-	var cena_do_jogo = load("res://scenes/cena_inical_do_jogo.tscn").instantiate()
+	var cena_do_jogo = load("res://scenes/cena_inicial_do_jogo.tscn").instantiate()
 	
 	var mapa = cena_do_jogo.get_node("TileMapLayer") 
 	
