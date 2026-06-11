@@ -1,5 +1,6 @@
 extends CharacterBody2D
 @onready var ray = $RayCast2D
+@onready var sprite = $AnimatedSprite2D
 @onready var mapa = $"../TileMapLayer"
 
 var tile_size: int
@@ -58,4 +59,13 @@ func mover_por_comando(comando: String) -> bool:
 	if comando in command_to_input:
 		move2(command_to_input[comando])
 		return true
+	if comando in ["plant", "collect"]:
+		await animar_interacao()
+		movement_finished.emit()
+		return true
 	return false
+	
+func animar_interacao():
+	sprite.play("interact")
+	await sprite.animation_finished
+	sprite.play("idle")

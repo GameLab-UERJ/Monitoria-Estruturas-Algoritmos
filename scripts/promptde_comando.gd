@@ -29,12 +29,10 @@ func _on_button_pressed() -> void:
 			else:
 				historico.text += "ERRO: Comando '" + comando + "' inválido!\n"
 	
-
 	
 	editor.clear()
 	
 	
-
 	executar_acoes()
 
 func executar_acoes():
@@ -52,11 +50,13 @@ func executar_acoes():
 				
 			"plant":
 				mapa.plantar_na_posicao(player.position)
-				await get_tree().create_timer(0.2).timeout # Pequeno delay visual
+				player.mover_por_comando("plant")
+				await player.movement_finished # Pequeno delay visual
 				
 			"collect":
 				mapa.colher_na_posicao(player.position)
-				await get_tree().create_timer(0.2).timeout
+				player.mover_por_comando("collect")
+				await player.movement_finished
 		
 	actions.clear()
 	historico.text += "--- Concluído ---\n"
