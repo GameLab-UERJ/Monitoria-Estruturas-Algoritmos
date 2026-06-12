@@ -1,7 +1,8 @@
 extends Control
 
 @onready var editor = $HBoxContainer/VBoxContainer/EntradaComandos 
-@onready var historico = $HBoxContainer/TextEdit            
+@onready var historico = $HBoxContainer/TextEdit 
+@onready var game_manager = %GameManager           
 
 const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "plant", "collect"]
 var actions = []
@@ -14,11 +15,7 @@ func _ready():
 func _on_button_pressed() -> void:
 	var texto_completo = editor.text
 	var linhas = texto_completo.split("\n")
-
-	
 	historico.text += "--- Processando Bloco ---\n"
-	
-	
 
 	for linha in linhas:
 		var comando = linha.strip_edges()
@@ -43,9 +40,7 @@ func executar_acoes():
 	for acao in actions:
 		match acao:
 			"move_left", "move_right", "move_up", "move_down":
-			   
 				player.mover_por_comando(acao)
-				
 				await player.movement_finished
 				
 			"plant":
@@ -57,6 +52,7 @@ func executar_acoes():
 				mapa.colher_na_posicao(player.position)
 				player.mover_por_comando("collect")
 				await player.movement_finished
+				game_manager.add_fruit()
 		
 	actions.clear()
 	historico.text += "--- Concluído ---\n"

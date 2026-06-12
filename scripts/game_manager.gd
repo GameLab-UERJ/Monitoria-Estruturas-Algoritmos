@@ -6,7 +6,6 @@ var passos = 0
 
 func add_fruit():
 	fruit += 1
-	print(fruit)
 	fruit_label.text = "Você colheu " + str(fruit) + " plantas " 
 
 func add_passo():

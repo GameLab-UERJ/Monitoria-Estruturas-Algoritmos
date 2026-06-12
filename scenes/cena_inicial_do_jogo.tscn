@@ -68,20 +68,20 @@ unique_name_in_owner = true
 script = ExtResource("6_7ibc3")
 
 [node name="FruitLabel" type="Label" parent="GameManager" unique_id=487621281]
-offset_left = -9.0
-offset_top = -78.0
-offset_right = 245.0
-offset_bottom = -55.0
+offset_left = 576.0
+offset_top = 414.0
+offset_right = 851.0
+offset_bottom = 450.0
 theme_override_colors/font_color = Color(0.38434958, 0, 0.008503549, 1)
 theme_override_fonts/font = ExtResource("7_cc1t5")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 text = "Você colheu 0 plantas"
 
 [node name="PassosLabel" type="Label" parent="GameManager" unique_id=1941908416]
-offset_left = 589.0
-offset_top = 376.0
-offset_right = 809.0
-offset_bottom = 435.0
+offset_left = 578.0
+offset_top = 354.0
+offset_right = 798.0
+offset_bottom = 413.0
 text = "Passos: 0"
 
 [connection signal="timeout" from="Timer" to="TileMapLayer" method="_on_timer_timeout"]
