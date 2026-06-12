@@ -2,6 +2,7 @@ extends CharacterBody2D
 @onready var ray = $RayCast2D
 @onready var sprite = $AnimatedSprite2D
 @onready var mapa = $"../TileMapLayer"
+@onready var game_manager = %GameManager
 
 var tile_size: int
 var passo: int
@@ -50,6 +51,7 @@ func move2(dir: String):
 			movement_finished.emit()
 		)
 		is_moving = true
+		game_manager.add_passo()
 	else:
 		movement_finished.emit()
 
