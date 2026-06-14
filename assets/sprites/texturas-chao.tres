@@ -2,6 +2,8 @@
 
 [ext_resource type="Texture2D" uid="uid://bf5lxcafxcshg" path="res://assets/sprites/tileset.png" id="1_sh6xs"]
 
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_xc2us"]
+
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_4f0e8"]
 texture = ExtResource("1_sh6xs")
 texture_region_size = Vector2i(32, 32)
@@ -16,6 +18,7 @@ texture_region_size = Vector2i(32, 32)
 8:0/0 = 0
 9:0/0 = 0
 0:1/0 = 0
+0:1/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 1:1/0 = 0
 2:1/0 = 0
 3:1/0 = 0
@@ -47,7 +50,9 @@ texture_region_size = Vector2i(32, 32)
 9:3/0 = 0
 0:4/0 = 0
 1:4/0 = 0
+1:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 2:4/0 = 0
+2:4/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, -16, 16, -16, 16, 16, -16, 16)
 3:4/0 = 0
 4:4/0 = 0
 5:4/0 = 0
@@ -96,4 +101,6 @@ texture_region_size = Vector2i(32, 32)
 
 [resource]
 tile_size = Vector2i(32, 32)
+physics_layer_0/collision_layer = 3
+physics_layer_0/physics_material = SubResource("PhysicsMaterial_xc2us")
 sources/0 = SubResource("TileSetAtlasSource_4f0e8")
