@@ -8,9 +8,7 @@ const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "pl
 var actions = []
 
 func _ready():
-	
 	editor.grab_focus()
-
 
 func _on_button_pressed() -> void:
 	var texto_completo = editor.text
@@ -25,11 +23,7 @@ func _on_button_pressed() -> void:
 				historico.text += "> Adicionado: " + comando + "\n"
 			else:
 				historico.text += "ERRO: Comando '" + comando + "' inválido!\n"
-	
-	
 	editor.clear()
-	
-	
 	executar_acoes()
 
 func executar_acoes():
@@ -45,31 +39,30 @@ func executar_acoes():
 			"move_left", "move_right", "move_up", "move_down":
 				# 1. Pega a posição exata de agora
 				var pos_antes = player.position
-				
-			   
 				player.mover_por_comando(acao)
-				
-				
 				await get_tree().create_timer(0.2).timeout
-				
-				
 				if player.position.distance_to(pos_antes) > 1.0:
 					sucesso = true
 				else:
 					sucesso = false
 					erro_msg = "Movimento bloqueado!"
-			
-			"plant":
-				sucesso = mapa.tentar_plantar(player.position)
-				if not sucesso: erro_msg = "Solo inválido!"
-				await get_tree().create_timer(0.2).timeout
-			
-			"collect":
-				sucesso = mapa.tentar_colher(player.position)
-				if not sucesso: erro_msg = "Nada para colher!"
-				await get_tree().create_timer(0.2).timeout
 
-		
+			"plant":
+				player.mover_por_comando("plant")
+				await player.movement_finished
+				sucesso = mapa.tentar_plantar(player.position)
+				if not sucesso:
+					erro_msg = "Solo inválido!"
+
+			"collect":
+				player.mover_por_comando("collect")
+				await player.movement_finished
+				sucesso = mapa.tentar_colher(player.position)
+				if sucesso:
+					game_manager.add_fruit()
+				else:
+					erro_msg = "Nada para colher!"
+
 		if sucesso:
 			historico.text += "> " + acao + " realizado.\n"
 		else:
