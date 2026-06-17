@@ -50,9 +50,10 @@ offset_bottom = 316.5
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="EntradaComandos" type="TextEdit" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=1254594417]
+[node name="EntradaComandos" type="CodeEdit" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=993116805]
 layout_mode = 2
 size_flags_vertical = 3
+gutters_draw_line_numbers = true
 
 [node name="Button" type="Button" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=2137265797]
 layout_mode = 2
