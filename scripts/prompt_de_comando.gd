@@ -1,24 +1,19 @@
 extends Control
 
-@onready var editor = $HBoxContainer/VBoxContainer/EntradaComandos 
-@onready var historico = $HBoxContainer/TextEdit            
+@onready var editor = $HBoxContainer/VBoxContainer/EntradaComandos
+@onready var historico = $HBoxContainer/TextEdit
+@onready var game_manager = %GameManager
 
 const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "plant", "collect"]
 var actions = []
 
 func _ready():
-	
 	editor.grab_focus()
-
 
 func _on_button_pressed() -> void:
 	var texto_completo = editor.text
 	var linhas = texto_completo.split("\n")
-
-	
 	historico.text += "--- Processando Bloco ---\n"
-	
-	
 
 	for linha in linhas:
 		var comando = linha.strip_edges()
@@ -28,35 +23,50 @@ func _on_button_pressed() -> void:
 				historico.text += "> Adicionado: " + comando + "\n"
 			else:
 				historico.text += "ERRO: Comando '" + comando + "' inválido!\n"
-	
-	
 	editor.clear()
-	
-	
 	executar_acoes()
 
 func executar_acoes():
 	historico.text += "--- Executando... ---\n"
-	var player = $"../../Player"
-	var mapa = $"../../TileMapLayer"
+	var mapa = get_node("../../TileMapLayer")
+	var player = get_node("../../Player")
 	
 	for acao in actions:
+		var sucesso = false
+		var erro_msg = ""
+		
 		match acao:
 			"move_left", "move_right", "move_up", "move_down":
-			   
+				# 1. Pega a posição exata de agora
+				var pos_antes = player.position
 				player.mover_por_comando(acao)
-				
-				await player.movement_finished
-				
+				await get_tree().create_timer(0.2).timeout
+				if player.position.distance_to(pos_antes) > 1.0:
+					sucesso = true
+				else:
+					sucesso = false
+					erro_msg = "Movimento bloqueado!"
+
 			"plant":
-				mapa.plantar_na_posicao(player.position)
 				player.mover_por_comando("plant")
-				await player.movement_finished # Pequeno delay visual
-				
+				await player.movement_finished
+				sucesso = mapa.tentar_plantar(player.position)
+				if not sucesso:
+					erro_msg = "Solo inválido!"
+
 			"collect":
-				mapa.colher_na_posicao(player.position)
 				player.mover_por_comando("collect")
 				await player.movement_finished
-		
+				sucesso = mapa.tentar_colher(player.position)
+				if sucesso:
+					game_manager.add_fruit()
+				else:
+					erro_msg = "Nada para colher!"
+
+		if sucesso:
+			historico.text += "> " + acao + " realizado.\n"
+		else:
+			historico.text += "ERRO em " + acao + ": " + erro_msg + "\n"
+			
 	actions.clear()
 	historico.text += "--- Concluído ---\n"
