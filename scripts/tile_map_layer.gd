@@ -10,16 +10,28 @@ func _ready() -> void:
 		if not timer.timeout.is_connected(_on_timer_timeout):
 			timer.timeout.connect(_on_timer_timeout)
 	gerar_grid()
+	centralizar_camera()
+
+func centralizar_camera():
+	var camera = $Camera2D
+	var viewport_size = get_viewport().get_visible_rect().size
+	var grid_largura = colunas_custom * tile_set.tile_size.x * scale.x
+	var grid_altura = linhas_custom * tile_set.tile_size.y * scale.y
+	var grid_origem = global_position
+	var canto_inf_esq = grid_origem + Vector2(0, grid_altura)
+	camera.global_position = Vector2(
+		canto_inf_esq.x + viewport_size.x / 2.0,
+		canto_inf_esq.y - viewport_size.y / 2.0
+	)
+	camera.make_current()
 
 func gerar_grid():
-	
 	for x in range(-1, colunas_custom + 1):
 		for y in range(-1, linhas_custom + 1):
 			var pos = Vector2i(x, y)						
 			if x == -1 or x == colunas_custom or y == -1 or y == linhas_custom:				
 				set_cell(pos, 0, Vector2i(2, 4)) 
 			else:
-				
 				if randf() >= 0.7:
 					set_cell(pos, 0, Vector2i(2, 1)) 
 					dados_plantas[pos] = {"status": "broto", "segundos": 0}
