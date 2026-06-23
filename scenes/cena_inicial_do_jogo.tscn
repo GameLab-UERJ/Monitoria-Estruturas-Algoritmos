@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://blgil7r7q0b6q" path="res://assets/sprites/texturas-chao.tres" id="1_lbr3u"]
 [ext_resource type="Script" uid="uid://b2ur6olh40cr6" path="res://scripts/tile_map_layer.gd" id="2_ilbva"]
 [ext_resource type="PackedScene" uid="uid://bak0ffhbmmxm7" path="res://scenes/player.tscn" id="3_ilbva"]
-[ext_resource type="Script" uid="uid://bbupiqk7oo3ws" path="res://scripts/timer.gd" id="3_ucqhn"]
+[ext_resource type="Script" uid="uid://coplpd7rldiyi" path="res://scripts/timer.gd" id="3_ucqhn"]
 [ext_resource type="Script" uid="uid://bi0wfad5ly3er" path="res://scripts/prompt_de_comando.gd" id="5_ucqhn"]
 [ext_resource type="Script" uid="uid://d13xfkm4i5pch" path="res://scripts/game_manager.gd" id="6_7ibc3"]
 
@@ -67,34 +67,43 @@ text = "Executar"
 layout_mode = 2
 size_flags_horizontal = 3
 
+[node name="BarrasHud" type="VBoxContainer" parent="CanvasLayer" unique_id=222993731]
+custom_minimum_size = Vector2(350, 20)
+offset_right = 423.0
+offset_bottom = 146.0
+
+[node name="EstágioLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=2054212855]
+layout_mode = 2
+text = "Estágio 1: 4x4"
+
+[node name="ObjetivoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=633260832]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="PassoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=541107432]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Passos"
+
+[node name="PassoBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=1515140744]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+
+[node name="PlantaLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1471617954]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Plantas"
+
+[node name="FrutaBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=264156175]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+
 [node name="GameManager" type="Node" parent="." unique_id=859272466]
 unique_name_in_owner = true
 script = ExtResource("6_7ibc3")
 obj_fruta = 1
 obj_passos = 15
 proxima_cena = "uid://bb8gu0r2fx3lw"
-
-[node name="FruitLabel" type="Label" parent="GameManager" unique_id=487621281]
-offset_left = 573.0
-offset_top = 368.0
-offset_right = 848.0
-offset_bottom = 393.0
-theme_override_colors/font_color = Color(1, 1, 1, 1)
-theme_override_font_sizes/font_size = 16
-text = "Você colheu 0 plantas"
-
-[node name="PassosLabel" type="Label" parent="GameManager" unique_id=1941908416]
-offset_left = 573.0
-offset_top = 346.0
-offset_right = 793.0
-offset_bottom = 374.0
-text = "Passos: 0"
-
-[node name="ObjetivoLabel" type="Label" parent="GameManager" unique_id=633260832]
-offset_left = 572.0
-offset_top = 389.0
-offset_right = 857.0
-offset_bottom = 438.0
 
 [connection signal="timeout" from="Timer" to="TileMapLayer" method="_on_timer_timeout"]
 [connection signal="pressed" from="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer/Button" to="CanvasLayer/PromptdeComando" method="_on_button_pressed"]

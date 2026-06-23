@@ -5,22 +5,25 @@ var passos = 0
 @export var obj_passos : int
 @export_file("*.tscn") var proxima_cena: String
 var obj_sim = false
-@onready var fruit_label = $FruitLabel
-@onready var passos_label = $PassosLabel
-@onready var objetivo_label = $ObjetivoLabel
+@onready var objetivo_label = $"../CanvasLayer/BarrasHud/ObjetivoLabel"
+@onready var frutas_bar = $"../CanvasLayer/BarrasHud/FrutaBar"
+@onready var passos_bar = $"../CanvasLayer/BarrasHud/PassoBar"
 
 func _ready():
-	
 	objetivo_label.text = "Colete " + str(obj_fruta) + " plantas em menos de " + str(obj_passos) + " passos"
-	 
+	frutas_bar.max_value = obj_fruta
+	frutas_bar.value = 0
+	passos_bar.max_value = obj_passos
+	passos_bar.value = 0
+
 func add_fruit():
 	fruit += 1
-	fruit_label.text = "Você colheu " + str(fruit) + " plantas " 
+	frutas_bar.value = fruit
 	verificar_obj()
 
 func add_passo():
 	passos += 1
-	passos_label.text = "Passos: " + str(passos)
+	passos_bar.value = passos
 	if obj_sim:
 		return
 	if passos >= obj_passos and fruit <= obj_fruta:
@@ -30,15 +33,11 @@ func add_passo():
 func verificar_obj():
 	if obj_sim:
 		return
-		
 	if fruit >= obj_fruta:
 		if passos <= obj_passos:
 			objetivo_label.text = "Objetivo concluído"
 			obj_sim = true 
-			
-			
 			await get_tree().create_timer(1.5).timeout
-						
 			get_tree().change_scene_to_file(proxima_cena) 
 		else:
 			objetivo_label.text = "Objetivo falhado"
