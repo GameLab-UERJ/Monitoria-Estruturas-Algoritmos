@@ -74,15 +74,16 @@ offset_bottom = 146.0
 
 [node name="EstágioLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=2054212855]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Estágio 1: 4x4"
 
 [node name="ObjetivoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=633260832]
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 
 [node name="PassoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=541107432]
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Passos"
 
 [node name="PassoBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=1515140744]
@@ -90,8 +91,8 @@ custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 
 [node name="PlantaLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1471617954]
-custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Plantas"
 
 [node name="FrutaBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=264156175]

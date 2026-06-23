@@ -1,9 +1,7 @@
 extends Control
-
 @onready var editor = $HBoxContainer/VBoxContainer/EntradaComandos
 @onready var historico = $HBoxContainer/TextEdit
 @onready var game_manager = %GameManager
-
 const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "plant", "collect"]
 var actions = []
 
@@ -14,7 +12,6 @@ func _on_button_pressed() -> void:
 	var texto_completo = editor.text
 	var linhas = texto_completo.split("\n")
 	historico.text += "--- Processando Bloco ---\n"
-
 	for linha in linhas:
 		var comando = linha.strip_edges()
 		if not comando.is_empty():
@@ -30,11 +27,9 @@ func executar_acoes():
 	historico.text += "--- Executando... ---\n"
 	var mapa = get_node("../../TileMapLayer")
 	var player = get_node("../../Player")
-	
 	for acao in actions:
 		var sucesso = false
 		var erro_msg = ""
-		
 		match acao:
 			"move_left", "move_right", "move_up", "move_down":
 				# 1. Pega a posição exata de agora

@@ -67,34 +67,35 @@ text = "Executar"
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="BarrasHud" type="VBoxContainer" parent="CanvasLayer" unique_id=741204591]
+[node name="BarrasHud" type="VBoxContainer" parent="CanvasLayer" unique_id=469774198]
 custom_minimum_size = Vector2(350, 20)
-offset_right = 428.0
-offset_bottom = 190.0
+offset_right = 423.0
+offset_bottom = 146.0
 
-[node name="EstágioLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1970795569]
+[node name="EstágioLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1790375208]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Estágio 2: 4x8"
 
-[node name="ObjetivoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=301618886]
-custom_minimum_size = Vector2(0, 40)
+[node name="ObjetivoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=925449450]
 layout_mode = 2
+theme_override_font_sizes/font_size = 24
 
-[node name="PassoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1286676937]
-custom_minimum_size = Vector2(0, 40)
+[node name="PassoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=2042076830]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Passos"
 
-[node name="PassoBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=346319763]
+[node name="PassoBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=1706087572]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 
-[node name="PlantaLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1575364108]
-custom_minimum_size = Vector2(0, 40)
+[node name="PlantaLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1730943417]
 layout_mode = 2
+theme_override_font_sizes/font_size = 16
 text = "Plantas"
 
-[node name="FrutaBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=1315571246]
+[node name="FrutaBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=267691634]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
 
