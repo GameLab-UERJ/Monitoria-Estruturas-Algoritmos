@@ -3,8 +3,8 @@
 [ext_resource type="TileSet" uid="uid://blgil7r7q0b6q" path="res://assets/sprites/texturas-chao.tres" id="1_27ws7"]
 [ext_resource type="Script" uid="uid://b2ur6olh40cr6" path="res://scripts/tile_map_layer.gd" id="2_25hrh"]
 [ext_resource type="PackedScene" uid="uid://bak0ffhbmmxm7" path="res://scenes/player.tscn" id="3_gcwk2"]
-[ext_resource type="Script" uid="uid://coplpd7rldiyi" path="res://scripts/timer.gd" id="4_l75tp"]
-[ext_resource type="Script" uid="uid://bi0wfad5ly3er" path="res://scripts/prompt_de_comando.gd" id="5_sm304"]
+[ext_resource type="Script" uid="uid://bbupiqk7oo3ws" path="res://scripts/timer.gd" id="4_l75tp"]
+[ext_resource type="PackedScene" uid="uid://b3tyfwbbel1by" path="res://scenes/Interface.tscn" id="6_27ws7"]
 [ext_resource type="Script" uid="uid://d13xfkm4i5pch" path="res://scripts/game_manager.gd" id="6_qhtq3"]
 
 [node name="Node2D" type="Node2D" unique_id=1904403614]
@@ -27,78 +27,6 @@ scale = Vector2(3, 3)
 autostart = true
 script = ExtResource("4_l75tp")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=284847996]
-
-[node name="PromptdeComando" type="Control" parent="CanvasLayer" unique_id=95987204]
-layout_mode = 3
-anchors_preset = 0
-offset_left = -21.0
-offset_top = 17.0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("5_sm304")
-
-[node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/PromptdeComando" unique_id=176799254]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 13.1310005
-anchor_top = 0.5
-anchor_right = 13.1310005
-anchor_bottom = 0.5
-offset_left = -205.99103
-offset_top = -25.5
-offset_right = 373.00897
-offset_bottom = 316.5
-
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/PromptdeComando/HBoxContainer" unique_id=677248617]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="EntradaComandos" type="CodeEdit" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=993116805]
-layout_mode = 2
-size_flags_vertical = 3
-gutters_draw_line_numbers = true
-
-[node name="Button" type="Button" parent="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer" unique_id=2137265797]
-layout_mode = 2
-text = "Executar"
-
-[node name="TextEdit" type="TextEdit" parent="CanvasLayer/PromptdeComando/HBoxContainer" unique_id=1871849012]
-layout_mode = 2
-size_flags_horizontal = 3
-
-[node name="BarrasHud" type="VBoxContainer" parent="CanvasLayer" unique_id=650696872]
-custom_minimum_size = Vector2(350, 20)
-offset_right = 423.0
-offset_bottom = 146.0
-
-[node name="EstágioLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1439960091]
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Estágio 3: 8x8"
-
-[node name="ObjetivoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=503025483]
-layout_mode = 2
-theme_override_font_sizes/font_size = 24
-
-[node name="PassoLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1870575761]
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Passos"
-
-[node name="PassoBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=1801587707]
-custom_minimum_size = Vector2(150, 20)
-layout_mode = 2
-
-[node name="PlantaLabel" type="Label" parent="CanvasLayer/BarrasHud" unique_id=1978704900]
-layout_mode = 2
-theme_override_font_sizes/font_size = 16
-text = "Plantas"
-
-[node name="FrutaBar" type="ProgressBar" parent="CanvasLayer/BarrasHud" unique_id=1685006612]
-custom_minimum_size = Vector2(150, 20)
-layout_mode = 2
-
 [node name="GameManager" type="Node" parent="." unique_id=859272466]
 unique_name_in_owner = true
 script = ExtResource("6_qhtq3")
@@ -106,5 +34,6 @@ obj_fruta = 1
 obj_passos = 22
 proxima_cena = "\"res://scenes/control.tscn\""
 
+[node name="CanvasLayer" parent="." unique_id=934758523 instance=ExtResource("6_27ws7")]
+
 [connection signal="timeout" from="Timer" to="TileMapLayer" method="_on_timer_timeout"]
-[connection signal="pressed" from="CanvasLayer/PromptdeComando/HBoxContainer/VBoxContainer/Button" to="CanvasLayer/PromptdeComando" method="_on_button_pressed"]

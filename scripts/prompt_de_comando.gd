@@ -1,7 +1,7 @@
 extends Control
-@onready var editor = $HBoxContainer/VBoxContainer/EntradaComandos
-@onready var historico = $HBoxContainer/TextEdit
-@onready var game_manager = %GameManager
+@onready var editor = %EntradaComandos
+@onready var historico = %TextEdit
+@onready var game_manager = $"../../GameManager"
 
 const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "plant", "collect"]
 var actions = []
