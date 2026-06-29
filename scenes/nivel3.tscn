@@ -3,7 +3,7 @@
 [ext_resource type="TileSet" uid="uid://blgil7r7q0b6q" path="res://assets/sprites/texturas-chao.tres" id="1_27ws7"]
 [ext_resource type="Script" uid="uid://b2ur6olh40cr6" path="res://scripts/tile_map_layer.gd" id="2_25hrh"]
 [ext_resource type="PackedScene" uid="uid://bak0ffhbmmxm7" path="res://scenes/player.tscn" id="3_gcwk2"]
-[ext_resource type="Script" uid="uid://bbupiqk7oo3ws" path="res://scripts/timer.gd" id="4_l75tp"]
+[ext_resource type="Script" uid="uid://coplpd7rldiyi" path="res://scripts/timer.gd" id="4_l75tp"]
 [ext_resource type="PackedScene" uid="uid://b3tyfwbbel1by" path="res://scenes/Interface.tscn" id="6_27ws7"]
 [ext_resource type="Script" uid="uid://d13xfkm4i5pch" path="res://scripts/game_manager.gd" id="6_qhtq3"]
 
@@ -33,6 +33,7 @@ script = ExtResource("6_qhtq3")
 obj_fruta = 1
 obj_passos = 22
 proxima_cena = "\"res://scenes/control.tscn\""
+estagio_texto = "Estágio 3: 8x8"
 
 [node name="CanvasLayer" parent="." unique_id=934758523 instance=ExtResource("6_27ws7")]
 

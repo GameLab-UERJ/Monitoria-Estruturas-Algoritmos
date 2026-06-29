@@ -4,12 +4,15 @@ var passos = 0
 @export var obj_fruta : int
 @export var obj_passos : int
 @export_file("*.tscn") var proxima_cena: String
+@export var estagio_texto: String = "Estágio Z: XxY"  
 var obj_sim = false
 @onready var objetivo_label = $"../CanvasLayer/PromptdeComando/Hud/Estagio e objetivo/ObjetivoLabel"
+@onready var estagio_label = $"../CanvasLayer/PromptdeComando/Hud/Estagio e objetivo/EstágioLabel"
 @onready var frutas_bar = $"../CanvasLayer/PromptdeComando/Hud/Plantas/FrutaBar"
 @onready var passos_bar = $"../CanvasLayer/PromptdeComando/Hud/contador de passos/PassoBar"
 
 func _ready():
+	estagio_label.text = estagio_texto
 	objetivo_label.text = "Colete " + str(obj_fruta) + " plantas em menos de " + str(obj_passos) + " passos"
 	frutas_bar.max_value = obj_fruta
 	frutas_bar.value = 0
