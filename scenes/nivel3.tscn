@@ -1,0 +1,40 @@
+[gd_scene format=3 uid="uid://k7hgsnrhe3f3"]
+
+[ext_resource type="TileSet" uid="uid://blgil7r7q0b6q" path="res://assets/sprites/texturas-chao.tres" id="1_27ws7"]
+[ext_resource type="Script" uid="uid://b2ur6olh40cr6" path="res://scripts/tile_map_layer.gd" id="2_25hrh"]
+[ext_resource type="PackedScene" uid="uid://bak0ffhbmmxm7" path="res://scenes/player.tscn" id="3_gcwk2"]
+[ext_resource type="Script" uid="uid://coplpd7rldiyi" path="res://scripts/timer.gd" id="4_l75tp"]
+[ext_resource type="PackedScene" uid="uid://b3tyfwbbel1by" path="res://scenes/Interface.tscn" id="6_27ws7"]
+[ext_resource type="Script" uid="uid://d13xfkm4i5pch" path="res://scripts/game_manager.gd" id="6_qhtq3"]
+
+[node name="Node2D" type="Node2D" unique_id=1904403614]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1827566320]
+scale = Vector2(3, 3)
+tile_set = ExtResource("1_27ws7")
+rendering_quadrant_size = 32
+script = ExtResource("2_25hrh")
+linhas_custom = 8
+colunas_custom = 8
+
+[node name="Camera2D" type="Camera2D" parent="TileMapLayer" unique_id=430428835]
+
+[node name="Player" parent="." unique_id=1531125137 groups=["player"] instance=ExtResource("3_gcwk2")]
+position = Vector2(349, 220)
+scale = Vector2(3, 3)
+
+[node name="Timer" type="Timer" parent="." unique_id=283884369]
+autostart = true
+script = ExtResource("4_l75tp")
+
+[node name="GameManager" type="Node" parent="." unique_id=859272466]
+unique_name_in_owner = true
+script = ExtResource("6_qhtq3")
+obj_fruta = 1
+obj_passos = 22
+proxima_cena = "\"res://scenes/control.tscn\""
+estagio_texto = "Estágio 3: 8x8"
+
+[node name="CanvasLayer" parent="." unique_id=934758523 instance=ExtResource("6_27ws7")]
+
+[connection signal="timeout" from="Timer" to="TileMapLayer" method="_on_timer_timeout"]

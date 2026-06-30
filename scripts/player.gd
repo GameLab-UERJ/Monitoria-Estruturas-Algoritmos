@@ -23,12 +23,7 @@ var command_to_input = {
 	"move_down":  "ui_down"
 }
 
-func _ready():
-	tile_size = mapa.tile_set.tile_size.x * int(mapa.scale.x)
-	var tamanho_medio = (mapa.linhas_custom + mapa.colunas_custom) / 2
-	passo = max(1, tamanho_medio / 4)
-	grid_position = ((position - Vector2.ONE * tile_size / 2) / tile_size).round()
-	position = grid_position * tile_size + Vector2.ONE * tile_size / 2
+
 
 func _unhandled_input(event):
 	if is_moving:
@@ -37,13 +32,27 @@ func _unhandled_input(event):
 		if event.is_action_pressed(dir):
 			move2(dir)
 
+func _ready():
+	tile_size = mapa.tile_set.tile_size.x * int(mapa.scale.x)
+	
+	# Removido o cálculo de 'passo'. O drone sempre deve andar 1 bloco da grade por vez.
+	
+	grid_position = ((position - Vector2.ONE * tile_size / 2) / tile_size).round()
+	position = grid_position * tile_size + Vector2.ONE * tile_size / 2
+
 func move2(dir: String):
-	var tile_size_raw = mapa.tile_set.tile_size.x
-	ray.target_position = inputs[dir] * tile_size_raw * passo
+	
+	var tamanho_base = mapa.tile_set.tile_size.x
+	
+	
+	ray.target_position = inputs[dir] * tamanho_base
 	ray.force_raycast_update()
+	
 	if !ray.is_colliding():
-		grid_position += inputs[dir] * passo
+		
+		grid_position += inputs[dir]
 		var target = grid_position * tile_size + Vector2.ONE * tile_size / 2
+		
 		var tween = create_tween()
 		tween.tween_property(self, "position", target, 0.15)
 		tween.tween_callback(func():
