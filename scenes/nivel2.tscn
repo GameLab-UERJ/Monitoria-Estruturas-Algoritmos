@@ -18,6 +18,8 @@ linhas_custom = 4
 colunas_custom = 8
 
 [node name="Camera2D" type="Camera2D" parent="TileMapLayer" unique_id=430428835]
+offset = Vector2(200, -100)
+zoom = Vector2(0.75, 0.75)
 
 [node name="Player" parent="." unique_id=1531125137 groups=["player"] instance=ExtResource("3_4wggy")]
 position = Vector2(349, 220)

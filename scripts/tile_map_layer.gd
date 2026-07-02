@@ -75,3 +75,15 @@ func tentar_colher(player_pos: Vector2) -> bool:
 	set_cell(pos_grid, 0, Vector2i(0, 0))
 	dados_plantas[pos_grid] = {"status": "terra", "segundos": 0}
 	return true
+	
+func pode_plantar(player_pos: Vector2) -> bool:
+	var pos_grid = local_to_map(player_pos / 3.0)
+	if not dados_plantas.has(pos_grid):
+		return false
+	return dados_plantas[pos_grid].status == "terra"
+
+func pode_colher(player_pos: Vector2) -> bool:
+	var pos_grid = local_to_map(player_pos / 3.0)
+	if not dados_plantas.has(pos_grid):
+		return false
+	return dados_plantas[pos_grid].status == "flor"
