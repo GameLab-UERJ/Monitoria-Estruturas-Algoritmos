@@ -4,7 +4,7 @@ extends Control
 @onready var game_manager = $"../../GameManager"
 @onready var inventario = get_node("../../Player/Inventario")
 
-const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "plant", "collect", "open_backpack", "close_backpack"]
+const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "plant", "collect", "open", "close"]
 const CONDICOES_VALIDAS = ["pode_plantar", "pode_colher"]
 var actions = []
 
@@ -151,10 +151,10 @@ func _executar_um_comando(acao: String, mapa, player) -> void:
 				game_manager.add_fruit()
 			else:
 				erro_msg = "Nada para colher!"
-		"open_backpack":
+		"open":
 			inventario.open()
 			sucesso = true
-		"close_backpack":
+		"close":
 			inventario.close()
 			sucesso = true
 	if sucesso:

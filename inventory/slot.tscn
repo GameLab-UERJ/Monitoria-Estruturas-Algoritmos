@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://d1odjcosocljx"]
+
+[ext_resource type="Script" uid="uid://dqr7emk853br2" path="res://inventory/slot.gd" id="1_sthnt"]
+[ext_resource type="Texture2D" uid="uid://xraucv7ae2y8" path="res://assets/sprites/inventory-slot.png" id="1_u4i3g"]
+
+[node name="Slot" type="Panel" unique_id=755658568]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(16, 16)
+offset_right = 16.0
+offset_bottom = 16.0
+script = ExtResource("1_sthnt")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1786412989]
+texture = ExtResource("1_u4i3g")
+centered = false
+
+[node name="itemdisplay" type="Sprite2D" parent="." unique_id=1529917611]

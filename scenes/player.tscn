@@ -294,3 +294,5 @@ target_position = Vector2(0, 25)
 
 [node name="Inventario" parent="." unique_id=1003241603 instance=ExtResource("5_qlg0r")]
 unique_name_in_owner = true
+offset_left = -54.0
+offset_right = 54.0
