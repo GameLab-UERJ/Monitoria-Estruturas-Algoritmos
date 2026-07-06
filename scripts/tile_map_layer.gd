@@ -2,7 +2,8 @@ extends TileMapLayer
 @export var linhas_custom: int
 @export var colunas_custom: int
 @onready var timer = get_parent().get_node("Timer")
-var dados_plantas = {}
+@onready var camada_objetos = $CamadaObjetos
+var estado_celulas = {}
 
 func _ready() -> void:
 	if timer:
@@ -27,63 +28,143 @@ func centralizar_camera():
 func gerar_grid():
 	for x in range(-1, colunas_custom + 1):
 		for y in range(-1, linhas_custom + 1):
-			var pos = Vector2i(x, y)
-			if x == -1 or x == colunas_custom or y == -1 or y == linhas_custom:
-				set_cell(pos,0,Vector2i(2,4))
+			var pos = Vector2i(x, y)						
+			
+			# Bordas (Paredes invisíveis)
+			if x == -1 or x == colunas_custom or y == -1 or y == linhas_custom:				
+				set_cell(pos, 0, Vector2i(2, 4)) 
+			
+			# Área útil do mapa
 			else:
-				if randf() >= 0.7:
-					set_cell(pos,0,Vector2i(2,1))
-					dados_plantas[pos] = {"status": "broto", "segundos": 0}
+				var sorteio = randf() # Sorteia um número de 0.0 a 1.0
+				
+				# 1. GERAÇÃO DE PEDRA (15% de chance)
+				if sorteio < 0.15:
+					# PRIMEIRO: Coloca a terra/grama no mapa base (exatamente como faz na terra vazia)
+					set_cell(pos, 0, Vector2i(0, 0)) 
+					
+					# SEGUNDO: Coloca a pedra por cima, na nova Camada de Objetos
+					# (Lembre de ajustar o Vector2i(0, 0) para a coordenada real da pedra clara no seu tileset)
+					camada_objetos.set_cell(pos, 1, Vector2i(0, 0)) 
+					
+					estado_celulas[pos] = {
+						"terreno": "pedra",
+						"ocupacao": "obstaculo",
+						"tipo_planta": "nenhum",
+						"estagio": "nenhum",
+						"umidade": 0.0,
+						"fertilidade": 0.0,
+						"praga": false,
+						"segundos": 0
+					}
+				
+				# 2. GERAÇÃO DE BROTO (30% de chance)
+				elif sorteio < 0.45:
+					set_cell(pos, 0, Vector2i(2, 1))
+					estado_celulas[pos] = {
+						"terreno": "solo",
+						"ocupacao": "planta",
+						"tipo_planta": "milho", 
+						"estagio": "broto",
+						"umidade": 100.0,
+						"fertilidade": 100.0,
+						"praga": false,
+						"segundos": 0
+					}
+					
+				# 3. GERAÇÃO DE TERRA VAZIA (55% de chance)
 				else:
 					set_cell(pos, 0, Vector2i(0, 0))
-					dados_plantas[pos] = {"status": "terra", "segundos": 0}
+					estado_celulas[pos] = {
+						"terreno": "solo",
+						"ocupacao": "vazio",
+						"tipo_planta": "nenhum",
+						"estagio": "nenhum",
+						"umidade": 100.0,
+						"fertilidade": 100.0,
+						"praga": false,
+						"segundos": 0
+					}
 
 func processar_crescimento():
-	for pos in dados_plantas.keys():
-		var planta = dados_plantas[pos]
-		if planta.status == "broto":
-			planta.segundos += 1
-			if planta.segundos == 1:
+	# Agora iteramos sobre o novo dicionário estado_celulas
+	for pos in estado_celulas.keys():
+		var celula = estado_celulas[pos]
+		
+		# A checagem agora é feita pela chave 'estagio'
+		if celula.estagio == "broto":
+			celula.segundos += 1
+			if celula.segundos == 1:
 				set_cell(pos, 0, Vector2i(3, 1))
-			elif planta.segundos == 2:
+			elif celula.segundos == 2:
 				set_cell(pos, 0, Vector2i(4, 1))
-			elif planta.segundos >= 3:
+			elif celula.segundos >= 3:
 				var flor_final = Vector2i(randi_range(0, 4), randi_range(2, 3))
 				set_cell(pos, 0, flor_final)
-				planta.status = "flor"
+				celula.estagio = "flor" # Atualizamos o estágio para flor
 		else:
 			pass
 
 func _on_timer_timeout() -> void:
 	processar_crescimento()
+
 func tentar_plantar(player_pos: Vector2) -> bool:
-	var pos_grid = local_to_map(player_pos / 3.0)
-	if not dados_plantas.has(pos_grid):
+	# Ajustado para usar a variável dinâmica "scale" em vez de 3.0 fixo
+	var pos_grid = local_to_map(player_pos / scale)
+	
+	if not estado_celulas.has(pos_grid):
 		return false
-	if dados_plantas[pos_grid].status != "terra":
+		
+	var celula = estado_celulas[pos_grid]
+	
+	# Só pode plantar se for solo E estiver vazio
+	if celula.terreno != "solo" or celula.ocupacao != "vazio":
 		return false
+		
 	set_cell(pos_grid, 0, Vector2i(2, 1))
-	dados_plantas[pos_grid] = {"status": "broto", "segundos": 0}
+	
+	# Atualiza todos os parâmetros da célula
+	celula.ocupacao = "planta"
+	celula.tipo_planta = "milho" # Ou a semente que o jogador escolheu
+	celula.estagio = "broto"
+	celula.segundos = 0
+	
 	return true
 
 func tentar_colher(player_pos: Vector2) -> bool:
-	var pos_grid = local_to_map(player_pos / 3.0)
-	if not dados_plantas.has(pos_grid):
+	# Ajustado para usar a variável dinâmica "scale"
+	var pos_grid = local_to_map(player_pos / scale)
+	
+	if not estado_celulas.has(pos_grid):
 		return false
-	if dados_plantas[pos_grid].status != "flor":
+		
+	var celula = estado_celulas[pos_grid]
+	
+	if celula.estagio != "flor":
 		return false
+		
 	set_cell(pos_grid, 0, Vector2i(0, 0))
-	dados_plantas[pos_grid] = {"status": "terra", "segundos": 0}
+	
+	# Reseta a célula de volta para o estado de terra vazia
+	celula.ocupacao = "vazio"
+	celula.tipo_planta = "nenhum"
+	celula.estagio = "nenhum"
+	celula.segundos = 0
+	
 	return true
 	
 func pode_plantar(player_pos: Vector2) -> bool:
-	var pos_grid = local_to_map(player_pos / 3.0)
-	if not dados_plantas.has(pos_grid):
+	var pos_grid = local_to_map(player_pos / scale)
+	if not estado_celulas.has(pos_grid):
 		return false
-	return dados_plantas[pos_grid].status == "terra"
+		
+	var celula = estado_celulas[pos_grid]
+	return celula.terreno == "solo" and celula.ocupacao == "vazio"
 
 func pode_colher(player_pos: Vector2) -> bool:
-	var pos_grid = local_to_map(player_pos / 3.0)
-	if not dados_plantas.has(pos_grid):
+	var pos_grid = local_to_map(player_pos / scale)
+	if not estado_celulas.has(pos_grid):
 		return false
-	return dados_plantas[pos_grid].status == "flor"
+		
+	var celula = estado_celulas[pos_grid]
+	return celula.estagio == "flor"
