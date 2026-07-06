@@ -2,8 +2,9 @@ extends Control
 @onready var editor = %EntradaComandos
 @onready var historico = %TextEdit
 @onready var game_manager = $"../../GameManager"
+@onready var inventario = get_node("../../Player/Inventario")
 
-const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "plant", "collect"]
+const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "plant", "collect", "open_backpack", "close_backpack"]
 const CONDICOES_VALIDAS = ["pode_plantar", "pode_colher"]
 var actions = []
 
@@ -27,15 +28,12 @@ func _parsear_linhas(linhas: Array) -> bool:
 		if linha_limpa.is_empty():
 			i += 1
 			continue
-
 		var regex_repeat = RegEx.new()
 		regex_repeat.compile("^repeat\\((\\d+)\\):$")
 		var resultado_repeat = regex_repeat.search(linha_limpa)
-
 		var regex_if = RegEx.new()
 		regex_if.compile("^if\\s+(\\w+)\\s*:$")
 		var resultado_if = regex_if.search(linha_limpa)
-
 		if resultado_repeat:
 			var n = resultado_repeat.get_string(1).to_int()
 			if n <= 0:
@@ -66,7 +64,6 @@ func _parsear_linhas(linhas: Array) -> bool:
 			for _rep in range(n):
 				for cmd in cmds_bloco:
 					actions.append(cmd)
-
 		elif resultado_if:
 			var condicao = resultado_if.get_string(1)
 			if not condicao in CONDICOES_VALIDAS:
@@ -95,7 +92,6 @@ func _parsear_linhas(linhas: Array) -> bool:
 				return true
 			historico.text += "> Condição registrada: if " + condicao + "\n"
 			actions.append({"tipo": "if", "condicao": condicao, "comandos": cmds_bloco})
-
 		else:
 			if linha_limpa in COMANDOS_VALIDOS:
 				actions.append(linha_limpa)
@@ -110,7 +106,6 @@ func executar_acoes():
 	historico.text += "--- Executando... ---\n"
 	var mapa = get_node("../../TileMapLayer")
 	var player = get_node("../../Player")
-
 	for acao in actions:
 		if acao is Dictionary and acao.get("tipo") == "if":
 			var condicao_ok = false
@@ -119,9 +114,7 @@ func executar_acoes():
 					condicao_ok = mapa.pode_plantar(player.position)
 				"pode_colher":
 					condicao_ok = mapa.pode_colher(player.position)
-
 			historico.text += "> if " + acao.condicao + " -> " + str(condicao_ok) + "\n"
-
 			if condicao_ok:
 				for cmd in acao.comandos:
 					await _executar_um_comando(cmd, mapa, player)
@@ -129,7 +122,6 @@ func executar_acoes():
 				historico.text += "> Condição falsa, bloco ignorado.\n"
 		else:
 			await _executar_um_comando(acao, mapa, player)
-
 	actions.clear()
 	historico.text += "--- Concluído ---\n"
 
@@ -159,7 +151,12 @@ func _executar_um_comando(acao: String, mapa, player) -> void:
 				game_manager.add_fruit()
 			else:
 				erro_msg = "Nada para colher!"
-
+		"open_backpack":
+			inventario.open()
+			sucesso = true
+		"close_backpack":
+			inventario.close()
+			sucesso = true
 	if sucesso:
 		historico.text += "> " + acao + " realizado.\n"
 	else:

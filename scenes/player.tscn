@@ -1,8 +1,10 @@
 [gd_scene format=3 uid="uid://bak0ffhbmmxm7"]
 
 [ext_resource type="Script" uid="uid://vkvsg2imsghq" path="res://scripts/player.gd" id="1_g2els"]
+[ext_resource type="Resource" uid="uid://dusouly4dbf62" path="res://inventory/player_inventory.tres" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://cbnh82cs4ih7a" path="res://assets/sprites/1 Drones/4/Idle.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dqy87uuov5un3" path="res://assets/sprites/1 Drones/4/Landing.png" id="3_qhqgy"]
+[ext_resource type="PackedScene" uid="uid://d0pkvmaen7dk2" path="res://inventory/inventario.tscn" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -275,6 +277,7 @@ radius = 5.0
 [node name="Player" type="CharacterBody2D" unique_id=1531125137]
 collision_layer = 2
 script = ExtResource("1_g2els")
+inv = ExtResource("2_dqkch")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=744433924]
 position = Vector2(-5.9604645e-08, 6.9999995)
@@ -288,3 +291,6 @@ shape = SubResource("CircleShape2D_fjrip")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1129516570]
 target_position = Vector2(0, 25)
+
+[node name="Inventario" parent="." unique_id=1003241603 instance=ExtResource("5_qlg0r")]
+unique_name_in_owner = true

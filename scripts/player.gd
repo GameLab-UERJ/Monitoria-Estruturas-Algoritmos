@@ -3,6 +3,7 @@ extends CharacterBody2D
 @onready var sprite = $AnimatedSprite2D
 @onready var mapa = $"../TileMapLayer"
 @onready var game_manager = %GameManager
+@export var inv: Inv
 
 var tile_size: int
 var passo: int
@@ -22,8 +23,6 @@ var command_to_input = {
 	"move_up":    "ui_up",
 	"move_down":  "ui_down"
 }
-
-
 
 func _unhandled_input(event):
 	if is_moving:

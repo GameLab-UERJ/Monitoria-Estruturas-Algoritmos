@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://d0pkvmaen7dk2"]
+
+[ext_resource type="Script" uid="uid://cf3u0w34cvfpb" path="res://inventory/inventario_hud.gd" id="1_8klv1"]
+
+[node name="Inventario" type="Control" unique_id=1003241603]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_8klv1")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=372127486]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
