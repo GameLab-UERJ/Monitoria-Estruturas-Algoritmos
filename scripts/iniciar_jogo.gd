@@ -3,7 +3,7 @@ extends Button
 func _ready() -> void:
 	pass
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	pass
 
 func _on_button_pressed():
@@ -20,5 +20,5 @@ func _on_button_pressed():
 func _on_pressed() -> void:
 	_on_button_pressed()
 
-func _on_colunas_text_changed(new_text: String) -> void:
+func _on_colunas_text_changed(_new_text: String) -> void:
 	pass 

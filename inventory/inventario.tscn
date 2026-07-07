@@ -5,17 +5,17 @@
 [ext_resource type="PackedScene" uid="uid://d1odjcosocljx" path="res://inventory/slot.tscn" id="3_jnu5q"]
 
 [node name="Inventario" type="Control" unique_id=1003241603]
-custom_minimum_size = Vector2(108, 40)
+custom_minimum_size = Vector2(46, 105)
 layout_mode = 3
 anchors_preset = 0
-offset_right = 108.0
-offset_bottom = 40.0
+offset_right = 46.0
+offset_bottom = 105.0
 script = ExtResource("1_8klv1")
 
 [node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=890749173]
 layout_mode = 0
-offset_right = 108.0
-offset_bottom = 40.0
+offset_right = 42.0
+offset_bottom = 103.0
 texture = ExtResource("2_uk5nb")
 patch_margin_left = 6
 patch_margin_top = 6
@@ -29,13 +29,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -48.0
-offset_top = -18.0
-offset_right = 48.5
-offset_bottom = 19.0
+offset_left = -19.0
+offset_top = -49.5
+offset_right = 21.0
+offset_bottom = 46.5
 grow_horizontal = 2
 grow_vertical = 2
-columns = 5
+columns = 2
 
 [node name="Slot1" parent="NinePatchRect/GridContainer" unique_id=755658568 instance=ExtResource("3_jnu5q")]
 layout_mode = 2

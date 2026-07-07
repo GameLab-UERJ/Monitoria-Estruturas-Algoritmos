@@ -14,4 +14,13 @@ script = ExtResource("1_sthnt")
 texture = ExtResource("1_u4i3g")
 centered = false
 
-[node name="itemdisplay" type="Sprite2D" parent="." unique_id=1529917611]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=1796813063]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 0
+offset_right = 16.0
+offset_bottom = 16.0
+
+[node name="Panel" type="Panel" parent="CenterContainer" unique_id=897356563]
+layout_mode = 2
+
+[node name="itemdisplay" type="Sprite2D" parent="CenterContainer/Panel" unique_id=1529917611]
