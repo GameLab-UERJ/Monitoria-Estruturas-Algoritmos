@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" format=3 uid="uid://bmpufysxajq1b"]
+
+[ext_resource type="Script" uid="uid://bk5kuwf8d4n8k" path="res://inventory/inventoryitem.gd" id="1_mkofq"]
+[ext_resource type="Texture2D" uid="uid://bop3h2wvgspdl" path="res://assets/sprites/blueberry.png" id="2_mkofq"]
+
+[resource]
+script = ExtResource("1_mkofq")
+name = "Mirtilo"
+texture = ExtResource("2_mkofq")
+metadata/_custom_type_script = "uid://bk5kuwf8d4n8k"

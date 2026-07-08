@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" format=3 uid="uid://b2prwrvrekpl3"]
+
+[ext_resource type="Script" uid="uid://bk5kuwf8d4n8k" path="res://inventory/inventoryitem.gd" id="1_q4fck"]
+[ext_resource type="Texture2D" uid="uid://cffmbn3lnafio" path="res://assets/sprites/cabbage.png" id="2_q4fck"]
+
+[resource]
+script = ExtResource("1_q4fck")
+name = "Repolho"
+texture = ExtResource("2_q4fck")
+metadata/_custom_type_script = "uid://bk5kuwf8d4n8k"

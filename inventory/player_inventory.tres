@@ -1,13 +1,19 @@
 [gd_resource type="Resource" script_class="Inv" format=3 uid="uid://dusouly4dbf62"]
 
 [ext_resource type="Script" uid="uid://bk5kuwf8d4n8k" path="res://inventory/inventoryitem.gd" id="1_ptr4k"]
+[ext_resource type="Resource" uid="uid://dufpmh8yvlvs6" path="res://inventory/items/grape.tres" id="2_cajua"]
 [ext_resource type="Resource" uid="uid://s6lsxko0phs5" path="res://inventory/items/apple.tres" id="2_fi1x0"]
 [ext_resource type="Script" uid="uid://3ewkul3wd52l" path="res://inventory/inventory.gd" id="3_65xq6"]
 [ext_resource type="Resource" uid="uid://72knejogife" path="res://inventory/items/banana.tres" id="3_fi1x0"]
 [ext_resource type="Resource" uid="uid://c28o85rpitkvq" path="res://inventory/items/orange.tres" id="4_3ih0p"]
+[ext_resource type="Resource" uid="uid://bmpufysxajq1b" path="res://inventory/items/blueberry.tres" id="4_rfny4"]
 [ext_resource type="Resource" uid="uid://xj6g3k6718c0" path="res://inventory/items/peach.tres" id="5_cwv8g"]
+[ext_resource type="Resource" uid="uid://dyi7fhh8cd4gc" path="res://inventory/items/tangerine.tres" id="5_rdqbr"]
+[ext_resource type="Resource" uid="uid://b2prwrvrekpl3" path="res://inventory/items/cabbage.tres" id="8_7fytk"]
+[ext_resource type="Resource" uid="uid://bus16txuu3bjn" path="res://inventory/items/daisy.tres" id="9_1vmji"]
+[ext_resource type="Resource" uid="uid://dgn3y687rlgsp" path="res://inventory/items/hydrangea.tres" id="11_3luym"]
 
 [resource]
 script = ExtResource("3_65xq6")
-items = Array[ExtResource("1_ptr4k")]([ExtResource("2_fi1x0"), ExtResource("3_fi1x0"), ExtResource("4_3ih0p"), ExtResource("5_cwv8g"), null, null, null, null, null, null])
+items = Array[ExtResource("1_ptr4k")]([ExtResource("2_cajua"), ExtResource("4_3ih0p"), ExtResource("4_rfny4"), ExtResource("5_rdqbr"), ExtResource("3_fi1x0"), ExtResource("5_cwv8g"), ExtResource("8_7fytk"), ExtResource("9_1vmji"), ExtResource("2_fi1x0"), ExtResource("11_3luym")])
 metadata/_custom_type_script = "uid://3ewkul3wd52l"
