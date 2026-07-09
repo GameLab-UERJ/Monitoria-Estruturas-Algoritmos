@@ -14,7 +14,7 @@ func _ready() -> void:
 func centralizar_camera():
 	var camera = $Camera2D
 	var viewport_size = get_viewport().get_visible_rect().size
-	var grid_largura = colunas_custom * tile_set.tile_size.x * scale.x
+	#var grid_largura = colunas_custom * tile_set.tile_size.x * scale.x
 	var grid_altura = linhas_custom * tile_set.tile_size.y * scale.y
 	var grid_origem = global_position
 	var canto_inf_esq = grid_origem + Vector2(0, grid_altura)
