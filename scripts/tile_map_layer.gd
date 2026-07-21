@@ -4,6 +4,18 @@ extends TileMapLayer
 @onready var timer = get_parent().get_node("Timer")
 @onready var camada_objetos = $CamadaObjetos
 var estado_celulas = {}
+const COORDENADAS_PLANTAS = {
+	1: Vector2i(0, 2), # Comando plant(1) -> Slot 1 -> amora_roxa
+	2: Vector2i(1, 2), # Comando plant(2) -> Slot 2 -> tulipa_laranja
+	3: Vector2i(2, 2), # Comando plant(3) -> Slot 3 -> flor_azul
+	4: Vector2i(3, 2), # Comando plant(4) -> Slot 4 -> arbusto_laranja
+	5: Vector2i(4, 2), # Comando plant(5) -> Slot 5 -> planta_amarela
+	6: Vector2i(0, 3), # Comando plant(6) -> Slot 6 -> flor_rosa
+	7: Vector2i(1, 3), # Comando plant(7) -> Slot 7 -> repolho_roxo
+	8: Vector2i(2, 3), # Comando plant(8) -> Slot 8 -> margarida_branca
+	9: Vector2i(3, 3), # Comando plant(9) -> Slot 9 -> tomate_cereja
+	10: Vector2i(4, 3) # Comando plant(10) -> Slot 10 -> arbusto_ciano
+}
 
 func _ready() -> void:
 	if timer:
@@ -92,11 +104,17 @@ func processar_crescimento():
 		if celula.estagio == "broto":
 			celula.segundos += 1
 			if celula.segundos == 1:
-				set_cell(pos, 0, Vector2i(3, 1))
+				set_cell(pos, 0, Vector2i(3, 1)) # Animação: Broto médio
 			elif celula.segundos == 2:
-				set_cell(pos, 0, Vector2i(4, 1))
+				set_cell(pos, 0, Vector2i(4, 1)) # Animação: Broto grande
 			elif celula.segundos >= 3:
-				var flor_final = Vector2i(randi_range(0, 4), randi_range(2, 3))
+				# 1. Pega o número da semente que salvamos lá no tentar_plantar
+				var id_planta = celula.tipo_planta.to_int()
+				
+				# 2. Busca a coordenada exata dela no nosso dicionário (com fallback para milho)
+				var flor_final = COORDENADAS_PLANTAS.get(id_planta, Vector2i(2, 1))
+				
+				# 3. Desenha a flor certa no final do crescimento!
 				set_cell(pos, 0, flor_final)
 				celula.estagio = "flor" 
 		else:
@@ -105,8 +123,7 @@ func processar_crescimento():
 func _on_timer_timeout() -> void:
 	processar_crescimento()
 
-func tentar_plantar(player_pos: Vector2) -> bool:
-	# Ajustado para usar a variável dinâmica "scale" em vez de 3.0 fixo
+func tentar_plantar(player_pos: Vector2, id_planta: int) -> bool:
 	var pos_grid = local_to_map(player_pos / scale)
 	
 	if not estado_celulas.has(pos_grid):
@@ -118,10 +135,14 @@ func tentar_plantar(player_pos: Vector2) -> bool:
 	if celula.terreno != "solo" or celula.ocupacao != "vazio":
 		return false
 		
+	# Mágica: Procura o número digitado no dicionário. Se o número não existir, desenha o milho por padrão.
+	var coordenada_tile = COORDENADAS_PLANTAS.get(id_planta, Vector2i(2, 1))
+		
 	set_cell(pos_grid, 0, Vector2i(2, 1))
+	
 	# Atualiza todos os parâmetros da célula
 	celula.ocupacao = "planta"
-	celula.tipo_planta = "milho" 
+	celula.tipo_planta = str(id_planta) # Salva a identidade da planta para o timer ler depois!
 	celula.estagio = "broto"
 	celula.segundos = 0
 	return true

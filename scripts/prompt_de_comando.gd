@@ -160,12 +160,19 @@ func _executar_um_comando(acao, mapa, player) -> void:
 	if acao is Dictionary and acao.get("tipo") == "plant":
 		var indice = acao.indice
 		var slot = inventario.get_slot(indice)
+		
 		if slot == null or slot.quantidade <= 0:
 			historico.text += "ERRO em plant(" + str(indice) + "): sem itens nesse slot!\n"
 			return
+			
+		
+		
 		player.mover_por_comando("plant")
 		await player.movement_finished
-		sucesso = mapa.tentar_plantar(player.position)
+		
+		# Agora passamos a posição e o NOME da semente!
+		sucesso = mapa.tentar_plantar(player.position, indice)
+		
 		if sucesso:
 			slot.usar_item()
 			historico.text += "> plant(" + str(indice) + ") realizado.\n"

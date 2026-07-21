@@ -3,6 +3,13 @@
 [ext_resource type="Script" uid="uid://dqr7emk853br2" path="res://inventory/slot.gd" id="1_sthnt"]
 [ext_resource type="Texture2D" uid="uid://xraucv7ae2y8" path="res://assets/sprites/inventory-slot.png" id="1_u4i3g"]
 
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sthnt"]
+load_path = "res://.godot/imported/tileset.png-b50fc1806457686cf91872f682d34a54.ctex"
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_87gbl"]
+atlas = SubResource("CompressedTexture2D_sthnt")
+region = Rect2(32, 63.5, 33, 33)
+
 [node name="Slot" type="Panel" unique_id=755658568]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(16, 16)
@@ -31,6 +38,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = SubResource("AtlasTexture_87gbl")
 expand_mode = 1
 stretch_mode = 4
 
