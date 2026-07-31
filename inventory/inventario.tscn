@@ -47,6 +47,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
+theme_override_constants/outline_size = 6
 text = "1"
 
 [node name="Slot2" parent="NinePatchRect/GridContainer" unique_id=1519872049 instance=ExtResource("3_jnu5q")]
@@ -59,6 +60,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
+theme_override_constants/outline_size = 6
 text = "2"
 
 [node name="Slot3" parent="NinePatchRect/GridContainer" unique_id=41021593 instance=ExtResource("3_jnu5q")]
@@ -71,6 +73,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
+theme_override_constants/outline_size = 6
 text = "3"
 
 [node name="Slot4" parent="NinePatchRect/GridContainer" unique_id=419370646 instance=ExtResource("3_jnu5q")]
@@ -83,6 +86,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
+theme_override_constants/outline_size = 6
 text = "4"
 
 [node name="Slot5" parent="NinePatchRect/GridContainer" unique_id=386193627 instance=ExtResource("3_jnu5q")]
@@ -95,7 +99,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
 text = "5"
 
 [node name="Slot6" parent="NinePatchRect/GridContainer" unique_id=1762971326 instance=ExtResource("3_jnu5q")]
@@ -108,7 +112,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
 text = "6"
 
 [node name="Slot7" parent="NinePatchRect/GridContainer" unique_id=413381089 instance=ExtResource("3_jnu5q")]
@@ -121,6 +125,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
+theme_override_constants/outline_size = 6
 text = "7"
 
 [node name="Slot8" parent="NinePatchRect/GridContainer" unique_id=853584927 instance=ExtResource("3_jnu5q")]
@@ -133,7 +138,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
 text = "8"
 
 [node name="Slot9" parent="NinePatchRect/GridContainer" unique_id=1685851091 instance=ExtResource("3_jnu5q")]
@@ -146,6 +151,7 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
+theme_override_constants/outline_size = 6
 text = "9"
 
 [node name="Slot10" parent="NinePatchRect/GridContainer" unique_id=1837316666 instance=ExtResource("3_jnu5q")]
@@ -158,5 +164,5 @@ offset_left = 1.0299988
 offset_right = 20.029999
 offset_bottom = 23.0
 scale = Vector2(0.33, 0.33)
-theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
 text = "10"
