@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InvItem" format=3 uid="uid://dgn3y687rlgsp"]
+
+[ext_resource type="Script" uid="uid://bk5kuwf8d4n8k" path="res://inventory/inventoryitem.gd" id="1_40r8g"]
+[ext_resource type="Texture2D" uid="uid://wmpixxa4sa8w" path="res://assets/sprites/hydrangea.png" id="2_40r8g"]
+
+[resource]
+script = ExtResource("1_40r8g")
+name = "Hortênsia"
+texture = ExtResource("2_40r8g")
+metadata/_custom_type_script = "uid://bk5kuwf8d4n8k"
