@@ -1,0 +1,111 @@
+[gd_scene format=3 uid="uid://b3tyfwbbel1by"]
+
+[ext_resource type="Script" uid="uid://bi0wfad5ly3er" path="res://scripts/prompt_de_comando.gd" id="1_oxtoc"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=934758523]
+
+[node name="PromptdeComando" type="Control" parent="." unique_id=1027951045]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 4.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oxtoc")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PromptdeComando" unique_id=1989253608]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -579.0
+offset_top = -171.0
+offset_bottom = 303.0
+grow_horizontal = 0
+grow_vertical = 2
+alignment = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PromptdeComando/VBoxContainer" unique_id=108148411]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 4.0
+
+[node name="EntradaComandos" type="CodeEdit" parent="PromptdeComando/VBoxContainer/VBoxContainer" unique_id=2084663980]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+gutters_draw_line_numbers = true
+
+[node name="Button" type="Button" parent="PromptdeComando/VBoxContainer/VBoxContainer" unique_id=1986370420]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.25
+text = "Executar"
+
+[node name="TextEdit" type="TextEdit" parent="PromptdeComando/VBoxContainer" unique_id=1873568339]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Hud" type="HBoxContainer" parent="PromptdeComando" unique_id=1210304060]
+layout_mode = 1
+offset_right = 704.0
+offset_bottom = 105.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="contador de passos" type="VBoxContainer" parent="PromptdeComando/Hud" unique_id=429638675]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PassoLabel" type="Label" parent="PromptdeComando/Hud/contador de passos" unique_id=511290829]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Passos"
+horizontal_alignment = 1
+
+[node name="PassoBar" type="ProgressBar" parent="PromptdeComando/Hud/contador de passos" unique_id=1501798952]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+
+[node name="Estagio e objetivo" type="VBoxContainer" parent="PromptdeComando/Hud" unique_id=509051251]
+custom_minimum_size = Vector2(250, 20)
+layout_mode = 2
+size_flags_horizontal = 6
+
+[node name="EstágioLabel" type="Label" parent="PromptdeComando/Hud/Estagio e objetivo" unique_id=1191242401]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Estágio 1: 4x4"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ObjetivoLabel" type="Label" parent="PromptdeComando/Hud/Estagio e objetivo" unique_id=182004182]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="Plantas" type="VBoxContainer" parent="PromptdeComando/Hud" unique_id=1978150553]
+layout_mode = 2
+size_flags_horizontal = 3
+alignment = 1
+
+[node name="PlantaLabel" type="Label" parent="PromptdeComando/Hud/Plantas" unique_id=1759140699]
+layout_mode = 2
+theme_override_font_sizes/font_size = 16
+text = "Plantas"
+horizontal_alignment = 1
+
+[node name="FrutaBar" type="ProgressBar" parent="PromptdeComando/Hud/Plantas" unique_id=524468092]
+custom_minimum_size = Vector2(150, 20)
+layout_mode = 2
+
+[connection signal="pressed" from="PromptdeComando/VBoxContainer/VBoxContainer/Button" to="PromptdeComando" method="_on_button_pressed"]

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bf5lxcafxcshg"
-path="res://.godot/imported/tileset.png-b50fc1806457686cf91872f682d34a54.ctex"
+uid="uid://c3mu1t508putj"
+path="res://.godot/imported/grape.png-109c19b6c6a93b6326793e046d2b5a25.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tileset.png"
-dest_files=["res://.godot/imported/tileset.png-b50fc1806457686cf91872f682d34a54.ctex"]
+source_file="res://assets/sprites/grape.png"
+dest_files=["res://.godot/imported/grape.png-109c19b6c6a93b6326793e046d2b5a25.ctex"]
 
 [params]
 

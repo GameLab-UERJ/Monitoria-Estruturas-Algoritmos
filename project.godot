@@ -10,10 +10,14 @@ config_version=5
 
 [application]
 
-config/name="Projeto do jogo da manotoria"
+config/name="Projeto Monitoria"
 run/main_scene="uid://b5su0docfg3lv"
 config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
+
+[display]
+
+window/stretch/mode="canvas_items"
 
 [physics]
 
