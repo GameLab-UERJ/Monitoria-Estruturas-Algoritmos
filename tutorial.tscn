@@ -1,0 +1,57 @@
+[gd_scene format=3 uid="uid://djq2n4q0j1fr5"]
+
+[ext_resource type="Texture2D" uid="uid://bj3avunqyff1h" path="res://assets/sprites/inventory-background.png" id="1_7n6eb"]
+
+[node name="Tutorial" type="Control" unique_id=924185593]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="NinePatchRect" type="NinePatchRect" parent="." unique_id=1311382931]
+layout_mode = 0
+offset_right = 95.0
+offset_bottom = 70.0
+texture = ExtResource("1_7n6eb")
+patch_margin_left = 6
+patch_margin_top = 6
+patch_margin_right = 6
+patch_margin_bottom = 6
+
+[node name="Label" type="Label" parent="NinePatchRect" unique_id=1033421387]
+custom_minimum_size = Vector2(95, 24)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 1.0
+offset_right = 98.0
+offset_bottom = 28.0
+theme_override_font_sizes/font_size = 4
+text = "Movimentos básicos: move_left; move_right; move_up; move_down
+"
+autowrap_mode = 2
+
+[node name="Label2" type="Label" parent="NinePatchRect" unique_id=1857584785]
+custom_minimum_size = Vector2(95, 24)
+layout_mode = 0
+offset_left = 3.0
+offset_top = 20.0
+offset_right = 98.0
+offset_bottom = 44.0
+theme_override_font_sizes/font_size = 4
+text = "Comandos básicos: plant(x); collect; open; close
+"
+autowrap_mode = 2
+
+[node name="Label3" type="Label" parent="NinePatchRect" unique_id=519913897]
+custom_minimum_size = Vector2(95, 24)
+layout_mode = 0
+offset_left = 2.0
+offset_top = 39.0
+offset_right = 97.0
+offset_bottom = 76.0
+theme_override_font_sizes/font_size = 4
+text = "Com Open, pode abrir inventário. Nele, cada semente há um número atribuído. Esse número é usado no comando plant(x)
+"
+autowrap_mode = 2
