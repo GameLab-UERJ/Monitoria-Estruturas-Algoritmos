@@ -1,0 +1,61 @@
+[gd_scene format=3 uid="uid://ce3jcr64jrv88"]
+
+[ext_resource type="Script" uid="uid://dt3jnitrwsv8x" path="res://scripts/map_editor.gd" id="1_l5hcm"]
+[ext_resource type="TileSet" uid="uid://blgil7r7q0b6q" path="res://assets/sprites/texturas-chao.tres" id="2_ikn3w"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ikn3w"]
+
+[node name="MapEditor" type="Node2D" unique_id=617141959]
+script = ExtResource("1_l5hcm")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1435137555]
+
+[node name="Fundo do Menu" type="Panel" parent="UI" unique_id=2141837417]
+custom_minimum_size = Vector2(200, 648)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Organizador Vertical" type="VBoxContainer" parent="UI/Fundo do Menu" unique_id=1112076845]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Fundo do Menu/Organizador Vertical" unique_id=1676146312]
+layout_mode = 2
+
+[node name="XSpinBox" type="SpinBox" parent="UI/Fundo do Menu/Organizador Vertical/HBoxContainer" unique_id=1641141879]
+layout_mode = 2
+min_value = 1.0
+value = 5.0
+
+[node name="YSpinBox" type="SpinBox" parent="UI/Fundo do Menu/Organizador Vertical/HBoxContainer" unique_id=531118942]
+layout_mode = 2
+min_value = 1.0
+value = 5.0
+
+[node name="ItemList" type="ItemList" parent="UI/Fundo do Menu/Organizador Vertical" unique_id=2108612094]
+layout_mode = 2
+size_flags_vertical = 3
+item_count = 2
+item_0/text = "Terra"
+item_0/icon = SubResource("CanvasTexture_ikn3w")
+item_1/text = "Pedra"
+
+[node name="Button" type="Button" parent="UI/Fundo do Menu/Organizador Vertical" unique_id=957669940]
+layout_mode = 2
+text = "Salvar mapa
+"
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1123859430]
+position = Vector2(576, 324)
+
+[node name="TileMap" type="TileMap" parent="." unique_id=1884013529]
+position = Vector2(250, 100)
+tile_set = ExtResource("2_ikn3w")
+format = 2
+
+[connection signal="item_selected" from="UI/Fundo do Menu/Organizador Vertical/ItemList" to="." method="_on_item_list_item_selected"]
+[connection signal="pressed" from="UI/Fundo do Menu/Organizador Vertical/Button" to="." method="salvar_mapa"]
