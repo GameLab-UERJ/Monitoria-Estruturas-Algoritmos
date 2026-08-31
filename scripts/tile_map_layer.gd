@@ -1,9 +1,9 @@
 extends TileMapLayer
 @export var linhas_custom: int
 @export var colunas_custom: int
-@onready var timer = get_parent().get_node("Timer")
-@onready var camada_objetos = $CamadaObjetos
-var estado_celulas = {}
+@onready var timer = get_parent().get_node_or_null("Timer")
+@onready var camada_objetos = get_node_or_null("CamadaObjetos")
+var estado_celulas : Dictionary = {}
 const COORDENADAS_PLANTAS = {
 	1: Vector2i(0, 2), # Comando plant(1) -> Slot 1 -> amora_roxa
 	2: Vector2i(1, 2), # Comando plant(2) -> Slot 2 -> tulipa_laranja
@@ -21,8 +21,8 @@ func _ready() -> void:
 	if timer:
 		if not timer.timeout.is_connected(_on_timer_timeout):
 			timer.timeout.connect(_on_timer_timeout)
-	gerar_grid()
-	centralizar_camera()
+	'''gerar_grid()
+	centralizar_camera()'''
 
 func centralizar_camera():
 	var camera = $Camera2D
@@ -37,7 +37,7 @@ func centralizar_camera():
 	)
 	camera.make_current()
 
-func gerar_grid():
+func gerar_grid(sorteio_fixo: float = -1):
 	for x in range(-1, colunas_custom + 1):
 		for y in range(-1, linhas_custom + 1):
 			var pos = Vector2i(x, y)
@@ -48,7 +48,13 @@ func gerar_grid():
 			
 			# Área útil do mapa
 			else:
-				var sorteio = randf() # Sorteia um número de 0.0 a 1.0
+				var sorteio : float
+				
+				if sorteio_fixo>=0:
+					sorteio=sorteio_fixo
+					
+				else:
+					sorteio=randf()
 				
 				# 1. GERAÇÃO DE PEDRA (15% de chance)
 				if sorteio < 0.15:
@@ -181,3 +187,7 @@ func pode_colher(player_pos: Vector2) -> bool:
 		
 	var celula = estado_celulas[pos_grid]
 	return celula.estagio == "flor"
+
+
+func _on_gerar_mapa_pressed() -> void:
+	pass # Replace with function body.
