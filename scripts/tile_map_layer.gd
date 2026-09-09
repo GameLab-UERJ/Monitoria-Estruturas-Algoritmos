@@ -21,8 +21,8 @@ func _ready() -> void:
 	if timer:
 		if not timer.timeout.is_connected(_on_timer_timeout):
 			timer.timeout.connect(_on_timer_timeout)
-	'''gerar_grid()
-	centralizar_camera()'''
+	gerar_grid()
+	centralizar_camera()
 
 func centralizar_camera():
 	var camera = $Camera2D

@@ -150,7 +150,7 @@ func salvar_mapa():
 		nome_digitado = "mapa_padrao"
 		
 	# Monta o caminho final juntando a pasta, o nome e a extensão .json
-	var caminho = "res://" + nome_digitado + ".json"
+	var caminho = "res://missions//" + nome_digitado + ".json"
 	
 	var dados_do_mapa = {
 		"tamanho_x": tilemap.colunas_custom,

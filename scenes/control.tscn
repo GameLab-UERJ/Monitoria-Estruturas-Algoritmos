@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b5su0docfg3lv"]
 
 [ext_resource type="Script" uid="uid://cpw37n04j1ksv" path="res://scripts/iniciar_jogo.gd" id="1_jlqjh"]
+[ext_resource type="Script" uid="uid://b52kdyoqi4044" path="res://scenes/abrir_editor.gd" id="2_r67kn"]
 
 [node name="Interface inicial" type="Control" unique_id=1494513182]
 layout_mode = 3
@@ -27,7 +28,7 @@ offset_left = 184.0
 offset_top = 39.0
 offset_right = 1023.0
 offset_bottom = 108.0
-text = "Interface Inicial
+text = "\"The Farmer Was Replaced\" Was Replaced
 "
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -35,15 +36,21 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="TextureRect" unique_id=1640290617]
 layout_mode = 0
 offset_left = 363.0
-offset_top = 195.0
+offset_top = 112.0
 offset_right = 863.0
-offset_bottom = 331.0
+offset_bottom = 628.0
 
 [node name="Iniciar jogo" type="Button" parent="TextureRect/VBoxContainer" unique_id=1743248683]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 text = "Iniciar jogo"
 script = ExtResource("1_jlqjh")
+
+[node name="Abrir Editor" type="Button" parent="TextureRect/VBoxContainer" unique_id=826910439]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+text = "Abrir Editor"
+script = ExtResource("2_r67kn")
 
 [node name="configurações" type="Button" parent="TextureRect/VBoxContainer" unique_id=1059359620]
 custom_minimum_size = Vector2(400, 100)
@@ -65,4 +72,5 @@ placeholder_text = "colunas"
 alignment = 1
 
 [connection signal="pressed" from="TextureRect/VBoxContainer/Iniciar jogo" to="TextureRect/VBoxContainer/Iniciar jogo" method="_on_pressed"]
+[connection signal="pressed" from="TextureRect/VBoxContainer/Abrir Editor" to="TextureRect/VBoxContainer/Abrir Editor" method="_on_pressed"]
 [connection signal="text_changed" from="TextureRect/VBoxContainer/colunas" to="TextureRect/VBoxContainer/Iniciar jogo" method="_on_colunas_text_changed"]
