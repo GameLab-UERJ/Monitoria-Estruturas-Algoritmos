@@ -178,7 +178,7 @@ func carregar_mapa():
 		get_viewport().gui_release_focus()
 		return
 		
-	var caminho = "res://" + nome_digitado + ".json"
+	var caminho = "res://missions//" + nome_digitado + ".json"
 	
 	if not FileAccess.file_exists(caminho):
 		print("Erro: Nenhum mapa encontrado com o nome -> ", caminho)
