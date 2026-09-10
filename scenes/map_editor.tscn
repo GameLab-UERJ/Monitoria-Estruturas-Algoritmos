@@ -73,6 +73,9 @@ layout_mode = 2
 focus_mode = 1
 text = "Nome do arquivo a abrir"
 
+[node name="DebugLabel" type="Label" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=1476108094]
+layout_mode = 2
+
 [node name="Comandos do editor de mapa" type="Label" parent="UI/Fundo do Menu/HBoxContainer" unique_id=769581750]
 layout_mode = 2
 size_flags_vertical = 1
@@ -94,6 +97,9 @@ P: Flor Vermelha
 A: Flor Azul
 S: Solo Infértil"
 horizontal_alignment = 1
+
+[node name="TerminalLabel" type="Label" parent="UI/Fundo do Menu/HBoxContainer" unique_id=664829778]
+layout_mode = 2
 
 [node name="TileMap" type="TileMapLayer" parent="." unique_id=1109870689]
 position = Vector2(250, 100)

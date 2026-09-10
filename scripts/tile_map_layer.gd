@@ -3,6 +3,8 @@ extends TileMapLayer
 @export var colunas_custom: int
 @onready var timer = get_parent().get_node_or_null("Timer")
 @onready var camada_objetos = get_node_or_null("CamadaObjetos")
+
+var ultima_acao: String = "Nenhuma"
 var estado_celulas : Dictionary = {}
 const COORDENADAS_PLANTAS = {
 	1: Vector2i(0, 2), # Comando plant(1) -> Slot 1 -> amora_roxa
@@ -23,6 +25,8 @@ func _ready() -> void:
 			timer.timeout.connect(_on_timer_timeout)
 	gerar_grid()
 	centralizar_camera()
+	
+
 
 func centralizar_camera():
 	var camera = $Camera2D
