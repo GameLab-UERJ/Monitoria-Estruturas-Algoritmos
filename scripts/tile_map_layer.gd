@@ -23,9 +23,135 @@ func _ready() -> void:
 	if timer:
 		if not timer.timeout.is_connected(_on_timer_timeout):
 			timer.timeout.connect(_on_timer_timeout)
-	gerar_grid()
-	centralizar_camera()
+			
+	# Lê a variável estática para saber qual arquivo .json montar
+	var nome_da_missao = "Missão " + str(GerenciadorDeFases.missao_atual)
+	carregar_mapa_json(nome_da_missao)
+
+
+func carregar_mapa_json(nome_mapa: String):
+	var caminho = "res://missions//" + nome_mapa + ".json"
 	
+	if not FileAccess.file_exists(caminho):
+		print("Erro: Arquivo do mapa não encontrado em -> ", caminho)
+		return
+		
+	var arquivo = FileAccess.open(caminho, FileAccess.READ)
+	var texto_json = arquivo.get_as_text()
+	arquivo.close()
+	
+	var dados_do_mapa = JSON.parse_string(texto_json)
+	
+	clear()
+	if camada_objetos:
+		camada_objetos.clear()
+	estado_celulas.clear()
+	
+	# Puxa o tamanho salvo no JSON
+	colunas_custom = dados_do_mapa["tamanho_x"]
+	linhas_custom = dados_do_mapa["tamanho_y"]
+	var celulas_json = dados_do_mapa["celulas"]
+	
+	# 1. Desenha as bordas e preenche tudo com terra inicialmente
+	for x in range(-1, colunas_custom + 1):
+		for y in range(-1, linhas_custom + 1):
+			var pos = Vector2i(x, y)
+			
+			if x == -1 or x == colunas_custom or y == -1 or y == linhas_custom:				
+				set_cell(pos, 0, Vector2i(2, 4)) # Parede invisível nas bordas
+			else:
+				set_cell(pos, 0, Vector2i(0, 0)) # Chão de grama padrão
+				
+				# Cadastra a célula como um solo vazio por padrão
+				estado_celulas[pos] = {
+					"terreno": "solo",
+					"ocupacao": "vazio",
+					"tipo": "grama", # <--- Nova chave de identificação do chão
+					"tipo_planta": "nenhum",
+					"estagio": "nenhum",
+					"umidade": 100.0,
+					"fertilidade": 100.0,
+					"praga": false,
+					"segundos": 0
+				}
+				
+	# 2. Lê o JSON e aplica os detalhes (pedras, terra vazia e plantas)
+	for x in range(colunas_custom):
+		for y in range(linhas_custom):
+			var chave_json = str(x) + "," + str(y)
+			var pos = Vector2i(x, y)
+			
+			if celulas_json.has(chave_json):
+				var tipo_json = celulas_json[chave_json]["tipo"]
+				
+				# Desenha o tile certo e atualiza o estado se necessário
+				match tipo_json:
+					"pedra":
+						camada_objetos.set_cell(pos, 1, Vector2i(0, 0))
+						estado_celulas[pos]["terreno"] = "pedra"
+						estado_celulas[pos]["ocupacao"] = "obstaculo"
+						estado_celulas[pos]["tipo"] = "pedra"
+					"terra_vazia":
+						# Desenha a terra arada, mas continua sendo solo/vazio para o jogador poder plantar!
+						set_cell(pos, 0, Vector2i(0, 1))
+						estado_celulas[pos]["tipo"] = "terra_vazia" # <--- Registra que aqui pode plantar
+						estado_celulas[pos]["ocupacao"] = "planta_ou_modificador"
+					"solo_infertil":
+						set_cell(pos, 0, Vector2i(0, 4))
+						estado_celulas[pos]["tipo"] = "solo_infertil"
+						estado_celulas[pos]["fertilidade"] = 0.0 
+					"fruta_roxa":
+						set_cell(pos, 0, Vector2i(0, 2))
+						estado_celulas[pos]["tipo"] = "terra_vazia" # Mantém a base como terra cultivável
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"fruta_laranja":
+						set_cell(pos, 0, Vector2i(1, 2))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"fruta_azul":
+						set_cell(pos, 0, Vector2i(2, 2))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"flor_laranja":
+						set_cell(pos, 0, Vector2i(3, 2))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"flor_amarela":
+						set_cell(pos, 0, Vector2i(4, 2))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"flor_rosa":
+						set_cell(pos, 0, Vector2i(0, 3))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"flor_roxa":
+						set_cell(pos, 0, Vector2i(1, 3))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"flor_branca":
+						set_cell(pos, 0, Vector2i(2, 3))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"flor_vermelha":
+						set_cell(pos, 0, Vector2i(3, 3))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					"flor_azul":
+						set_cell(pos, 0, Vector2i(4, 3))
+						estado_celulas[pos]["tipo"] = "terra_vazia"
+						estado_celulas[pos]["ocupacao"] = "planta"
+						estado_celulas[pos]["estagio"] = "flor"
+					
+	centralizar_camera()
 
 
 func centralizar_camera():
@@ -40,7 +166,7 @@ func centralizar_camera():
 		canto_inf_esq.y - viewport_size.y / 2.0
 	)
 	camera.make_current()
-
+'''
 func gerar_grid(sorteio_fixo: float = -1):
 	for x in range(-1, colunas_custom + 1):
 		for y in range(-1, linhas_custom + 1):
@@ -106,7 +232,7 @@ func gerar_grid(sorteio_fixo: float = -1):
 						"praga": false,
 						"segundos": 0
 					}
-
+'''
 func processar_crescimento():
 	for pos in estado_celulas.keys():
 		var celula = estado_celulas[pos]
@@ -134,31 +260,29 @@ func _on_timer_timeout() -> void:
 	processar_crescimento()
 
 func tentar_plantar(player_pos: Vector2, id_planta: int) -> bool:
-	var pos_grid = local_to_map(player_pos / scale)
+	var pos_grid = local_to_map(to_local(player_pos))
 	
 	if not estado_celulas.has(pos_grid):
 		return false
 		
 	var celula = estado_celulas[pos_grid]
 	
-	# Só pode plantar se for solo E estiver vazio
-	if celula.terreno != "solo" or celula.ocupacao != "vazio":
+	# Exigência estrita: Tem que ser especificamente terra_vazia
+	if celula.get("tipo", "") != "terra_vazia":
 		return false
 		
-	# Mágica: Procura o número digitado no dicionário. Se o número não existir, desenha o milho por padrão.
-	var coordenada_tile = COORDENADAS_PLANTAS.get(id_planta, Vector2i(2, 1))
+	if celula.estagio != "nenhum": 
+		return false
 		
-	set_cell(pos_grid, 0, Vector2i(2, 1))
-	
-	# Atualiza todos os parâmetros da célula
+	set_cell(pos_grid, 0, Vector2i(2, 1)) 
 	celula.ocupacao = "planta"
-	celula.tipo_planta = str(id_planta) # Salva a identidade da planta para o timer ler depois!
+	celula.tipo_planta = str(id_planta) 
 	celula.estagio = "broto"
 	celula.segundos = 0
 	return true
 
 func tentar_colher(player_pos: Vector2) -> bool:
-	var pos_grid = local_to_map(player_pos / scale)
+	var pos_grid = local_to_map(to_local(player_pos))
 	
 	if not estado_celulas.has(pos_grid):
 		return false
@@ -168,8 +292,9 @@ func tentar_colher(player_pos: Vector2) -> bool:
 	if celula.estagio != "flor":
 		return false
 		
-	set_cell(pos_grid, 0, Vector2i(0, 0))
-	celula.ocupacao = "vazio"
+	# Volta para a textura de terra arada para você poder replantar no futuro
+	set_cell(pos_grid, 0, Vector2i(0, 1)) 
+	celula.ocupacao = "planta_ou_modificador"
 	celula.tipo_planta = "nenhum"
 	celula.estagio = "nenhum"
 	celula.segundos = 0
@@ -177,21 +302,23 @@ func tentar_colher(player_pos: Vector2) -> bool:
 	return true
 
 func pode_plantar(player_pos: Vector2) -> bool:
-	var pos_grid = local_to_map(player_pos / scale)
+	var pos_grid = local_to_map(to_local(player_pos))
 	if not estado_celulas.has(pos_grid):
 		return false
 		
 	var celula = estado_celulas[pos_grid]
-	return celula.terreno == "solo" and celula.ocupacao == "vazio"
+	var terra_certa = (celula.get("tipo", "") == "terra_vazia")
+	var sem_planta = (celula.estagio == "nenhum")
+	
+	return terra_certa and sem_planta
 
 func pode_colher(player_pos: Vector2) -> bool:
-	var pos_grid = local_to_map(player_pos / scale)
+	var pos_grid = local_to_map(to_local(player_pos))
 	if not estado_celulas.has(pos_grid):
 		return false
 		
 	var celula = estado_celulas[pos_grid]
 	return celula.estagio == "flor"
-
 
 func _on_gerar_mapa_pressed() -> void:
 	pass # Replace with function body.
