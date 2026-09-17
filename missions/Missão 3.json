@@ -197,6 +197,7 @@
 			"tipo": "solo"
 		}
 	},
+	"objetivo": "Percorrer 5 posições de inspeção e plantar a cor indicada em cada posição válida, sem desperdiçar sementes",
 	"tamanho_x": 7,
 	"tamanho_y": 7
 }

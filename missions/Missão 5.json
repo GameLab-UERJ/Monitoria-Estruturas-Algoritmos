@@ -161,6 +161,7 @@
 			"tipo": "solo"
 		}
 	},
+	"objetivo": "Plantar toda a linha marcada com flores vermelhas utilizando um único bloco while",
 	"tamanho_x": 4,
 	"tamanho_y": 10
 }

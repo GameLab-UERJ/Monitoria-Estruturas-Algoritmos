@@ -281,6 +281,7 @@
 			"tipo": "solo"
 		}
 	},
+	"objetivo": "Plantar uma faixa vermelha e uma faixa azul, deslocando o drone entre elas e usando repetição em ambas",
 	"tamanho_x": 7,
 	"tamanho_y": 10
 }

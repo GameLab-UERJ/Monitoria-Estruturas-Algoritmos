@@ -145,6 +145,7 @@
 			"tipo": "solo"
 		}
 	},
+	"objetivo": "Plantar 2 flores azuis nas células numeradas 1 e 2 e coletar 1 flor amarela madura na célula 3, respeitando a ordem",
 	"tamanho_x": 6,
 	"tamanho_y": 6
 }

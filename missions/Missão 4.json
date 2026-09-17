@@ -217,6 +217,7 @@
 			"tipo": "solo"
 		}
 	},
+	"objetivo": "Completar uma rota sinalizada plantando 3 flores vermelhas, 3 azuis e coletando 2 flores amarelas maduras",
 	"tamanho_x": 6,
 	"tamanho_y": 9
 }

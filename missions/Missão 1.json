@@ -101,6 +101,7 @@
 			"tipo": "solo"
 		}
 	},
+	"objetivo": "Plantar exatamente 2 flores vermelhas nas duas células destacadas",
 	"tamanho_x": 5,
 	"tamanho_y": 5
 }

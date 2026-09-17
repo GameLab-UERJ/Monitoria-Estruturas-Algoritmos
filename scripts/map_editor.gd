@@ -5,12 +5,14 @@ extends Node2D
 @onready var y_spinbox: SpinBox = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/HBoxContainer/YSpinBox"
 @onready var input_nome_salvar: LineEdit = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/InputNomeSalvar"
 @onready var input_nome_carregar: LineEdit = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/InputNomeCarregar"
+@onready var input_objetivo: LineEdit = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/InputObjetivo"
 
 # Referências dos textos na UI
 @onready var debug_label: Label = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/DebugLabel"
 @onready var terminal_label: Label = $"UI/Fundo do Menu/HBoxContainer/TerminalLabel"
 
 var estado_celulas: Dictionary = {}
+var objetivo_atual: String = ""
 
 # Variáveis do Terminal
 var historico_acoes: Array = []
@@ -53,6 +55,7 @@ func _ready():
 	y_spinbox.get_line_edit().focus_mode = Control.FOCUS_NONE
 	input_nome_salvar.text_submitted.connect(func(t): get_viewport().gui_release_focus())
 	input_nome_carregar.text_submitted.connect(func(t): get_viewport().gui_release_focus())
+	input_objetivo.text_submitted.connect(func(t): definir_objetivo(t))
 	
 	atualizar_cursor_tela()
 	registrar_acao("Editor iniciado. Aguardando comandos...")
@@ -75,6 +78,13 @@ func registrar_acao(texto_acao: String):
 		for acao in historico_acoes:
 			texto_final += "> " + acao + "\n"
 		terminal_label.text = texto_final
+
+# Guarda o texto do objetivo digitado na caixa de texto.
+# É chamado ao apertar Enter na caixa, e também é lido diretamente em salvar_mapa().
+func definir_objetivo(texto: String) -> void:
+	objetivo_atual = texto.strip_edges()
+	registrar_acao("Objetivo definido: " + objetivo_atual)
+	get_viewport().gui_release_focus()
 
 func _on_botao_gerar_pressed():
 	var tamanho_x = int(x_spinbox.value)
@@ -175,11 +185,15 @@ func salvar_mapa():
 	if nome_digitado == "":
 		nome_digitado = "mapa_padrao"
 		
+	# Garante que o objetivo digitado na caixa seja considerado mesmo sem apertar Enter nela
+	definir_objetivo(input_objetivo.text)
+		
 	var caminho = "res://missions//" + nome_digitado + ".json"
 	
 	var dados_do_mapa = {
 		"tamanho_x": tilemap.colunas_custom,
 		"tamanho_y": tilemap.linhas_custom,
+		"objetivo": objetivo_atual,
 		"celulas": estado_celulas
 	}
 	
@@ -223,6 +237,10 @@ func carregar_mapa():
 	tilemap.linhas_custom = tamanho_y
 	x_spinbox.value = tamanho_x
 	y_spinbox.value = tamanho_y
+	
+	# Carrega o objetivo salvo (se o arquivo não tiver, fica vazio)
+	objetivo_atual = dados_do_mapa.get("objetivo", "")
+	input_objetivo.text = objetivo_atual
 	
 	estado_celulas = dados_do_mapa["celulas"]
 	

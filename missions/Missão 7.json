@@ -361,6 +361,7 @@
 			"tipo": "solo"
 		}
 	},
+	"objetivo": "Automatizar uma rota de 8 a 10 posições, plantando cada cor quando indicada, coletando flores maduras e ignorando posições inválidas",
 	"tamanho_x": 9,
 	"tamanho_y": 10
 }
