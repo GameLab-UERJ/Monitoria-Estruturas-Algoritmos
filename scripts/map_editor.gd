@@ -5,7 +5,7 @@ extends Node2D
 @onready var y_spinbox: SpinBox = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/HBoxContainer/YSpinBox"
 @onready var input_nome_salvar: LineEdit = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/InputNomeSalvar"
 @onready var input_nome_carregar: LineEdit = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/InputNomeCarregar"
-@onready var input_objetivo: LineEdit = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/InputObjetivo"
+@onready var input_objetivo: TextEdit = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/InputObjetivo"
 
 # Referências dos textos na UI
 @onready var debug_label: Label = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/DebugLabel"
@@ -53,9 +53,8 @@ func _ready():
 	
 	x_spinbox.get_line_edit().focus_mode = Control.FOCUS_NONE
 	y_spinbox.get_line_edit().focus_mode = Control.FOCUS_NONE
-	input_nome_salvar.text_submitted.connect(func(t): get_viewport().gui_release_focus())
-	input_nome_carregar.text_submitted.connect(func(t): get_viewport().gui_release_focus())
-	input_objetivo.text_submitted.connect(func(t): definir_objetivo(t))
+	input_nome_salvar.text_submitted.connect(func(_t): get_viewport().gui_release_focus())
+	input_nome_carregar.text_submitted.connect(func(_t): get_viewport().gui_release_focus())
 	
 	atualizar_cursor_tela()
 	registrar_acao("Editor iniciado. Aguardando comandos...")

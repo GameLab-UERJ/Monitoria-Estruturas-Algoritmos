@@ -73,10 +73,12 @@ layout_mode = 2
 focus_mode = 1
 text = "Nome do arquivo a abrir"
 
-[node name="InputObjetivo" type="LineEdit" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=1359130159]
+[node name="InputObjetivo" type="TextEdit" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=248710876]
+custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 focus_mode = 1
 text = "\"Objetivo da Missão\""
+wrap_mode = 1
 
 [node name="DebugLabel" type="Label" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=1476108094]
 layout_mode = 2
