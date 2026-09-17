@@ -1,0 +1,223 @@
+{
+	"celulas": {
+		"0,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,1": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "flor_amarela"
+		},
+		"0,2": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"0,3": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"0,4": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"0,5": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"0,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,7": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,8": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,2": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"1,3": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,4": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"1,5": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"1,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,7": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,8": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,0": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"2,1": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"2,2": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"2,3": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "flor_amarela"
+		},
+		"2,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,5": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"2,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,7": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,8": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,2": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"3,3": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"3,4": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"3,5": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"3,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,7": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,8": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,2": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"4,3": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"4,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,5": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"4,6": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"4,7": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,8": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,2": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"5,3": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"5,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,5": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,7": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,8": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		}
+	},
+	"objetivo": "Completar uma rota sinalizada plantando 3 flores vermelhas, 3 azuis e coletando 2 flores amarelas maduras",
+	"tamanho_x": 6,
+	"tamanho_y": 9
+}
