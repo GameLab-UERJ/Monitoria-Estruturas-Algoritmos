@@ -1,6 +1,7 @@
 extends Node2D
 
 @onready var tilemap: TileMapLayer = $TileMap
+@onready var botao_sair: Button = $"UI/Fundo do Menu/Sair"
 @onready var x_spinbox: SpinBox = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/HBoxContainer/XSpinBox"
 @onready var y_spinbox: SpinBox = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/HBoxContainer/YSpinBox"
 @onready var input_nome_salvar: LineEdit = $"UI/Fundo do Menu/HBoxContainer/Organizador Vertical/InputNomeSalvar"
@@ -55,6 +56,7 @@ func _ready():
 	y_spinbox.get_line_edit().focus_mode = Control.FOCUS_NONE
 	input_nome_salvar.text_submitted.connect(func(_t): get_viewport().gui_release_focus())
 	input_nome_carregar.text_submitted.connect(func(_t): get_viewport().gui_release_focus())
+	botao_sair.pressed.connect(_on_botao_sair_pressed)
 	
 	atualizar_cursor_tela()
 	registrar_acao("Editor iniciado. Aguardando comandos...")
@@ -63,6 +65,10 @@ func _ready():
 func atualizar_cursor_tela():
 	if debug_label:
 		debug_label.text = "Cursor: " + str(pos_cursor)
+		
+func _on_botao_sair_pressed() -> void:
+	registrar_acao("Saindo do editor de mapas...")
+	get_tree().change_scene_to_file("res://scenes/control.tscn")
 
 # Adiciona ações ao histórico estilo terminal
 func registrar_acao(texto_acao: String):

@@ -4,7 +4,7 @@ extends Control
 @onready var game_manager = $"../../GameManager"
 @onready var inventario = get_node("../../Player/Inventario")
 
-const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "collect", "open", "close"]
+const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "collect", "open", "close", "leave"]
 const CONDICOES_VALIDAS = ["pode_plantar", "pode_colher"]
 var actions = []
 
@@ -198,7 +198,6 @@ func _executar_um_comando(acao, mapa, player) -> void:
 			else:
 				erro_msg = "Movimento bloqueado!"
 		"collect":
-			# Verifica se existe flor ANTES de fazer a animação de colher
 			if mapa.pode_colher(player.global_position):
 				player.mover_por_comando("collect")
 				await player.movement_finished
@@ -213,6 +212,10 @@ func _executar_um_comando(acao, mapa, player) -> void:
 		"close":
 			inventario.close()
 			sucesso = true
+		"leave":
+			historico.text += "> leave: voltando para a cena inicial...\n"
+			get_tree().change_scene_to_file("res://scenes/control.tscn")
+			return
 			
 	if sucesso:
 		historico.text += "> " + acao + " realizado.\n"
