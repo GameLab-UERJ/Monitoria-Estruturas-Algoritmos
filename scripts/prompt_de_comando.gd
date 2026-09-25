@@ -4,7 +4,7 @@ extends Control
 @onready var game_manager = $"../../GameManager"
 @onready var inventario = get_node("../../Player/Inventario")
 
-const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "collect", "open", "close"]
+const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "collect", "open", "close", "leave"]
 const CONDICOES_VALIDAS = ["pode_plantar", "pode_colher"]
 var actions = []
 
@@ -22,13 +22,20 @@ func _on_button_pressed() -> void:
 
 func _validar_comando(cmd: String):
 	var regex_plant = RegEx.new()
-	regex_plant.compile("^plant\\((\\d+)\\)$")
+	# Nova RegEx: Aceita "plant(X)" ou apenas "plant"
+	regex_plant.compile("^plant(?:\\((\\d+)\\))?$")
 	var resultado_plant = regex_plant.search(cmd)
+	
 	if resultado_plant:
-		var indice = resultado_plant.get_string(1).to_int()
+		var indice_str = resultado_plant.get_string(1)
+		var indice = 1 # Usa o slot 1 como padrão se o jogador digitar só "plant"
+		if indice_str != "":
+			indice = indice_str.to_int()
+			
 		if indice < 1 or indice > 10:
 			return {"erro": "Índice de item inválido em plant(): " + str(indice)}
 		return {"tipo": "plant", "indice": indice}
+		
 	if cmd in COMANDOS_VALIDOS:
 		return cmd
 	return null
@@ -47,6 +54,7 @@ func _parsear_linhas(linhas: Array) -> bool:
 		var regex_if = RegEx.new()
 		regex_if.compile("^if\\s+(\\w+)\\s*:$")
 		var resultado_if = regex_if.search(linha_limpa)
+		
 		if resultado_repeat:
 			var n = resultado_repeat.get_string(1).to_int()
 			if n <= 0:
@@ -139,9 +147,11 @@ func executar_acoes():
 			var condicao_ok = false
 			match acao.condicao:
 				"pode_plantar":
-					condicao_ok = mapa.pode_plantar(player.position)
+					# Atualizado para global_position
+					condicao_ok = mapa.pode_plantar(player.global_position)
 				"pode_colher":
-					condicao_ok = mapa.pode_colher(player.position)
+					# Atualizado para global_position
+					condicao_ok = mapa.pode_colher(player.global_position)
 			historico.text += "> if " + acao.condicao + " -> " + str(condicao_ok) + "\n"
 			if condicao_ok:
 				for cmd in acao.comandos:
@@ -165,44 +175,48 @@ func _executar_um_comando(acao, mapa, player) -> void:
 			historico.text += "ERRO em plant(" + str(indice) + "): sem itens nesse slot!\n"
 			return
 			
-		
-		
-		player.mover_por_comando("plant")
-		await player.movement_finished
-		
-		# Agora passamos a posição e o NOME da semente!
-		sucesso = mapa.tentar_plantar(player.position, indice)
-		
-		if sucesso:
-			slot.usar_item()
-			historico.text += "> plant(" + str(indice) + ") realizado.\n"
+		# Verifica se a terra é válida ANTES de fazer a animação e plantar
+		if mapa.pode_plantar(player.global_position):
+			player.mover_por_comando("plant")
+			await player.movement_finished
+			
+			sucesso = mapa.tentar_plantar(player.global_position, indice)
+			if sucesso:
+				slot.usar_item()
+				historico.text += "> plant(" + str(indice) + ") realizado.\n"
 		else:
-			historico.text += "ERRO em plant(" + str(indice) + "): Solo inválido!\n"
+			historico.text += "ERRO em plant(" + str(indice) + "): Precisa ser terra arada vazia!\n"
 		return
 
 	match acao:
 		"move_left", "move_right", "move_up", "move_down":
-			var pos_antes = player.position
+			var pos_antes = player.global_position
 			player.mover_por_comando(acao)
 			await get_tree().create_timer(0.2).timeout
-			if player.position.distance_to(pos_antes) > 1.0:
+			if player.global_position.distance_to(pos_antes) > 1.0:
 				sucesso = true
 			else:
 				erro_msg = "Movimento bloqueado!"
 		"collect":
-			player.mover_por_comando("collect")
-			await player.movement_finished
-			sucesso = mapa.tentar_colher(player.position)
-			if sucesso:
-				game_manager.add_fruit()
+			if mapa.pode_colher(player.global_position):
+				player.mover_por_comando("collect")
+				await player.movement_finished
+				sucesso = mapa.tentar_colher(player.global_position)
+				if sucesso:
+					game_manager.add_fruit()
 			else:
-				erro_msg = "Nada para colher!"
+				erro_msg = "Nenhuma flor pronta para colher aqui!"
 		"open":
 			inventario.open()
 			sucesso = true
 		"close":
 			inventario.close()
 			sucesso = true
+		"leave":
+			historico.text += "> leave: voltando para a cena inicial...\n"
+			get_tree().change_scene_to_file("res://scenes/control.tscn")
+			return
+			
 	if sucesso:
 		historico.text += "> " + acao + " realizado.\n"
 	else:

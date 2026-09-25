@@ -1,0 +1,129 @@
+[gd_scene format=3 uid="uid://ce3jcr64jrv88"]
+
+[ext_resource type="Script" uid="uid://dt3jnitrwsv8x" path="res://scripts/map_editor.gd" id="1_l5hcm"]
+[ext_resource type="TileSet" uid="uid://blgil7r7q0b6q" path="res://assets/sprites/texturas-chao.tres" id="2_ikn3w"]
+[ext_resource type="Script" uid="uid://b2ur6olh40cr6" path="res://scripts/tile_map_layer.gd" id="3_rdfmk"]
+
+[node name="MapEditor" type="Node2D" unique_id=617141959]
+script = ExtResource("1_l5hcm")
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=1435137555]
+
+[node name="Fundo do Menu" type="Panel" parent="UI" unique_id=2141837417]
+custom_minimum_size = Vector2(200, 648)
+anchors_preset = -1
+anchor_left = -0.28100002
+anchor_top = -0.344
+anchor_right = 0.71900004
+anchor_bottom = 0.656
+offset_left = 324.71204
+offset_top = 229.912
+offset_right = 324.71198
+offset_bottom = 229.91199
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Fundo do Menu" unique_id=491050426]
+layout_mode = 0
+offset_left = -4.0
+offset_top = -1.0
+offset_right = 828.0
+offset_bottom = 438.0
+
+[node name="Organizador Vertical" type="VBoxContainer" parent="UI/Fundo do Menu/HBoxContainer" unique_id=1112076845]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="HBoxContainer" type="HBoxContainer" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=1676146312]
+layout_mode = 2
+
+[node name="XSpinBox" type="SpinBox" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical/HBoxContainer" unique_id=1641141879]
+layout_mode = 2
+min_value = 1.0
+value = 5.0
+
+[node name="YSpinBox" type="SpinBox" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical/HBoxContainer" unique_id=531118942]
+layout_mode = 2
+min_value = 1.0
+value = 5.0
+
+[node name="Button" type="Button" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=957669940]
+layout_mode = 2
+focus_mode = 0
+text = "Salvar mapa
+"
+
+[node name="Gerar mapa" type="Button" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=374829900]
+layout_mode = 2
+focus_mode = 0
+text = "Gerar mapa
+"
+
+[node name="Carregar mapa" type="Button" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=518946672]
+layout_mode = 2
+focus_mode = 0
+text = "Carregar mapa"
+
+[node name="InputNomeSalvar" type="LineEdit" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=683866855]
+layout_mode = 2
+text = "Nome do arquivo a salvar"
+
+[node name="InputNomeCarregar" type="LineEdit" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=1032988184]
+layout_mode = 2
+focus_mode = 1
+text = "Nome do arquivo a abrir"
+
+[node name="InputObjetivo" type="TextEdit" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=248710876]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+focus_mode = 1
+text = "\"Objetivo da Missão\""
+wrap_mode = 1
+
+[node name="DebugLabel" type="Label" parent="UI/Fundo do Menu/HBoxContainer/Organizador Vertical" unique_id=1476108094]
+layout_mode = 2
+
+[node name="Comandos do editor de mapa" type="Label" parent="UI/Fundo do Menu/HBoxContainer" unique_id=769581750]
+layout_mode = 2
+size_flags_vertical = 1
+text = "--- ATALHOS DO MAPA ---
+Setas: Mover Cursor
+Enter: Pedra (Liga/Desl)
+
+--- PLANTAS E SOLOS ---
+Q: Terra Vazia
+W: Fruta Roxa
+E: Fruta Laranja
+R: Fruta Azul
+T: Flor Laranja
+Y: Flor Amarela
+U: Flor Rosa
+I: Flor Roxa
+O: Flor Branca
+P: Flor Vermelha
+A: Flor Azul
+S: Solo Infértil"
+horizontal_alignment = 1
+
+[node name="TerminalLabel" type="Label" parent="UI/Fundo do Menu/HBoxContainer" unique_id=664829778]
+layout_mode = 2
+
+[node name="Sair" type="Button" parent="UI/Fundo do Menu" unique_id=1918955931]
+layout_mode = 0
+offset_left = 947.0
+offset_top = 561.0
+offset_right = 1051.0
+offset_bottom = 592.0
+focus_mode = 0
+text = "Voltar a Tela Inicial"
+
+[node name="TileMap" type="TileMapLayer" parent="." unique_id=1109870689]
+position = Vector2(250, 100)
+tile_set = ExtResource("2_ikn3w")
+script = ExtResource("3_rdfmk")
+
+[node name="Camera2D" type="Camera2D" parent="TileMap" unique_id=1123859430]
+
+[connection signal="pressed" from="UI/Fundo do Menu/HBoxContainer/Organizador Vertical/Button" to="." method="salvar_mapa"]
+[connection signal="pressed" from="UI/Fundo do Menu/HBoxContainer/Organizador Vertical/Gerar mapa" to="." method="_on_botao_gerar_pressed"]
+[connection signal="pressed" from="UI/Fundo do Menu/HBoxContainer/Organizador Vertical/Carregar mapa" to="." method="carregar_mapa"]

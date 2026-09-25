@@ -1,0 +1,203 @@
+{
+	"celulas": {
+		"0,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,2": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,3": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,5": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"0,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,2": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "flor_vermelha"
+		},
+		"1,3": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"1,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,5": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"1,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,2": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "flor_azul"
+		},
+		"2,3": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"2,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,5": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"2,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,2": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "flor_vermelha"
+		},
+		"3,3": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"3,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,5": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"3,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,2": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "flor_azul"
+		},
+		"4,3": {
+			"ocupacao": "obstaculo",
+			"tipo": "pedra"
+		},
+		"4,4": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"4,5": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"4,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,2": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "flor_vermelha"
+		},
+		"5,3": {
+			"ocupacao": "planta_ou_modificador",
+			"tipo": "terra_vazia"
+		},
+		"5,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,5": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"5,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"6,0": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"6,1": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"6,2": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"6,3": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"6,4": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"6,5": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		},
+		"6,6": {
+			"ocupacao": "vazio",
+			"tipo": "solo"
+		}
+	},
+	"objetivo": "Percorrer 5 posições de inspeção e plantar a cor indicada em cada posição válida, sem desperdiçar sementes",
+	"tamanho_x": 7,
+	"tamanho_y": 7
+}
