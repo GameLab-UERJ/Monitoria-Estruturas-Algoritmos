@@ -1,76 +1,157 @@
 extends Node
 class_name GerenciadorDeFases
 
-# A variável 'static' mantém o valor guardado na memória mesmo quando a cena é recarregada!
 static var missao_atual: int = 1
 
-# Dicionário com os objetivos de cada fase. Edite os valores como preferir!
-var missoes_config = {
-	1: {"frutas": 1, "passos": 15, "texto": "Estágio 1: 4x4"},
-	2: {"frutas": 1, "passos": 25, "texto": "Estágio 2"},
-	3: {"frutas": 1, "passos": 35, "texto": "Estágio 3"},
-	4: {"frutas": 1, "passos": 45, "texto": "Estágio 4"},
-	5: {"frutas": 1, "passos": 50, "texto": "Estágio 5"},
-	6: {"frutas": 1, "passos": 55, "texto": "Estágio 6"},
-	7: {"frutas": 1, "passos": 65, "texto": "Estágio 7: 9x10"}
-}
+# --- ESTATÍSTICAS DINÂMICAS DA EXECUÇÃO ATUAL ---
+var plantas_plantadas: Dictionary = {}
+var plantas_coletadas: Dictionary = {}
 
-var fruit = 0
-var passos = 0
-var obj_fruta = 1
-var obj_passos = 15
-var obj_sim = false
+var sementes_no_inventario: int = 0
+var erros_cometidos: int = 0 
+var qtd_repeat_usados: int = 0 
+
+var passos: int = 0
+var obj_passos: int = 15 
+
+var obj_sim: bool = false
 
 @onready var objetivo_label = $"../CanvasLayer/PromptdeComando/Hud/Estagio e objetivo/ObjetivoLabel"
 @onready var estagio_label = $"../CanvasLayer/PromptdeComando/Hud/Estagio e objetivo/EstágioLabel"
-@onready var frutas_bar = $"../CanvasLayer/PromptdeComando/Hud/Plantas/FrutaBar"
 @onready var passos_bar = $"../CanvasLayer/PromptdeComando/Hud/contador de passos/PassoBar"
+@onready var frutas_bar = $"../CanvasLayer/PromptdeComando/Hud/Plantas/FrutaBar"
+
+@onready var progresso_label = $"../CanvasLayer/ProgressoLabel"
 
 func _ready():
-	# Carrega as configurações de acordo com a missão atual que está salva na variável estática
-	var config = missoes_config.get(missao_atual, missoes_config[1])
-	obj_fruta = config["frutas"]
-	obj_passos = config["passos"]
-	
-	estagio_label.text = config["texto"]
-	objetivo_label.text = "Colete " + str(obj_fruta) + " plantas em menos de " + str(obj_passos) + " passos"
-	
-	frutas_bar.max_value = obj_fruta
-	frutas_bar.value = 0
-	passos_bar.max_value = obj_passos
-	passos_bar.value = 0
+	configurar_missao()
 
-func add_fruit():
-	fruit += 1
-	frutas_bar.value = fruit
-	verificar_obj()
+func configurar_missao():
+	obj_sim = false
+	plantas_plantadas.clear()
+	plantas_coletadas.clear()
+	sementes_no_inventario = 0
+	erros_cometidos = 0
+	qtd_repeat_usados = 0
+	passos = 0
+	
+	var caminho = "res://missions/Missão " + str(missao_atual) + ".json"
+	if FileAccess.file_exists(caminho):
+		var arquivo = FileAccess.open(caminho, FileAccess.READ)
+		var dados = JSON.parse_string(arquivo.get_as_text())
+		arquivo.close()
+		obj_passos = dados.get("objetivo_passos", 15)
+		sementes_no_inventario = dados.get("objetivo_frutas", 0)
+		
+	estagio_label.text = "Missão " + str(missao_atual)
+	
+	if passos_bar:
+		passos_bar.max_value = obj_passos
+		passos_bar.value = 0
+		
+	if frutas_bar:
+		frutas_bar.max_value = sementes_no_inventario
+		frutas_bar.value = 0
+	
+	match missao_atual:
+		1: objetivo_label.text = "Plante 2 vermelhas. Limite: " + str(obj_passos) + " passos."
+		2: objetivo_label.text = "Plante 2 azuis, colete 1 amarela. Limite: " + str(obj_passos) + " passos."
+		3: objetivo_label.text = "Plante 3 vermelhas, 2 azuis. Limite: " + str(obj_passos) + " passos."
+		4: objetivo_label.text = "Plante 3 vermelhas, 3 azuis, colete 2 amarelas."
+		5: objetivo_label.text = "Use 'repeat'. Plante a linha vermelha e zere o inventário."
+		6: objetivo_label.text = "Use 2 'repeats'. Plante faixa vermelha e azul."
+		7: objetivo_label.text = "Operação Autônoma. Use 'repeat' na rota."
+		
+	atualizar_texto_progresso()
 
+# --- FUNÇÃO QUE DESENHA O TEXTO NA TELA DINAMICAMENTE ---
+func atualizar_texto_progresso():
+	if progresso_label:
+		var txt = "--- Status do Drone ---\n"
+		txt += "Passos: " + str(passos) + " / " + str(obj_passos) + "\n"
+		
+		# Lê o dicionário de plantadas e cria o texto dinamicamente (ex: "1 Roxa | 2 Laranjas")
+		if plantas_plantadas.size() > 0:
+			var textos_plantadas = []
+			for cor in plantas_plantadas.keys():
+				textos_plantadas.append(str(plantas_plantadas[cor]) + " " + cor.capitalize())
+			txt += "Plantadas: " + " | ".join(textos_plantadas) + "\n"
+			
+		# Lê o dicionário de coletadas da mesma forma
+		if plantas_coletadas.size() > 0:
+			var textos_coletadas = []
+			for cor in plantas_coletadas.keys():
+				textos_coletadas.append(str(plantas_coletadas[cor]) + " " + cor.capitalize())
+			txt += "Coletadas: " + " | ".join(textos_coletadas) + "\n"
+			
+		txt += "Sementes Restantes: " + str(sementes_no_inventario)
+		
+		if erros_cometidos > 0:
+			txt += "\nErros cometidos: " + str(erros_cometidos)
+			
+		progresso_label.text = txt
+
+# --- FUNÇÕES DE REGISTRO DINÂMICAS ---
 func add_passo():
 	passos += 1
-	passos_bar.value = passos
-	if obj_sim:
-		return
-	if passos >= obj_passos and fruit < obj_fruta:
-		objetivo_label.text = "Objetivo falhado"
-		obj_sim = true
+	if passos_bar:
+		passos_bar.value = passos
+	atualizar_texto_progresso()
 
-func verificar_obj():
-	if obj_sim:
-		return
-	if fruit >= obj_fruta:
-		if passos <= obj_passos:
-			objetivo_label.text = "Objetivo concluído"
-			obj_sim = true 
-			await get_tree().create_timer(1.5).timeout
-			avancar_missao()
-		else:
-			objetivo_label.text = "Objetivo falhado"
-			obj_sim = true 
+func registrar_plantio(cor: String):
+	# Se a cor já existe no dicionário, soma +1. Se não, cria com valor 1.
+	plantas_plantadas[cor] = plantas_plantadas.get(cor, 0) + 1
+	sementes_no_inventario -= 1
+	
+	if frutas_bar:
+		var total_plantado = 0
+		for qtd in plantas_plantadas.values(): 
+			total_plantado += qtd
+		frutas_bar.value = total_plantado
+		
+	atualizar_texto_progresso()
+
+func registrar_coleta(cor: String):
+	plantas_coletadas[cor] = plantas_coletadas.get(cor, 0) + 1
+	atualizar_texto_progresso()
+
+func registrar_erro():
+	erros_cometidos += 1
+	atualizar_texto_progresso()
+
+func registrar_uso_comandos(repeats: int):
+	qtd_repeat_usados = repeats
+
+# --- VALIDAÇÃO FINAL (Verifica as chaves específicas que as missões pedem) ---
+func validar_missao_fim_de_execucao():
+	if obj_sim: return
+	if passos > obj_passos: return
+	
+	# Extraímos as quantidades específicas que as regras do GDD testam
+	var p_verm = plantas_plantadas.get("vermelha", 0)
+	var p_azul = plantas_plantadas.get("azul", 0)
+	var c_amar = plantas_coletadas.get("amarela", 0)
+	
+	var sucesso = false
+	
+	match missao_atual:
+		1: sucesso = (p_verm == 2 and p_azul == 0 and erros_cometidos == 0)
+		2: sucesso = (p_azul == 2 and c_amar == 1 and erros_cometidos == 0)
+		3: sucesso = (p_verm == 3 and p_azul == 2 and sementes_no_inventario == 0 and erros_cometidos == 0)
+		4: sucesso = (p_verm == 3 and p_azul == 3 and c_amar == 2 and erros_cometidos == 0)
+		5: sucesso = (p_verm > 0 and qtd_repeat_usados == 1 and sementes_no_inventario == 0 and erros_cometidos == 0)
+		6: sucesso = (p_verm > 0 and p_azul > 0 and qtd_repeat_usados == 2 and sementes_no_inventario == 0 and erros_cometidos == 0)
+		7: sucesso = (qtd_repeat_usados >= 1 and sementes_no_inventario == 0 and erros_cometidos == 0 and p_verm > 0 and p_azul > 0 and c_amar > 0)
+			
+	if sucesso:
+		objetivo_label.text = "Missão concluída com sucesso!"
+		obj_sim = true
+		await get_tree().create_timer(2.0).timeout
+		avancar_missao()
 
 func avancar_missao():
 	if missao_atual < 7:
 		missao_atual += 1
-		# Recarrega a cena inteira. O jogo vai reiniciar já sabendo que é a próxima missão!
 		get_tree().reload_current_scene() 
 	else:
-		objetivo_label.text = "Você completou todas as missões!"
+		objetivo_label.text = "Certificação completa!"

@@ -33,22 +33,16 @@ func _unhandled_input(event):
 
 func _ready():
 	tile_size = mapa.tile_set.tile_size.x * int(mapa.scale.x)
-	
-	# Removido o cálculo de 'passo'. O drone sempre deve andar 1 bloco da grade por vez.
-	
 	grid_position = ((position - Vector2.ONE * tile_size / 2) / tile_size).round()
 	position = grid_position * tile_size + Vector2.ONE * tile_size / 2
 
 func move2(dir: String):
-	
 	var tamanho_base = mapa.tile_set.tile_size.x
-	
 	
 	ray.target_position = inputs[dir] * tamanho_base
 	ray.force_raycast_update()
 	
 	if !ray.is_colliding():
-		
 		grid_position += inputs[dir]
 		var target = grid_position * tile_size + Vector2.ONE * tile_size / 2
 		
@@ -66,13 +60,18 @@ func move2(dir: String):
 func mover_por_comando(comando: String) -> bool:
 	if is_moving:
 		return false
+		
 	if comando in command_to_input:
 		move2(command_to_input[comando])
 		return true
+		
+	# RETORNO DA LÓGICA SIMPLES: O player só executa a animação.
+	# O prompt_de_comando.gd é quem faz a leitura das cores e regras!
 	if comando in ["plant", "collect"]:
 		await animar_interacao()
 		movement_finished.emit()
 		return true
+		
 	return false
 	
 func animar_interacao():
