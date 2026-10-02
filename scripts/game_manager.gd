@@ -135,18 +135,18 @@ func validar_missao_fim_de_execucao():
 	var sucesso = false
 	
 	match missao_atual:
-		1: sucesso = (p_verm == 2 and p_azul == 0 and erros_cometidos == 0)
-		2: sucesso = (p_azul == 2 and c_amar == 1 and erros_cometidos == 0)
-		3: sucesso = (p_verm == 3 and p_azul == 2 and sementes_no_inventario == 0 and erros_cometidos == 0)
-		4: sucesso = (p_verm == 3 and p_azul == 3 and c_amar == 2 and erros_cometidos == 0)
-		5: sucesso = (p_verm > 0 and qtd_repeat_usados == 1 and sementes_no_inventario == 0 and erros_cometidos == 0)
-		6: sucesso = (p_verm > 0 and p_azul > 0 and qtd_repeat_usados == 2 and sementes_no_inventario == 0 and erros_cometidos == 0)
-		7: sucesso = (qtd_repeat_usados >= 1 and sementes_no_inventario == 0 and erros_cometidos == 0 and p_verm > 0 and p_azul > 0 and c_amar > 0)
+		1: sucesso = (p_verm == 2 and p_azul == 0 )
+		2: sucesso = (p_azul == 2 and c_amar == 1 )
+		3: sucesso = (p_verm == 3 and p_azul == 2 and sementes_no_inventario == 0 )
+		4: sucesso = (p_verm == 3 and p_azul == 3 and c_amar == 2 )
+		5: sucesso = (p_verm > 0 and qtd_repeat_usados == 1 and sementes_no_inventario == 0 )
+		6: sucesso = (p_verm > 0 and p_azul > 0 and qtd_repeat_usados == 2 and sementes_no_inventario == 0)
+		7: sucesso = (qtd_repeat_usados >= 1 and sementes_no_inventario == 0 and  p_verm > 0 and p_azul > 0 and c_amar > 0)
 			
 	if sucesso:
 		objetivo_label.text = "Missão concluída com sucesso!"
 		obj_sim = true
-		await get_tree().create_timer(2.0).timeout
+		await get_tree().create_timer(4.0).timeout
 		avancar_missao()
 
 func avancar_missao():
