@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bnahkimix203i"]
+
+[ext_resource type="AudioStream" uid="uid://d1u2pq1lw7abs" path="res://assets/music/Danny Baranowsky - Forest Funk (Ch 1 Light World).mp3" id="1_60jw7"]
+
+[node name="MusicControl" type="Node2D" unique_id=1274986980]
+
+[node name="SoundPlayer" type="AudioStreamPlayer2D" parent="." unique_id=75377855]
+position = Vector2(460, 97)
+stream = ExtResource("1_60jw7")
+autoplay = true
+bus = &"Music"

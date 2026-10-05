@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d1u2pq1lw7abs"
+path="res://.godot/imported/Danny Baranowsky - Forest Funk (Ch 1 Light World).mp3-226ae5f44009bc77a8b5cd4c42c30888.mp3str"
+
+[deps]
+
+source_file="res://assets/music/Danny Baranowsky - Forest Funk (Ch 1 Light World).mp3"
+dest_files=["res://.godot/imported/Danny Baranowsky - Forest Funk (Ch 1 Light World).mp3-226ae5f44009bc77a8b5cd4c42c30888.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4
