@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b3tyfwbbel1by"]
 
 [ext_resource type="Script" uid="uid://bi0wfad5ly3er" path="res://scripts/prompt_de_comando.gd" id="1_oxtoc"]
+[ext_resource type="FontFile" uid="uid://pb36nh0en6hn" path="res://assets/fonts/MatildaTheIronLadyRegular-4VEp.ttf" id="2_va005"]
 
 [node name="CanvasLayer" type="CanvasLayer" unique_id=934758523]
 
@@ -46,6 +47,8 @@ gutters_draw_line_numbers = true
 layout_mode = 2
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.25
+theme_override_fonts/font = ExtResource("2_va005")
+theme_override_font_sizes/font_size = 24
 text = "Executar"
 
 [node name="TextEdit" type="TextEdit" parent="PromptdeComando/VBoxContainer" unique_id=1873568339]
@@ -68,6 +71,7 @@ alignment = 1
 
 [node name="PassoLabel" type="Label" parent="PromptdeComando/Hud/contador de passos" unique_id=511290829]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_va005")
 theme_override_font_sizes/font_size = 16
 text = "Passos"
 horizontal_alignment = 1
@@ -75,6 +79,7 @@ horizontal_alignment = 1
 [node name="PassoBar" type="ProgressBar" parent="PromptdeComando/Hud/contador de passos" unique_id=1501798952]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_va005")
 
 [node name="Estagio e objetivo" type="VBoxContainer" parent="PromptdeComando/Hud" unique_id=509051251]
 custom_minimum_size = Vector2(250, 20)
@@ -83,6 +88,7 @@ size_flags_horizontal = 6
 
 [node name="EstágioLabel" type="Label" parent="PromptdeComando/Hud/Estagio e objetivo" unique_id=1191242401]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_va005")
 theme_override_font_sizes/font_size = 16
 text = "Estágio 1: 4x4"
 horizontal_alignment = 1
@@ -100,6 +106,7 @@ alignment = 1
 
 [node name="PlantaLabel" type="Label" parent="PromptdeComando/Hud/Plantas" unique_id=1759140699]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_va005")
 theme_override_font_sizes/font_size = 16
 text = "Plantas"
 horizontal_alignment = 1
@@ -107,5 +114,6 @@ horizontal_alignment = 1
 [node name="FrutaBar" type="ProgressBar" parent="PromptdeComando/Hud/Plantas" unique_id=524468092]
 custom_minimum_size = Vector2(150, 20)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("2_va005")
 
 [connection signal="pressed" from="PromptdeComando/VBoxContainer/VBoxContainer/Button" to="PromptdeComando" method="_on_button_pressed"]
