@@ -2,7 +2,7 @@ extends Control
 @onready var editor = %EntradaComandos
 @onready var historico = %TextEdit
 @onready var game_manager = $"../../GameManager"
-@onready var inventario = get_node("../../Player/Inventario")
+@onready var inventario = get_node("../Inventario")
 
 const COMANDOS_VALIDOS = ["move_left", "move_right", "move_up", "move_down", "collect", "open", "close", "leave"]
 const CONDICOES_VALIDAS = ["pode_plantar", "pode_colher"]

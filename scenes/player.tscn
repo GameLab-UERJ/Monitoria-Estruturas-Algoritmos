@@ -4,7 +4,6 @@
 [ext_resource type="Resource" uid="uid://dusouly4dbf62" path="res://inventory/player_inventory.tres" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://cbnh82cs4ih7a" path="res://assets/sprites/1 Drones/4/Idle.png" id="2_g2els"]
 [ext_resource type="Texture2D" uid="uid://dqy87uuov5un3" path="res://assets/sprites/1 Drones/4/Landing.png" id="3_qhqgy"]
-[ext_resource type="PackedScene" uid="uid://d0pkvmaen7dk2" path="res://inventory/inventario.tscn" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_qhqgy"]
 atlas = ExtResource("2_g2els")
@@ -291,10 +290,3 @@ shape = SubResource("CircleShape2D_fjrip")
 
 [node name="RayCast2D" type="RayCast2D" parent="." unique_id=1129516570]
 target_position = Vector2(0, 25)
-
-[node name="Inventario" parent="." unique_id=1003241603 instance=ExtResource("5_qlg0r")]
-unique_name_in_owner = true
-offset_left = -20.0
-offset_top = -86.0
-offset_right = 26.0
-offset_bottom = 19.0
