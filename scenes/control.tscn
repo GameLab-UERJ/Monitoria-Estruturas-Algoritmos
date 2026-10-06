@@ -1,5 +1,6 @@
 [gd_scene format=3 uid="uid://b5su0docfg3lv"]
 
+[ext_resource type="Texture2D" uid="uid://pxv6mb0wyluj" path="res://assets/sprites/menuprincipal.png" id="1_8n18e"]
 [ext_resource type="FontFile" uid="uid://pb36nh0en6hn" path="res://assets/fonts/MatildaTheIronLadyRegular-4VEp.ttf" id="1_brbbq"]
 [ext_resource type="Script" uid="uid://cpw37n04j1ksv" path="res://scripts/iniciar_jogo.gd" id="1_jlqjh"]
 [ext_resource type="Script" uid="uid://b52kdyoqi4044" path="res://scenes/abrir_editor.gd" id="2_r67kn"]
@@ -22,6 +23,8 @@ offset_right = 3.0
 offset_bottom = 6.0
 grow_horizontal = 2
 grow_vertical = 2
+texture = ExtResource("1_8n18e")
+expand_mode = 1
 
 [node name="Label" type="Label" parent="TextureRect" unique_id=2054249205]
 layout_mode = 0
@@ -44,7 +47,7 @@ offset_right = 894.0
 offset_bottom = 628.0
 
 [node name="Iniciar jogo" type="Button" parent="TextureRect/VBoxContainer" unique_id=1743248683]
-custom_minimum_size = Vector2(0, 100)
+custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_brbbq")
 theme_override_font_sizes/font_size = 24
@@ -52,7 +55,7 @@ text = "Iniciar jogo"
 script = ExtResource("1_jlqjh")
 
 [node name="Abrir Editor" type="Button" parent="TextureRect/VBoxContainer" unique_id=826910439]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_brbbq")
 theme_override_font_sizes/font_size = 24
@@ -60,30 +63,11 @@ text = "Abrir Editor"
 script = ExtResource("2_r67kn")
 
 [node name="configurações" type="Button" parent="TextureRect/VBoxContainer" unique_id=1059359620]
-custom_minimum_size = Vector2(400, 100)
+custom_minimum_size = Vector2(400, 150)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_brbbq")
 theme_override_font_sizes/font_size = 24
 text = "Configurações"
 
-[node name="linhas" type="LineEdit" parent="TextureRect/VBoxContainer" unique_id=665989900]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_brbbq")
-theme_override_font_sizes/font_size = 24
-placeholder_text = "linhas"
-alignment = 1
-
-[node name="colunas" type="LineEdit" parent="TextureRect/VBoxContainer" unique_id=2141609299]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(100, 100)
-layout_mode = 2
-theme_override_fonts/font = ExtResource("1_brbbq")
-theme_override_font_sizes/font_size = 24
-placeholder_text = "colunas"
-alignment = 1
-
 [connection signal="pressed" from="TextureRect/VBoxContainer/Iniciar jogo" to="TextureRect/VBoxContainer/Iniciar jogo" method="_on_pressed"]
 [connection signal="pressed" from="TextureRect/VBoxContainer/Abrir Editor" to="TextureRect/VBoxContainer/Abrir Editor" method="_on_pressed"]
-[connection signal="text_changed" from="TextureRect/VBoxContainer/colunas" to="TextureRect/VBoxContainer/Iniciar jogo" method="_on_colunas_text_changed"]
