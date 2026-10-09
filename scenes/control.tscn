@@ -28,9 +28,9 @@ expand_mode = 1
 
 [node name="Label" type="Label" parent="TextureRect" unique_id=2054249205]
 layout_mode = 0
-offset_left = 139.0
+offset_left = 157.0
 offset_top = 31.0
-offset_right = 978.0
+offset_right = 996.0
 offset_bottom = 160.0
 theme_override_fonts/font = ExtResource("1_brbbq")
 theme_override_font_sizes/font_size = 56
