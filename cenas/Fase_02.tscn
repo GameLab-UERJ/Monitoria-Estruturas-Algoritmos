@@ -1,0 +1,10 @@
+[gd_scene format=3 uid="uid://c6ly1pgpxtssa"]
+
+[ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_principal.tscn" id="1_4hxxc"]
+[ext_resource type="Script" uid="uid://reh3pd8vbg3s" path="res://cenas/fase_02.gd" id="2_474dq"]
+
+[node name="FaseBase" unique_id=1828590507 instance=ExtResource("1_4hxxc")]
+script = ExtResource("2_474dq")
+colunas_terreno = 10
+linhas_terreno = 8
+texto_tutorial = "Bem-vindo à Fase 2! Use o comando mover_esquerda(), mover_cima(), mover_baixo() e irrigar()."

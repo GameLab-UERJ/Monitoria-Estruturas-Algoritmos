@@ -331,7 +331,7 @@ corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
-[node name="CenaPrincipal" type="Node2D" unique_id=1828590507]
+[node name="FaseBase" type="Node2D" unique_id=1828590507]
 script = ExtResource("1_ymfkh")
 
 [node name="CamadaFundo" type="TileMapLayer" parent="." unique_id=1005471860]
@@ -350,8 +350,12 @@ script = ExtResource("3_h7caj")
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Drone" unique_id=985553305]
 scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_71ivt")
-animation = &"parado"
+animation = &"batendo"
 autoplay = "voando"
+
+[node name="DroneAgricultor" type="Node2D" parent="." unique_id=698752681]
+
+[node name="DroneIrrigador" type="Node2D" parent="." unique_id=1789381121]
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=947249243]
 position = Vector2(580, 323)
@@ -438,6 +442,7 @@ layout_mode = 2
 size_flags_vertical = 3
 draw_tabs = true
 gutters_draw_line_numbers = true
+indent_automatic = true
 script = ExtResource("6_o3inm")
 
 [node name="HBoxBotoes" type="HBoxContainer" parent="JanelaEditor/PainelPrincipal/VBoxEditor" unique_id=246992316]
@@ -461,3 +466,11 @@ text = "⏹️ Parar"
 [node name="ConsoleSaida" type="TextEdit" parent="JanelaEditor/PainelPrincipal/VBoxEditor" unique_id=1056645397]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+
+[node name="JanelaTutorial" type="Window" parent="." unique_id=615636438]
+oversampling_override = 1.0
+visible = false
+
+[node name="LabelTexto" type="RichTextLabel" parent="JanelaTutorial" unique_id=2146359888]
+offset_right = 40.0
+offset_bottom = 40.0
