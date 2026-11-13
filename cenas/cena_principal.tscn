@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dikd62l5o85d2" path="res://assets/drones/4/Walk.png" id="5_o3inm"]
 [ext_resource type="Script" uid="uid://du381pelfqw4l" path="res://cenas/editor.gd" id="6_o3inm"]
 [ext_resource type="Script" uid="uid://bj1sqvndvllbb" path="res://cenas/hud.gd" id="7_71ivt"]
+[ext_resource type="AudioStream" uid="uid://ckl3b80hrbkl1" path="res://assets/sounds/soumages-helicopter-429328.mp3" id="7_x7vf8"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymfkh"]
 texture = ExtResource("1_ikat4")
@@ -352,6 +353,9 @@ scale = Vector2(0.35, 0.35)
 sprite_frames = SubResource("SpriteFrames_71ivt")
 animation = &"batendo"
 autoplay = "voando"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Drone" unique_id=959615783]
+stream = ExtResource("7_x7vf8")
 
 [node name="DroneAgricultor" type="Node2D" parent="." unique_id=698752681]
 
