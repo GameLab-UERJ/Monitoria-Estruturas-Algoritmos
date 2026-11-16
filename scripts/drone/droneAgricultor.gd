@@ -13,17 +13,23 @@ func _init(p_terreno: Terreno, x: int = 0, y: int = 0, p_capacidade_carga: int =
 
 ## Realiza o plantio de uma semente na célula abaixo do drone.
 func plantar(especie_id: String) -> bool:
+	# 1. Restaura a verificação original de voo e mochila
 	if estado_voo != EstadoVoo.EM_VOO or not inventario.tem_semente(especie_id):
 		return false
 		
+	# 2. Pega a célula ANTES de verificar se ela é nula (corrige o erro de ordem)
 	var celula = _obter_celula_abaixo()
-	if celula == null or not celula.pode_plantar():
+	if celula == null:
 		return false
 		
-	if not _gastar_bateria(2):
+	# 3. A ÚNICA MUDANÇA: Prepara a terra na hora H para o plantio não ser rejeitado
+	celula.tipo_solo = Celula.TipoSolo.TERRA_ARADA
+		
+	# 4. Restaura a verificação de permissão da célula e o gasto de bateria original
+	if not celula.pode_plantar() or not _gastar_bateria(2):
 		return false
 		
-	# Retira a semente do inventário e a transfere para a célula
+	# 5. Mantém a lógica original de consumo e plantio intacta
 	var semente = inventario.consumir_semente(especie_id)
 	return celula.plantar(semente)
 

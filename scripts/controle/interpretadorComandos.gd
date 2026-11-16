@@ -3,7 +3,7 @@ extends RefCounted
 
 signal execucao_concluida
 signal linha_executada(numero_linha: int, mensagem: String)
-
+signal comando_sucesso(comando: String, args: Array)
 var velocidade_multiplicador: float = 1.0
 
 var drone: Drone
@@ -200,6 +200,7 @@ func _coletar_sub_bloco(comandos_pai: Array, indice_origem: int, indentacao_base
 # INSTRUÇÕES DO DRONE
 # ==========================================
 func _interpretar_instrucao(comando: String, num_linha: int) -> bool:
+	
 	match comando:
 		"decolar()":
 			if drone.decolar():
@@ -207,7 +208,39 @@ func _interpretar_instrucao(comando: String, num_linha: int) -> bool:
 				await cenario.drone_visual.animar_decolagem()
 				return true
 			return _falha("Falha ao decolar", num_linha)
+			
+		
+		"plantar()":
+			if not drone.has_method("plantar"): 
+				return _falha("Drone não planta.", num_linha)
+			
+			if drone.plantar("milho"):
+				_log("Linha %d: plantar() -> Sucesso!" % num_linha)
 				
+				# 1. Pinta a célula de terra arada (castanha) no fundo
+				var tile_pos = Vector2i(drone.posicao.x, cenario.terreno_logico.linhas - 1 - drone.posicao.y)
+				cenario.camada_terreno.set_cell(tile_pos, 0, Vector2i(1, 4))
+				
+				# 2. SPRITE DO MILHO (Carrega o seu AtlasTexture exato)
+				var sprite_milho = Sprite2D.new()
+				sprite_milho.texture = load("res://assets/culturas/new_atlas_texture.tres")
+				sprite_milho.position = cenario.grid_para_mundo(drone.posicao)
+				sprite_milho.offset = Vector2(0, -8)
+				sprite_milho.scale = Vector2(cenario.ESCALA_TILE, cenario.ESCALA_TILE)
+				cenario.get_node("CamadaObjetos").add_child(sprite_milho)
+				
+				# 3. AVISA A VITÓRIA IMEDIATAMENTE (resolve o bug de não passar de fase)
+				comando_sucesso.emit("plantar", [])
+				
+				# 4. Animação de pouso (o drone abaixa e levanta)
+				if cenario.drone_visual.has_method("animar_pouso"):
+					cenario.drone_visual.animar_pouso()
+					await cenario.get_tree().create_timer(0.4).timeout
+					cenario.drone_visual.animar_voando()
+				
+				return true
+				
+			return _falha("Falha ao plantar.", num_linha)
 		"pousar()":
 			if drone.pousar():
 				_log("Linha %d: pousar() -> Sucesso" % num_linha)

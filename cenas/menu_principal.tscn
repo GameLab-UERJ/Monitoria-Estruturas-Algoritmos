@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://cfqplq5kkej2t"]
+
+[ext_resource type="Script" uid="uid://dj12sfqcdxd0" path="res://menu_principal.gd" id="1_bllnq"]
+
+[node name="MenuPrincipal" type="Control" unique_id=1200941918]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_bllnq")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=239574409]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="BtnIniciar" type="Button" parent="VBoxContainer" unique_id=224707967]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+text = "Iniciar Jogo"
+
+[node name="BtnEscolherFase" type="Button" parent="VBoxContainer" unique_id=1659320977]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+text = "Escolher Fase"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=672518059]
+layout_mode = 2
+
+[node name="BtnFase1" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=2118681226]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Fase 1	"
+
+[node name="BtnFase2" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1800730902]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Fase 2"
+
+[node name="BtnFase3" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=517415306]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Fase 3"
+
+[node name="BtncCreditos" type="Button" parent="VBoxContainer" unique_id=239734020]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+text = "Créditos"
+
+[node name="BtnSair" type="Button" parent="VBoxContainer" unique_id=831602842]
+custom_minimum_size = Vector2(250, 60)
+layout_mode = 2
+text = "Sair"

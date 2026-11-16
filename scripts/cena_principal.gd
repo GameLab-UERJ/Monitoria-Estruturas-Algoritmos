@@ -14,7 +14,7 @@ const TAMANHO_CELULA: int = TAMANHO_TILE_ORIGINAL * ESCALA_TILE
 @export var usar_drone_agricultor: bool = false # Falso = Irrigador, Verdadeiro = Agricultor
 @export var bateria_inicial: int = 100
 @export var capacidade_agua: float = 10.0
-
+@export var sementes_iniciais: Array[String] = []
 @export_category("Tutorial e Progressão")
 @export var exibir_tutorial_inicio: bool = false ## Ative para as fases 1, 3, 5 e 7
 @export_multiline var texto_tutorial: String = "Objetivo: ...\nComandos: ..."
@@ -40,7 +40,7 @@ const TAMANHO_CELULA: int = TAMANHO_TILE_ORIGINAL * ESCALA_TILE
 
 # Nova Janela de Tutorial
 @onready var janela_tutorial: Window = $JanelaTutorial ## Crie um nó Window para o tutorial na cena base
-@onready var label_tutorial: RichTextLabel = $JanelaTutorial/Margem/LabelTexto ## Nó interno para o texto
+@onready var label_tutorial: RichTextLabel = $JanelaTutorial/LabelTexto ## Nó interno para o texto
 
 var drone_logico: Drone
 var interpretador: InterpretadorComandos
@@ -55,7 +55,9 @@ func _ready() -> void:
 	else:
 		drone_logico = DroneIrrigador.new(terreno_logico, 0, 0, capacidade_agua)
 	drone_logico.bateria = bateria_inicial
-	
+	if drone_logico is DroneAgricultor:
+		for especie in sementes_iniciais:
+			drone_logico.inventario.adicionar(Cultura.new(especie, Cultura.Estagio.SEMENTE))
 	# 2. Configurações Visuais
 	camada_terreno.scale = Vector2(ESCALA_TILE, ESCALA_TILE)
 	drone_visual.scale = Vector2(ESCALA_TILE, ESCALA_TILE)
@@ -96,9 +98,9 @@ func verificar_vitoria() -> bool:
 func _ao_concluir_execucao() -> void:
 	if verificar_vitoria():
 		print("Objetivo Concluído!")
-		# Aqui você pode tocar um som, mostrar uma tela de "Fase Concluída" e carregar a próxima
-		await get_tree().create_timer(1.5).timeout
 		_transicao_proxima_fase()
+	else:
+		print("Objetivo não atingido.")
 
 func _transicao_proxima_fase() -> void:
 	if cena_proxima_fase:
@@ -193,7 +195,7 @@ func _configurar_editor_codigo() -> void:
 	interpretador = InterpretadorComandos.new(drone_logico, self, code_edit, console_saida)
 	if not botao_executar.pressed.is_connected(_ao_clicar_executar):
 		botao_executar.pressed.connect(_ao_clicar_executar)
-
+	interpretador.comando_sucesso.connect(_ao_comando_sucesso)
 func _ao_clicar_executar() -> void:
 	botao_executar.disabled = true
 	await interpretador.executar_codigo(code_edit.text)
@@ -250,3 +252,5 @@ func atualizar_telemetria_geral() -> void:
 		var agua = drone_logico.agua_atual if "agua_atual" in drone_logico else 0.0
 		var max_agua = drone_logico.capacidade_agua if "capacidade_agua" in drone_logico else 0.0
 		hud.atualizar_telemetria(drone_logico.bateria, agua, max_agua, drone_logico.posicao)
+func _ao_comando_sucesso(comando: String, args: Array) -> void:
+	pass

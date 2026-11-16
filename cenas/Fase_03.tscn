@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://b6fb41pjvyujn"]
+
+[ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_principal.tscn" id="1_5h6fd"]
+
+[node name="FaseBase" unique_id=1828590507 instance=ExtResource("1_5h6fd")]

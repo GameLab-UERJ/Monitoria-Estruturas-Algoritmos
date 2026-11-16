@@ -1,10 +1,14 @@
 extends FaseBase
 
-#Código da fase 2
-# Sobrescreve o método virtual da FaseBase
+var total_plantios = 0
+
+func _ao_comando_sucesso(comando: String, _args: Array) -> void:
+	if comando == "plantar":
+		total_plantios += 1
+
 func verificar_vitoria() -> bool:
-	# O drone irrigador chegou no fim do mapa?
-	if drone_logico.posicao == Vector2i(4, 0):
-		# Checar as condições da fase
+	if total_plantios >= 3:
 		return true 
+		
+	total_plantios = 0
 	return false
