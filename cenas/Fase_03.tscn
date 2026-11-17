@@ -1,5 +1,11 @@
 [gd_scene format=3 uid="uid://b6fb41pjvyujn"]
 
 [ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_principal.tscn" id="1_5h6fd"]
+[ext_resource type="PackedScene" uid="uid://c4k0u5xg2rc15" path="res://cenas/tela_fim.tscn" id="2_5h6fd"]
+[ext_resource type="Script" uid="uid://d25ngn375kt03" path="res://fase_03.gd" id="2_xjtj7"]
 
 [node name="FaseBase" unique_id=1828590507 instance=ExtResource("1_5h6fd")]
+script = ExtResource("2_xjtj7")
+linhas_terreno = 8
+capacidade_agua = 2.0
+cena_proxima_fase = ExtResource("2_5h6fd")

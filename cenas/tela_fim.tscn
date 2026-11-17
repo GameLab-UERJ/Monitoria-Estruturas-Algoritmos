@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://c4k0u5xg2rc15"]
+
+[ext_resource type="Script" uid="uid://d3ygxrrors8ig" path="res://cenas/tela_fim.gd" id="1_dy8b7"]
+
+[node name="TelaFim" type="Control" unique_id=1136575756]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_dy8b7")
+
+[node name="Label" type="Label" parent="." unique_id=1904438139]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
+[node name="Button" type="Button" parent="." unique_id=1107320623]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Voltar para menu principal"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
