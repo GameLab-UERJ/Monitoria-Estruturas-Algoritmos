@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://du381pelfqw4l" path="res://cenas/editor.gd" id="6_o3inm"]
 [ext_resource type="Script" uid="uid://bj1sqvndvllbb" path="res://cenas/hud.gd" id="7_71ivt"]
 [ext_resource type="AudioStream" uid="uid://ckl3b80hrbkl1" path="res://assets/sounds/soumages-helicopter-429328.mp3" id="7_x7vf8"]
+[ext_resource type="AudioStream" uid="uid://btumd3bo6p6q3" path="res://assets/sounds/freesound_community-sprinkler-93592.mp3" id="8_t7abg"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymfkh"]
 texture = ExtResource("1_ikat4")
@@ -356,6 +357,9 @@ autoplay = "voando"
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="Drone" unique_id=959615783]
 stream = ExtResource("7_x7vf8")
+
+[node name="AudioIrrigacao" type="AudioStreamPlayer2D" parent="Drone" unique_id=1053721230]
+stream = ExtResource("8_t7abg")
 
 [node name="DroneAgricultor" type="Node2D" parent="." unique_id=698752681]
 

@@ -1,5 +1,7 @@
 extends Control
 
+const SOM_CLIQUE: AudioStream = preload("res://assets/sounds/emilianodleon-select-button-ui-395763.mp3")
+
 # Referências aos botões principais (adaptado aos seus nomes exatos)
 @onready var btn_iniciar = $VBoxContainer/BtnIniciar
 @onready var btn_escolher_fase = $VBoxContainer/BtnEscolherFase
@@ -17,7 +19,18 @@ extends Control
 # O caminho padrão passa a ser a sua Fase_01 na pasta cenas
 var caminho_fase_selecionada = "res://cenas/Fase_01.tscn"
 
+# Player de áudio criado por código para o som de clique
+var som_clique: AudioStreamPlayer
+
+# Evita cliques repetidos enquanto o som toca e a cena está para trocar
+var trocando_de_cena: bool = false
+
 func _ready():
+	# Cria o player do som de clique
+	som_clique = AudioStreamPlayer.new()
+	som_clique.stream = SOM_CLIQUE
+	add_child(som_clique)
+
 	# Esconde a lista ao iniciar
 	lista_de_fases.hide()
 
@@ -32,20 +45,39 @@ func _ready():
 	btn_fase_2.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_02.tscn", "Fase 2"))
 	btn_fase_3.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_3.tscn", "Fase 3"))
 
+## Toca o som de clique sem esperar (para botões que só alteram a interface).
+func _tocar_clique() -> void:
+	som_clique.play()
+
+## Toca o som de clique e espera terminar (para botões que trocam de cena ou fecham o jogo).
+## Retorna false se já houver uma troca de cena em andamento.
+func _tocar_clique_e_aguardar() -> bool:
+	if trocando_de_cena:
+		return false
+	trocando_de_cena = true
+	som_clique.play()
+	await som_clique.finished
+	return true
+
 func _on_escolher_fase_pressed():
+	_tocar_clique()
 	lista_de_fases.visible = !lista_de_fases.visible
 
 func _selecionar_fase(caminho: String, nome_fase: String):
+	_tocar_clique()
 	caminho_fase_selecionada = caminho
 	lista_de_fases.hide()
 	btn_iniciar.text = "Iniciar " + nome_fase
 
 func _on_iniciar_pressed():
-	get_tree().change_scene_to_file(caminho_fase_selecionada)
+	if await _tocar_clique_e_aguardar():
+		get_tree().change_scene_to_file(caminho_fase_selecionada)
 
 func _on_creditos_pressed():
 	# Se ainda não criou a cena de créditos, crie-a na pasta 'cenas'
-	get_tree().change_scene_to_file("res://cenas/creditos.tscn")
+	if await _tocar_clique_e_aguardar():
+		get_tree().change_scene_to_file("res://cenas/creditos.tscn")
 
 func _on_sair_pressed():
-	get_tree().quit()
+	if await _tocar_clique_e_aguardar():
+		get_tree().quit()

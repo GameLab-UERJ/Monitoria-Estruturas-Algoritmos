@@ -1,7 +1,13 @@
 extends Node2D
 
+const SOM_IRRIGACAO: AudioStream = preload("res://assets/sounds/freesound_community-sprinkler-93592.mp3")
+
 @onready var animacao: AnimatedSprite2D = $AnimatedSprite2D
 @onready var som_drone: AudioStreamPlayer2D = $AudioStreamPlayer2D
+@onready var som_irrigacao: AudioStreamPlayer2D = $AudioIrrigacao
+
+func _ready() -> void:
+	som_irrigacao.stream = SOM_IRRIGACAO
 
 func aplicar_escala(escala: int) -> void:
 	scale = Vector2(escala, escala)
@@ -38,6 +44,10 @@ func animar_batida(esta_voando: bool) -> void:
 		await animacao.animation_finished
 		
 	animacao.play("voando" if esta_voando else "parado")
+
+## Toca o som do irrigador. Reinicia caso já esteja tocando.
+func animar_irrigacao() -> void:
+	som_irrigacao.play()
 
 func mover_para(destino: Vector2, tempo: float) -> void:
 	var tween = create_tween()
