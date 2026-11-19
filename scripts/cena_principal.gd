@@ -4,6 +4,7 @@ extends Node2D
 const TAMANHO_TILE_ORIGINAL: int = 16
 const ESCALA_TILE: int = 3
 const TAMANHO_CELULA: int = TAMANHO_TILE_ORIGINAL * ESCALA_TILE
+const CAMINHO_MENU: String = "res://cenas/menu_principal.tscn"
 
 # ==========================================
 # CONFIGURAÇÕES DA FASE (Ajustáveis no Inspetor)
@@ -108,6 +109,11 @@ func _transicao_proxima_fase() -> void:
 	else:
 		print("Fim de Jogo ou Cena não configurada!") # Pode carregar a cena de Créditos aqui
 
+## Volta para o menu principal ao clicar no botão do HUD.
+func _ao_clicar_menu() -> void:
+	get_tree().paused = false # Garante que o menu não nasça pausado, caso você use pausa
+	get_tree().change_scene_to_file(CAMINHO_MENU)
+
 # ==========================================
 # JANELA DE TUTORIAL (Novo)
 # ==========================================
@@ -134,6 +140,7 @@ func _conectar_sinais_hud() -> void:
 	hud.velocidade_clicada.connect(_alternar_velocidade)
 	hud.grade_clicada.connect(_alternar_grade)
 	hud.editor_clicado.connect(_alternar_janela_editor)
+	hud.menu_clicado.connect(_ao_clicar_menu)
 	
 	# Assumindo que você adicione um botão no HUD para reabrir o tutorial
 	if hud.has_signal("tutorial_clicado"):
@@ -196,6 +203,7 @@ func _configurar_editor_codigo() -> void:
 	if not botao_executar.pressed.is_connected(_ao_clicar_executar):
 		botao_executar.pressed.connect(_ao_clicar_executar)
 	interpretador.comando_sucesso.connect(_ao_comando_sucesso)
+
 func _ao_clicar_executar() -> void:
 	botao_executar.disabled = true
 	await interpretador.executar_codigo(code_edit.text)
@@ -252,5 +260,6 @@ func atualizar_telemetria_geral() -> void:
 		var agua = drone_logico.agua_atual if "agua_atual" in drone_logico else 0.0
 		var max_agua = drone_logico.capacidade_agua if "capacidade_agua" in drone_logico else 0.0
 		hud.atualizar_telemetria(drone_logico.bateria, agua, max_agua, drone_logico.posicao)
+
 func _ao_comando_sucesso(comando: String, args: Array) -> void:
 	pass

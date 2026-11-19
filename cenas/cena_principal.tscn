@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://bj1sqvndvllbb" path="res://cenas/hud.gd" id="7_71ivt"]
 [ext_resource type="AudioStream" uid="uid://ckl3b80hrbkl1" path="res://assets/sounds/soumages-helicopter-429328.mp3" id="7_x7vf8"]
 [ext_resource type="AudioStream" uid="uid://btumd3bo6p6q3" path="res://assets/sounds/freesound_community-sprinkler-93592.mp3" id="8_t7abg"]
+[ext_resource type="FontFile" uid="uid://bwersnlbr8026" path="res://assets/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="10_8od41"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_ymfkh"]
 texture = ExtResource("1_ikat4")
@@ -418,15 +419,23 @@ layout_mode = 2
 
 [node name="BotaoAbrirEditor" type="Button" parent="HUD/MargemTopo/PainelTopo/HBoxInformacoes/BoxAcoes" unique_id=948049102]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_8od41")
 text = "Abrir editor"
 
 [node name="BotaoGrade" type="Button" parent="HUD/MargemTopo/PainelTopo/HBoxInformacoes/BoxAcoes" unique_id=1046981901]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_8od41")
 text = "Mostrar Grade"
 
 [node name="BotaoVelocidade" type="Button" parent="HUD/MargemTopo/PainelTopo/HBoxInformacoes/BoxAcoes" unique_id=1514400699]
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_8od41")
 text = "⏩ 1.0x"
+
+[node name="BotaoMenu" type="Button" parent="HUD/MargemTopo/PainelTopo/HBoxInformacoes/BoxAcoes" unique_id=1070930406]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("10_8od41")
+text = "Sair"
 
 [node name="JanelaEditor" type="Window" parent="." unique_id=1754790484]
 oversampling_override = 1.0
@@ -448,6 +457,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_fonts/font = ExtResource("10_8od41")
 draw_tabs = true
 gutters_draw_line_numbers = true
 indent_automatic = true
@@ -459,21 +469,25 @@ layout_mode = 2
 [node name="BotaoExecutar" type="Button" parent="JanelaEditor/PainelPrincipal/VBoxEditor/HBoxBotoes" unique_id=1282002800]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("10_8od41")
 text = "▶️ Executar"
 
 [node name="BotaoPausar" type="Button" parent="JanelaEditor/PainelPrincipal/VBoxEditor/HBoxBotoes" unique_id=1443327726]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("10_8od41")
 text = "⏸️ Pausar"
 
 [node name="BotaoParar" type="Button" parent="JanelaEditor/PainelPrincipal/VBoxEditor/HBoxBotoes" unique_id=1407242264]
 layout_mode = 2
 size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("10_8od41")
 text = "⏹️ Parar"
 
 [node name="ConsoleSaida" type="TextEdit" parent="JanelaEditor/PainelPrincipal/VBoxEditor" unique_id=1056645397]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("10_8od41")
 
 [node name="JanelaTutorial" type="Window" parent="." unique_id=615636438]
 oversampling_override = 1.0

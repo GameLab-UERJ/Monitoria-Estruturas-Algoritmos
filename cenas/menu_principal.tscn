@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://dj12sfqcdxd0" path="res://menu_principal.gd" id="1_bllnq"]
 [ext_resource type="Texture2D" uid="uid://cn23m67dsp5g8" path="res://assets/terrenos/terreno_16x16.png" id="2_405qn"]
+[ext_resource type="FontFile" uid="uid://bwersnlbr8026" path="res://assets/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="3_0w2hc"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0w2hc"]
 texture = ExtResource("2_405qn")
@@ -24,25 +25,36 @@ tile_map_data = PackedByteArray("AAD9//3/AAAEAAkAAAD9//7/AAAEAAkAAAD9////AAAEAAk
 tile_set = SubResource("TileSet_roq6h")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=239574409]
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 1
 anchors_preset = -1
-anchor_left = -0.008680556
-anchor_top = 0.20833333
+anchor_left = 0.0052083335
 anchor_right = 1.0
-anchor_bottom = 1.0
+anchor_bottom = 1.0000001
 grow_horizontal = 2
 grow_vertical = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=204927710]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0w2hc")
+theme_override_font_sizes/font_size = 64
+text = "Automation & Irrigation"
+horizontal_alignment = 1
+
 [node name="BtnIniciar" type="Button" parent="VBoxContainer" unique_id=224707967]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
-text = "Iniciar Jogo"
+theme_override_fonts/font = ExtResource("3_0w2hc")
+theme_override_font_sizes/font_size = 32
+text = "Iniciar Jogo "
 
 [node name="BtnEscolherFase" type="Button" parent="VBoxContainer" unique_id=1659320977]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0w2hc")
+theme_override_font_sizes/font_size = 32
 text = "Escolher Fase"
 
 [node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer" unique_id=672518059]
@@ -51,24 +63,31 @@ layout_mode = 2
 [node name="BtnFase1" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=2118681226]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0w2hc")
 text = "Fase 1	"
 
 [node name="BtnFase2" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=1800730902]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0w2hc")
 text = "Fase 2"
 
 [node name="BtnFase3" type="Button" parent="VBoxContainer/VBoxContainer" unique_id=517415306]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0w2hc")
 text = "Fase 3"
 
 [node name="BtncCreditos" type="Button" parent="VBoxContainer" unique_id=239734020]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0w2hc")
+theme_override_font_sizes/font_size = 32
 text = "Créditos"
 
 [node name="BtnSair" type="Button" parent="VBoxContainer" unique_id=831602842]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
+theme_override_fonts/font = ExtResource("3_0w2hc")
+theme_override_font_sizes/font_size = 32
 text = "Sair"

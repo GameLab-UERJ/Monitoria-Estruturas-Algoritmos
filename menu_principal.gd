@@ -79,5 +79,4 @@ func _on_creditos_pressed():
 		get_tree().change_scene_to_file("res://cenas/creditos.tscn")
 
 func _on_sair_pressed():
-	if await _tocar_clique_e_aguardar():
-		get_tree().quit()
+	get_tree().quit()
