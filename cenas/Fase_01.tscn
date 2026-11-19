@@ -9,4 +9,14 @@ script = ExtResource("2_sxpl0")
 colunas_terreno = 6
 exibir_tutorial_inicio = true
 texto_tutorial = "Bem-vindo à Fase 1! Use o comando decolar(), pousar(), mover_esquerda(), mover_direita(), mover_cima() e mover_baixo() e irrigar() para irrigar exatamente 4 células do terreno"
+texto_objetivo_hub = "🎯• Irrigue 4 células do terreno"
 cena_proxima_fase = ExtResource("3_ut8of")
+
+[node name="LabelTexto" parent="JanelaTutorial" parent_id_path=PackedInt32Array(615636438) index="0" unique_id=2146359888]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2

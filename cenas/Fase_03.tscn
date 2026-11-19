@@ -8,4 +8,30 @@
 script = ExtResource("2_xjtj7")
 linhas_terreno = 8
 capacidade_agua = 2.0
+exibir_tutorial_inicio = true
+texto_tutorial = "Atenção ao nível do tanque! Você tem pouca água nesta missão.
+
+Objetivo: Irrigue 2 células e use uma estrutura condicional (if / else) para checar o reservatório antes de tentar irrigar de novo. Se a água acabar, pouse o drone.
+
+Nova verificação:
+• tem_agua() - Verdadeiro se ainda houver água para irrigar
+
+Exemplo de estrutura:
+if tem_agua():
+	irrigar()
+else:
+	pousar()
+
+Importante: Use a tecla TAB antes dos comandos dentro do if e do else!"
+texto_objetivo_hub = "🎯 • Irrigue 3 células "
 cena_proxima_fase = ExtResource("2_5h6fd")
+
+[node name="LabelTexto" parent="JanelaTutorial" parent_id_path=PackedInt32Array(615636438) index="0" unique_id=2146359888]
+custom_minimum_size = Vector2(100, 100)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2

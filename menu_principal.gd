@@ -43,7 +43,7 @@ func _ready():
 	# Liga os botões da lista aos caminhos exatos dos seus ficheiros
 	btn_fase_1.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_01.tscn", "Fase 1"))
 	btn_fase_2.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_02.tscn", "Fase 2"))
-	btn_fase_3.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_3.tscn", "Fase 3"))
+	btn_fase_3.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_03.tscn", "Fase 3"))
 
 ## Toca o som de clique sem esperar (para botões que só alteram a interface).
 func _tocar_clique() -> void:

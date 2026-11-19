@@ -8,4 +8,26 @@
 script = ExtResource("2_pbduc")
 colunas_terreno = 6
 sementes_iniciais = Array[String](["milho", "milho", "milho"])
+exibir_tutorial_inicio = true
+texto_tutorial = "Hora de cobrir uma área maior!
+
+Objetivo: Irrigue um bloco quadrado de 3x3 (9 células juntas) em qualquer parte do terreno.
+
+Comandos de movimento:
+• mover_cima()
+• mover_baixo()
+• mover_esquerda()
+• mover_direita()
+
+Dica: Faça um trajeto em zigue-zague para gastar menos bateria."
+texto_objetivo_hub = "🎯 • Irrigue uma área quadrada de 3x3 células"
 cena_proxima_fase = ExtResource("2_gdlfm")
+
+[node name="LabelTexto" parent="JanelaTutorial" parent_id_path=PackedInt32Array(615636438) index="0" unique_id=2146359888]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
