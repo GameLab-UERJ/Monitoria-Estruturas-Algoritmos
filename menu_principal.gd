@@ -87,12 +87,12 @@ func _selecionar_fase(caminho: String, nome_fase: String):
 
 func _on_iniciar_pressed():
 	if await _tocar_clique_e_aguardar():
-		get_tree().change_scene_to_file(caminho_fase_selecionada)
+		EasyTransition.transition_to(caminho_fase_selecionada,1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
 
 func _on_creditos_pressed():
 	# Se ainda não criou a cena de créditos, crie-a na pasta 'cenas'
 	if await _tocar_clique_e_aguardar():
-		get_tree().change_scene_to_file("res://cenas/creditos.tscn")
+		EasyTransition.transition_to("res://cenas/creditos.tscn",1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
 
 func _on_sair_pressed():
 	get_tree().quit()

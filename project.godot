@@ -15,10 +15,18 @@ run/main_scene="uid://cfqplq5kkej2t"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EasyTransition="*uid://cq0t7o8xelk4k"
+
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/easytransition/plugin.cfg")
 
 [physics]
 

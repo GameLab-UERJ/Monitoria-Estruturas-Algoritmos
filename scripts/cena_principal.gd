@@ -105,14 +105,17 @@ func _ao_concluir_execucao() -> void:
 
 func _transicao_proxima_fase() -> void:
 	if cena_proxima_fase:
-		get_tree().change_scene_to_packed(cena_proxima_fase)
+		EasyTransition.transition_to(cena_proxima_fase.resource_path,1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
 	else:
 		print("Fim de Jogo ou Cena não configurada!") # Pode carregar a cena de Créditos aqui
 
 ## Volta para o menu principal ao clicar no botão do HUD.
 func _ao_clicar_menu() -> void:
 	get_tree().paused = false # Garante que o menu não nasça pausado, caso você use pausa
-	get_tree().change_scene_to_file(CAMINHO_MENU)
+	janela_editor.visible = false
+	janela_tutorial.visible = false
+	EasyTransition.transition_to(CAMINHO_MENU,1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
+	
 
 # ==========================================
 # JANELA DE TUTORIAL (Novo)
