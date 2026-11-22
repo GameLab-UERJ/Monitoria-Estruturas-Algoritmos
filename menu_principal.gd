@@ -19,7 +19,7 @@ const SOM_CLIQUE: AudioStream = preload("res://assets/sounds/emilianodleon-selec
 @onready var intro_layer: CanvasLayer = $IntroLayer
 @onready var black_screen: ColorRect = $IntroLayer/BlackScreen
 @onready var developer_logo: TextureRect = $IntroLayer/DeveloperLogo
-@onready var game_title: Label = $GameTitle
+@onready var game_title: TextureRect = $GameTitle
 @onready var menu_buttons: Array = [
 		btn_iniciar,
 		btn_escolher_fase,
@@ -99,8 +99,6 @@ func _on_sair_pressed():
 
 #region intro
 func _setup_intro() -> void:
-	
-	game_title.scale = Vector2(1.0, 0.92)
 	
 	intro_layer.visible = true
 
@@ -197,11 +195,25 @@ func _animate_menu() -> void:
 		1.0,
 		0.8
 	)
+	
+	await get_tree().create_timer(1).timeout
+	
+	title_tween = create_tween()
 
+	title_tween.set_parallel(true)
+	title_tween.set_trans(Tween.TRANS_BACK)
+	title_tween.set_ease(Tween.EASE_OUT)
 	title_tween.tween_property(
 		game_title,
 		"scale",
-		Vector2.ONE,
+		Vector2.ONE*0.5,
+		0.8
+	)
+
+	title_tween.parallel().tween_property(
+		game_title,
+		"position",
+		Vector2(280,-100),
 		0.8
 	)
 
