@@ -3,28 +3,28 @@ extends Control
 const SOM_CLIQUE: AudioStream = preload("res://assets/sounds/emilianodleon-select-button-ui-395763.mp3")
 
 # Referências aos botões principais (adaptado aos seus nomes exatos)
-@onready var btn_iniciar = $VBoxContainer/BtnIniciar
-@onready var btn_escolher_fase = $VBoxContainer/BtnEscolherFase
-@onready var btn_creditos = $VBoxContainer/BtncCreditos # Nome exato da sua árvore
-@onready var btn_sair = $VBoxContainer/BtnSair
+@onready var btn_iniciar: Button = $MarginContainer/VBoxContainer/BtnIniciar
+@onready var btn_escolher_fase: Button = $MarginContainer/VBoxContainer/BtnEscolherFase
+@onready var btn_creditos: Button = $MarginContainer/VBoxContainer/BtncCreditos
+@onready var btn_sair: Button = $MarginContainer/VBoxContainer/BtnSair
 
 # Referência ao VBoxContainer secundário que serve de lista
-@onready var lista_de_fases = $VBoxContainer/VBoxContainer # Nome exato da sua árvore
+@onready var lista_de_fases: VBoxContainer = $MarginContainer/VBoxContainer/VBoxContainer
 
 # Assumindo que criou os botões das fases dentro do VBoxContainer secundário
-@onready var btn_fase_1 = $VBoxContainer/VBoxContainer/BtnFase1
-@onready var btn_fase_2 = $VBoxContainer/VBoxContainer/BtnFase2
-@onready var btn_fase_3 = $VBoxContainer/VBoxContainer/BtnFase3
+@onready var btn_fase_1: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase1
+@onready var btn_fase_2: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase2
+@onready var btn_fase_3: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase3
 
 @onready var intro_layer: CanvasLayer = $IntroLayer
 @onready var black_screen: ColorRect = $IntroLayer/BlackScreen
 @onready var developer_logo: TextureRect = $IntroLayer/DeveloperLogo
-@onready var game_title: Label = $VBoxContainer/GameTitle
+@onready var game_title: Label = $GameTitle
 @onready var menu_buttons: Array = [
-		$VBoxContainer/BtnIniciar,
-		$VBoxContainer/BtnEscolherFase,
-		$VBoxContainer/BtncCreditos,
-		$VBoxContainer/BtnSair
+		btn_iniciar,
+		btn_escolher_fase,
+		btn_creditos,
+		btn_sair
 	]
 
 # O caminho padrão passa a ser a sua Fase_01 na pasta cenas
