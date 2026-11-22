@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cn23m67dsp5g8" path="res://assets/terrenos/terreno_16x16.png" id="2_405qn"]
 [ext_resource type="FontFile" uid="uid://bwersnlbr8026" path="res://assets/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="3_0w2hc"]
 [ext_resource type="Texture2D" uid="uid://b1dugobof8an4" path="res://assets/logo/gamelab_logo.png" id="4_roq6h"]
+[ext_resource type="AudioStream" uid="uid://ba25uksmggvx" path="res://assets/sounds/atlasaudio-soothing-587607.mp3" id="5_eyjon"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0w2hc"]
 texture = ExtResource("2_405qn")
@@ -35,6 +36,7 @@ offset_top = 100.0
 offset_right = 426.0
 offset_bottom = 195.0
 grow_horizontal = 2
+theme_override_constants/outline_size = 25
 theme_override_fonts/font = ExtResource("3_0w2hc")
 theme_override_font_sizes/font_size = 64
 text = "Automation & Irrigation"
@@ -60,6 +62,7 @@ metadata/_edit_use_anchors_ = true
 [node name="BtnIniciar" type="Button" parent="MarginContainer/VBoxContainer" unique_id=224707967]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_0w2hc")
 theme_override_font_sizes/font_size = 32
 text = "Iniciar Jogo "
@@ -67,6 +70,7 @@ text = "Iniciar Jogo "
 [node name="BtnEscolherFase" type="Button" parent="MarginContainer/VBoxContainer" unique_id=1659320977]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_0w2hc")
 theme_override_font_sizes/font_size = 32
 text = "Escolher Fase"
@@ -77,24 +81,28 @@ layout_mode = 2
 [node name="BtnFase1" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=2118681226]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_0w2hc")
 text = "Fase 1	"
 
 [node name="BtnFase2" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1800730902]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_0w2hc")
 text = "Fase 2"
 
 [node name="BtnFase3" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=517415306]
 custom_minimum_size = Vector2(0, 40)
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_0w2hc")
 text = "Fase 3"
 
 [node name="BtncCreditos" type="Button" parent="MarginContainer/VBoxContainer" unique_id=239734020]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_0w2hc")
 theme_override_font_sizes/font_size = 32
 text = "Créditos"
@@ -102,6 +110,7 @@ text = "Créditos"
 [node name="BtnSair" type="Button" parent="MarginContainer/VBoxContainer" unique_id=831602842]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
+theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_0w2hc")
 theme_override_font_sizes/font_size = 32
 text = "Sair"
@@ -120,3 +129,9 @@ offset_bottom = 648.0
 texture = ExtResource("4_roq6h")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1552464759]
+stream = ExtResource("5_eyjon")
+volume_db = -30.0
+autoplay = true
+parameters/looping = true
