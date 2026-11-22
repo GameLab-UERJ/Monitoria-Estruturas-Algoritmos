@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dj12sfqcdxd0" path="res://menu_principal.gd" id="1_bllnq"]
 [ext_resource type="Texture2D" uid="uid://cn23m67dsp5g8" path="res://assets/terrenos/terreno_16x16.png" id="2_405qn"]
 [ext_resource type="FontFile" uid="uid://bwersnlbr8026" path="res://assets/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="3_0w2hc"]
+[ext_resource type="Texture2D" uid="uid://b1dugobof8an4" path="res://assets/logo/gamelab_logo.png" id="4_roq6h"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_0w2hc"]
 texture = ExtResource("2_405qn")
@@ -36,7 +37,7 @@ grow_vertical = 2
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=204927710]
+[node name="GameTitle" type="Label" parent="VBoxContainer" unique_id=204927710]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("3_0w2hc")
 theme_override_font_sizes/font_size = 64
@@ -91,3 +92,18 @@ layout_mode = 2
 theme_override_fonts/font = ExtResource("3_0w2hc")
 theme_override_font_sizes/font_size = 32
 text = "Sair"
+
+[node name="IntroLayer" type="CanvasLayer" parent="." unique_id=1117059285]
+visible = false
+
+[node name="BlackScreen" type="ColorRect" parent="IntroLayer" unique_id=344101660]
+offset_right = 2000.0
+offset_bottom = 800.0
+color = Color(0, 0, 0, 1)
+
+[node name="DeveloperLogo" type="TextureRect" parent="IntroLayer" unique_id=1054009714]
+offset_right = 1152.0
+offset_bottom = 648.0
+texture = ExtResource("4_roq6h")
+expand_mode = 1
+stretch_mode = 5
