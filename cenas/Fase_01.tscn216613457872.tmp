@@ -1,0 +1,17 @@
+[gd_scene format=3 uid="uid://cddfxkqc1brdx"]
+
+[ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_base.tscn" id="1_ywspm"]
+[ext_resource type="Script" uid="uid://1avlj0y0yd38" path="res://cenas/fase_01.gd" id="2_sxpl0"]
+
+[node name="Fase_01" unique_id=1828590507 instance=ExtResource("1_ywspm")]
+script = ExtResource("2_sxpl0")
+colunas_terreno = null
+linhas_terreno = null
+usar_drone_agricultor = null
+bateria_inicial = null
+capacidade_agua = null
+sementes_iniciais = null
+exibir_tutorial_inicio = null
+titulo_tutorial = null
+texto_tutorial = null
+texto_objetivo_hub = null

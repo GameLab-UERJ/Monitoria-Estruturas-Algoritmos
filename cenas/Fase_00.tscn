@@ -1,0 +1,77 @@
+[gd_scene format=3 uid="uid://b33rin1a3v3j5"]
+
+[ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_base.tscn" id="1_ga5pp"]
+[ext_resource type="Script" uid="uid://baadqv0or6q2k" path="res://cenas/fase_00.gd" id="2_7r0v0"]
+
+[node name="FaseBase" unique_id=1828590507 instance=ExtResource("1_ga5pp")]
+script = ExtResource("2_7r0v0")
+colunas_terreno = 5
+linhas_terreno = 5
+texto_tutorial = "[center][color=#83D98C][b]BEM-VINDO, PILOTO![/b][/color][/center]
+
+Prepare-se para uma missão especial!
+
+Seu objetivo neste jogo é [color=#83D98C][b]programar drones autônomos[/b][/color] para cuidar da plantação, utilizando comandos e lógica de programação.
+
+[color=#F5D76E][b]CONHEÇA A INTERFACE[/b][/color]
+
+[color=#8BD5FF][b]1. TOPO (HUD)[/b][/color]
+
+Mostra as informações da missão: bateria, água, posição do drone, objetivos e botões de controle.
+
+[color=#8BD5FF][b]2. LADO ESQUERDO[/b][/color]
+
+É o terreno agrícola, onde o drone executa as tarefas programadas.
+
+[color=#8BD5FF][b]3. LADO DIREITO[/b][/color]
+
+É o [color=#83D98C][b]EDITOR DE CÓDIGO[/b][/color], onde você escreve os comandos e acompanha as mensagens do console.
+
+[color=#F5D76E][b]PRONTO PARA COMEÇAR?[/b][/color]
+
+Feche esta janela e clique no botão [color=#83D98C][b]EXECUTAR[/b][/color], que estará piscando, para ver seu primeiro código em ação!
+
+[center][color=#F5D76E]SUA AVENTURA NA PROGRAMAÇÃO COMEÇA AGORA![/color][/center]
+"
+
+[node name="JanelaTutorial" parent="." index="9" unique_id=615636438]
+position = Vector2i(376, 124)
+
+[node name="PanelContainer" parent="JanelaTutorial" index="0" unique_id=753083390]
+offset_right = -8.0
+offset_bottom = -7.0
+
+[node name="LabelTexto" parent="JanelaTutorial" index="1" unique_id=2146359888]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "[center][color=#83D98C][b]BEM-VINDO, PILOTO![/b][/color][/center]
+
+Prepare-se para uma missão especial!
+
+Seu objetivo neste jogo é [color=#83D98C][b]programar drones autônomos[/b][/color] para cuidar da plantação, utilizando comandos e lógica de programação.
+
+[color=#F5D76E][b]CONHEÇA A INTERFACE[/b][/color]
+
+[color=#8BD5FF][b]1. TOPO (HUD)[/b][/color]
+
+Mostra as informações da missão: bateria, água, posição do drone, objetivos e botões de controle.
+
+[color=#8BD5FF][b]2. LADO ESQUERDO[/b][/color]
+
+É o terreno agrícola, onde o drone executa as tarefas programadas.
+
+[color=#8BD5FF][b]3. LADO DIREITO[/b][/color]
+
+É o [color=#83D98C][b]EDITOR DE CÓDIGO[/b][/color], onde você escreve os comandos e acompanha as mensagens do console.
+
+[color=#F5D76E][b]PRONTO PARA COMEÇAR?[/b][/color]
+
+Feche esta janela e clique no botão [color=#83D98C][b]EXECUTAR[/b][/color], que estará piscando, para ver seu primeiro código em ação!
+
+[center][color=#F5D76E]SUA AVENTURA NA PROGRAMAÇÃO COMEÇA AGORA![/color][/center]
+"

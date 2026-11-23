@@ -1,5 +1,8 @@
 extends FaseBase
-
+func _ready() -> void:
+	texto_objetivo_hub = "🎯 Missões Ativas:\n • Irrigue 4 células do terreno"
+	super._ready() 
+		
 # Sobrescreve o método virtual da FaseBase
 func verificar_vitoria() -> bool:
 	var total_irrigadas = 0

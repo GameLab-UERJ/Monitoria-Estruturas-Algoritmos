@@ -28,15 +28,14 @@ tile_map_data = PackedByteArray("AAD9//3/AAAEAAkAAAD9//7/AAAEAAkAAAD9////AAAEAAk
 tile_set = SubResource("TileSet_roq6h")
 
 [node name="GameTitle" type="TextureRect" parent="." unique_id=402415802]
-custom_maximum_size = Vector2(1152, -1)
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -446.0
-offset_top = -75.0
-offset_right = 706.0
-offset_bottom = 866.0
+offset_left = -126.0
+offset_top = 300.0
+offset_right = 198.0
+offset_bottom = 300.0
 grow_horizontal = 2
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("3_6ro21")
@@ -133,6 +132,6 @@ stretch_mode = 5
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1552464759]
 stream = ExtResource("5_eyjon")
-volume_db = -30.0
+volume_db = -12.0
 autoplay = true
 parameters/looping = true

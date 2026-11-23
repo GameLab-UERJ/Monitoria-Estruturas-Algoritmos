@@ -1,0 +1,142 @@
+[gd_scene format=3 uid="uid://cin8gnbfptxnx"]
+
+[ext_resource type="Script" uid="uid://cqlx24m51yr2h" path="res://cenas/tutorial_popup.gd" id="1_wvqpt"]
+[ext_resource type="Texture2D" uid="uid://df0j8bc1sbvv1" path="res://assets/interface/painel_tutorial.png" id="2_uabo0"]
+[ext_resource type="Texture2D" uid="uid://bci6x21f207qk" path="res://assets/interface/botoes.png" id="3_uabo0"]
+[ext_resource type="Texture2D" uid="uid://bxed3241xo8f8" path="res://assets/interface/botao_tutorial.png" id="3_yfr8x"]
+[ext_resource type="FontFile" uid="uid://bwersnlbr8026" path="res://assets/fonts/ScienceGothic-VariableFont_CTRS,slnt,wdth,wght.ttf" id="4_ewf4c"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pgpcu"]
+atlas = ExtResource("3_yfr8x")
+region = Rect2(0, 0, 126, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pog18"]
+atlas = ExtResource("3_yfr8x")
+region = Rect2(168, 0, 126, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3yh8p"]
+atlas = ExtResource("3_yfr8x")
+region = Rect2(336, 0, 128, 50)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ewf4c"]
+atlas = ExtResource("3_uabo0")
+region = Rect2(18, 762, 72, 72)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yfr8x"]
+atlas = ExtResource("3_uabo0")
+region = Rect2(558, 768, 72, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2fywr"]
+atlas = ExtResource("3_uabo0")
+region = Rect2(288, 762, 72, 72)
+
+[node name="TutorialPopup" type="CanvasLayer" unique_id=524282177]
+script = ExtResource("1_wvqpt")
+
+[node name="FundoEscuro" type="ColorRect" parent="." unique_id=1918980109]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -576.0
+offset_bottom = -255.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 0.21568628)
+
+[node name="Centralizador" type="CenterContainer" parent="FundoEscuro" unique_id=1720898814]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="ContainerJanela" type="Control" parent="FundoEscuro/Centralizador" unique_id=1456821292]
+layout_mode = 2
+
+[node name="MolduraFundo" type="NinePatchRect" parent="FundoEscuro/Centralizador/ContainerJanela" unique_id=797217695]
+texture_filter = 1
+custom_minimum_size = Vector2(560, 380)
+layout_mode = 1
+offset_right = 560.0
+offset_bottom = 380.0
+texture = ExtResource("2_uabo0")
+region_rect = Rect2(0, 0, 426, 276)
+patch_margin_left = 32
+patch_margin_top = 32
+patch_margin_right = 32
+patch_margin_bottom = 32
+
+[node name="MargemInterna" type="MarginContainer" parent="FundoEscuro/Centralizador/ContainerJanela/MolduraFundo" unique_id=1626416473]
+layout_mode = 0
+offset_left = 24.0
+offset_top = -1.0
+offset_right = 544.0
+offset_bottom = 360.0
+theme_override_constants/margin_left = 32
+theme_override_constants/margin_top = 48
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 32
+
+[node name="VBoxConteudo" type="VBoxContainer" parent="FundoEscuro/Centralizador/ContainerJanela/MolduraFundo/MargemInterna" unique_id=941342938]
+layout_mode = 2
+
+[node name="TextoTutorial" type="RichTextLabel" parent="FundoEscuro/Centralizador/ContainerJanela/MolduraFundo/MargemInterna/VBoxConteudo" unique_id=2132388218]
+clip_contents = false
+custom_minimum_size = Vector2(200, 200)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_fonts/normal_font = ExtResource("4_ewf4c")
+theme_override_font_sizes/normal_font_size = 12
+theme_override_font_sizes/bold_font_size = 12
+theme_override_font_sizes/bold_italics_font_size = 12
+theme_override_font_sizes/italics_font_size = 12
+theme_override_font_sizes/mono_font_size = 12
+bbcode_enabled = true
+
+[node name="CentralizadorBotao" type="CenterContainer" parent="FundoEscuro/Centralizador/ContainerJanela/MolduraFundo/MargemInterna/VBoxConteudo" unique_id=875610785]
+layout_mode = 2
+
+[node name="BotaoEntendi" type="TextureButton" parent="FundoEscuro/Centralizador/ContainerJanela/MolduraFundo/MargemInterna/VBoxConteudo/CentralizadorBotao" unique_id=1355173204]
+texture_filter = 1
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_pgpcu")
+texture_pressed = SubResource("AtlasTexture_pog18")
+texture_hover = SubResource("AtlasTexture_3yh8p")
+
+[node name="LabelBotao" type="Label" parent="FundoEscuro/Centralizador/ContainerJanela/MolduraFundo/MargemInterna/VBoxConteudo/CentralizadorBotao/BotaoEntendi" unique_id=1997878870]
+layout_mode = 0
+offset_left = 30.0
+offset_top = 12.0
+offset_right = 94.0
+offset_bottom = 35.0
+theme_override_fonts/font = ExtResource("4_ewf4c")
+theme_override_font_sizes/font_size = 16
+text = "Entendi!"
+
+[node name="PlacaTitulo" type="NinePatchRect" parent="FundoEscuro/Centralizador/ContainerJanela" unique_id=2112929874]
+texture_filter = 1
+layout_mode = 0
+region_rect = Rect2(12, 408, 204, 78)
+
+[node name="LabelTitulo" type="Label" parent="FundoEscuro/Centralizador/ContainerJanela/PlacaTitulo" unique_id=780546279]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 1
+offset_left = 182.0
+offset_top = 4.0
+offset_right = 382.0
+offset_bottom = 34.0
+theme_override_colors/font_color = Color(0.9708552, 0.7983305, 0.70421666, 1)
+theme_override_colors/font_outline_color = Color(0.0752474, 0.01766315, 0.009596504, 1)
+theme_override_fonts/font = ExtResource("4_ewf4c")
+theme_override_font_sizes/font_size = 20
+text = "Tutorial"
+horizontal_alignment = 1
+
+[node name="BotaoFecharX" type="TextureButton" parent="FundoEscuro/Centralizador/ContainerJanela" unique_id=349774733]
+visible = false
+layout_mode = 0
+offset_left = 423.0
+offset_top = -38.0
+offset_right = 495.0
+offset_bottom = 34.0
+texture_normal = SubResource("AtlasTexture_ewf4c")
+texture_pressed = SubResource("AtlasTexture_yfr8x")
+texture_hover = SubResource("AtlasTexture_2fywr")

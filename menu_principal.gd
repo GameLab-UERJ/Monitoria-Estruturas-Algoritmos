@@ -213,7 +213,7 @@ func _animate_menu() -> void:
 	title_tween.parallel().tween_property(
 		game_title,
 		"position",
-		Vector2(280,-100),
+		Vector2(500,140),
 		0.8
 	)
 

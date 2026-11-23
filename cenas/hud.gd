@@ -5,6 +5,7 @@ signal velocidade_clicada
 signal grade_clicada
 signal editor_clicado
 signal menu_clicado
+signal tutorial_clicado
 
 const SOM_CLIQUE: AudioStream = preload("res://assets/sounds/emilianodleon-select-button-ui-395763.mp3")
 
@@ -22,6 +23,7 @@ const TEMPO_ESPERA_CLIQUE: float = 0.25
 @onready var botao_abrir_editor: Button = $MargemTopo/PainelTopo/HBoxInformacoes/BoxAcoes/BotaoAbrirEditor
 @onready var botao_velocidade: Button = $MargemTopo/PainelTopo/HBoxInformacoes/BoxAcoes/BotaoVelocidade
 @onready var botao_menu: Button = $MargemTopo/PainelTopo/HBoxInformacoes/BoxAcoes/BotaoMenu
+@onready var botao_tutorial: Button = $MargemTopo/PainelTopo/HBoxInformacoes/BoxAcoes/BotaoTutorial
 
 # Player de áudio criado por código para o som de clique
 var som_clique: AudioStreamPlayer
@@ -40,7 +42,8 @@ func _ready() -> void:
 	botao_grade.pressed.connect(func(): _tocar_clique(); grade_clicada.emit())
 	botao_abrir_editor.pressed.connect(func(): _tocar_clique(); editor_clicado.emit())
 	botao_menu.pressed.connect(_ao_apertar_menu)
-
+	botao_tutorial.pressed.connect(func(): tutorial_clicado.emit())
+	
 ## Toca o som de clique.
 func _tocar_clique() -> void:
 	som_clique.play()
@@ -62,7 +65,7 @@ func definir_objetivo(texto: String) -> void:
 func atualizar_telemetria(bateria: int, agua: float, capacidade_agua: float, pos: Vector2i) -> void:
 	label_bateria.text = " 🔋 %d%% " % bateria
 	label_posicao.text = " 📍 (%d, %d) " % [pos.x, pos.y]
-	label_agua.text = " 💧 Água: %d/%d " % [agua, capacidade_agua]
+	label_agua.text = " 💧 %d/%d " % [agua, capacidade_agua]
 
 func atualizar_texto_velocidade(vel: float) -> void:
 	botao_velocidade.text = " ⏩ %.1fx " % vel
@@ -72,3 +75,6 @@ func atualizar_texto_grade(esta_visivel: bool) -> void:
 
 func atualizar_texto_editor(esta_visivel: bool) -> void:
 	botao_abrir_editor.text = "💻 Ocultar Editor" if esta_visivel else "💻 Abrir Editor"
+	
+func atualizar_texto_tutorial(esta_visivel: bool) -> void:
+	botao_tutorial.text = " 📖 Ocultar Tutorial " if esta_visivel else " 📖 Abrir Tutorial "

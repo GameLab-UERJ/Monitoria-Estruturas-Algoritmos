@@ -16,11 +16,12 @@ const CAMINHO_MENU: String = "res://cenas/menu_principal.tscn"
 @export var bateria_inicial: int = 100
 @export var capacidade_agua: float = 10.0
 @export var sementes_iniciais: Array[String] = []
-@export_category("Tutorial e Progressão")
-@export var exibir_tutorial_inicio: bool = false ## Ative para as fases 1, 3, 5 e 7
-@export_multiline var texto_tutorial: String = "Objetivo: ...\nComandos: ..."
-@export var texto_objetivo_hub: String = "🎯 Missões Ativas:\n• 1. Concluir a fase"
-@export var cena_proxima_fase: PackedScene ## Arraste a cena da próxima fase aqui (ou tela de créditos na última)
+
+#@export_category("Tutorial e Progressão")
+#@export var exibir_tutorial_inicio: bool = false ## Ative para as fases 1, 3, 5 e 7
+#@export_multiline var texto_tutorial: String = "Objetivo: ...\nComandos: ..."
+#@export var texto_objetivo_hub: String = "🎯 Missões Ativas:\n• 1. Concluir a fase"
+#@export var cena_proxima_fase: PackedScene ## Arraste a cena da próxima fase aqui (ou tela de créditos na última)
 
 # ==========================================
 # REFERÊNCIAS DE NÓS
@@ -40,8 +41,16 @@ const CAMINHO_MENU: String = "res://cenas/menu_principal.tscn"
 @onready var animated_sprite_drone: AnimatedSprite2D = $Drone/AnimatedSprite2D
 
 # Nova Janela de Tutorial
-@onready var janela_tutorial: Window = $JanelaTutorial ## Crie um nó Window para o tutorial na cena base
-@onready var label_tutorial: RichTextLabel = $JanelaTutorial/LabelTexto ## Nó interno para o texto
+@export_category("Tutorial e Progressão")
+@export var exibir_tutorial_inicio: bool = false
+@export var titulo_tutorial: String = "Tutorial da Fase"
+@export_multiline var texto_tutorial: String = "Objetivo: ...\nComandos: ..."
+@export var texto_objetivo_hub: String = "🎯 Missões Ativas:\n• 1. Concluir a fase"
+@export var cena_proxima_fase: PackedScene
+
+# janela tutorial customizada
+@onready var tutorial_popup: TutorialPopup = $TutorialPopup
+
 
 var drone_logico: Drone
 var interpretador: InterpretadorComandos
@@ -78,7 +87,7 @@ func _ready() -> void:
 	hud.atualizar_texto_editor(true)
 	
 	_configurar_janela_tutorial()
-	atualizar_posicao_drone()
+	atualizar_posicao_drone(true)
 
 	# 5. Conexões de Sinais
 	_conectar_sinais_hud()
@@ -113,7 +122,7 @@ func _transicao_proxima_fase() -> void:
 func _ao_clicar_menu() -> void:
 	get_tree().paused = false # Garante que o menu não nasça pausado, caso você use pausa
 	janela_editor.visible = false
-	janela_tutorial.visible = false
+	#janela_tutorial.visible = false
 	EasyTransition.transition_to(CAMINHO_MENU,1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
 	
 
@@ -121,21 +130,34 @@ func _ao_clicar_menu() -> void:
 # JANELA DE TUTORIAL (Novo)
 # ==========================================
 func _configurar_janela_tutorial() -> void:
-	if janela_tutorial:
-		janela_tutorial.title = "Tutorial da Fase"
-		if label_tutorial:
-			label_tutorial.text = texto_tutorial
-			
-		janela_tutorial.close_requested.connect(func(): janela_tutorial.hide())
-		janela_tutorial.visible = exibir_tutorial_inicio
+	if not tutorial_popup:
+		return
 		
-		# Posiciona a janela no centro ou canto
-		janela_tutorial.position = Vector2i(100, 100)
+	tutorial_popup.configurar(titulo_tutorial, texto_tutorial)
+	
+	if not tutorial_popup.fechado.is_connected(_on_tutorial_fechado):
+		tutorial_popup.fechado.connect(_on_tutorial_fechado)
+	
+	if exibir_tutorial_inicio:
+		tutorial_popup.abrir()
+		hud.atualizar_texto_tutorial(true)
+	else:
+		tutorial_popup.hide()
+		hud.atualizar_texto_tutorial(false)
+
+func _on_tutorial_fechado() -> void:
+	hud.atualizar_texto_tutorial(false)
 
 func _alternar_janela_tutorial() -> void:
-	if janela_tutorial:
-		janela_tutorial.visible = not janela_tutorial.visible
-
+	if not tutorial_popup:
+		return
+		
+	if tutorial_popup.visible:
+		tutorial_popup.fechar()
+	else:
+		tutorial_popup.abrir()
+		hud.atualizar_texto_tutorial(true)
+		
 # ==========================================
 # CONTROLES DA INTERFACE E EDITOR
 # ==========================================
@@ -144,8 +166,8 @@ func _conectar_sinais_hud() -> void:
 	hud.grade_clicada.connect(_alternar_grade)
 	hud.editor_clicado.connect(_alternar_janela_editor)
 	hud.menu_clicado.connect(_ao_clicar_menu)
+	#hud.tutorial_clicado.connect(_alternar_janela_tutorial)
 	
-	# Assumindo que você adicione um botão no HUD para reabrir o tutorial
 	if hud.has_signal("tutorial_clicado"):
 		hud.tutorial_clicado.connect(_alternar_janela_tutorial)
 	
@@ -240,16 +262,21 @@ func _gerar_visual_terreno() -> void:
 	if camada_terreno.tile_set:
 		camada_terreno.set_cells_terrain_connect(celulas_para_pintar, 0, 0)
 
-func atualizar_posicao_drone() -> void:
+func atualizar_posicao_drone(instantaneo: bool = false) -> void:
 	var destino = grid_para_mundo(drone_logico.posicao)
 	var esta_voando = (drone_logico.estado_voo == Drone.EstadoVoo.EM_VOO)
 	
 	if esta_voando:
 		drone_visual.animar_voando()
 	else:
-		drone_visual.animar_pouso()
+		drone_visual.animar_parado()
 		
-	drone_visual.mover_para(destino, 0.25)
+	# Condição para evitar o efeito de queda no início do jogo
+	if instantaneo:
+		drone_visual.position = destino
+	else:
+		drone_visual.mover_para(destino, 0.25)
+		
 	atualizar_telemetria_geral()
 
 func atualizar_visual_terreno_irrigado(coord: Vector2i) -> void:
