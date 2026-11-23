@@ -3,14 +3,12 @@ extends CanvasLayer
 
 signal fechado
 
-@onready var container_janela: Control = $FundoEscuro/Centralizador/ContainerJanela
-@onready var label_titulo: Label = $FundoEscuro/Centralizador/ContainerJanela/PlacaTitulo/LabelTitulo
-@onready var texto_tutorial: RichTextLabel = $FundoEscuro/Centralizador/ContainerJanela/MolduraFundo/MargemInterna/VBoxConteudo/TextoTutorial
-@onready var botao_fechar_x: TextureButton = $FundoEscuro/Centralizador/ContainerJanela/BotaoFecharX
-@onready var botao_entendi: TextureButton = $FundoEscuro/Centralizador/ContainerJanela/MolduraFundo/MargemInterna/VBoxConteudo/CentralizadorBotao/BotaoEntendi
+@onready var container_janela: Control = $ContainerJanela
+@onready var label_titulo: Label = $ContainerJanela/PlacaTitulo/LabelTitulo
+@onready var texto_tutorial: RichTextLabel = $ContainerJanela/MolduraFundo/MargemInterna/VBoxConteudo/TextoTutorial
+@onready var botao_entendi: TextureButton = $ContainerJanela/MolduraFundo/MargemInterna/VBoxConteudo/CentralizadorBotao/BotaoEntendi
 
 func _ready() -> void:
-	botao_fechar_x.pressed.connect(fechar)
 	botao_entendi.pressed.connect(fechar)
 	hide()
 
