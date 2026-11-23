@@ -87,12 +87,12 @@ func _selecionar_fase(caminho: String, nome_fase: String):
 
 func _on_iniciar_pressed():
 	if await _tocar_clique_e_aguardar():
-		get_tree().change_scene_to_file(caminho_fase_selecionada)
+		EasyTransition.transition_to(caminho_fase_selecionada,1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
 
 func _on_creditos_pressed():
 	# Se ainda não criou a cena de créditos, crie-a na pasta 'cenas'
 	if await _tocar_clique_e_aguardar():
-		get_tree().change_scene_to_file("res://cenas/creditos.tscn")
+		EasyTransition.transition_to("res://cenas/creditos.tscn",1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
 
 func _on_sair_pressed():
 	get_tree().quit()
@@ -100,7 +100,6 @@ func _on_sair_pressed():
 #region intro
 func _setup_intro() -> void:
 	
-	game_title.scale = Vector2(1.0, 0.92)
 	intro_layer.visible = true
 
 	black_screen.modulate.a = 1.0
@@ -196,16 +195,32 @@ func _animate_menu() -> void:
 		1.0,
 		0.8
 	)
+	
+	await get_tree().create_timer(1).timeout
+	
+	title_tween = create_tween()
 
+	title_tween.set_parallel(true)
+	title_tween.set_trans(Tween.TRANS_BACK)
+	title_tween.set_ease(Tween.EASE_OUT)
 	title_tween.tween_property(
 		game_title,
 		"scale",
-		Vector2.ONE,
+		Vector2.ONE*0.5,
+		0.8
+	)
+
+	title_tween.parallel().tween_property(
+		game_title,
+		"position",
+		Vector2(500,140),
 		0.8
 	)
 
 	await title_tween.finished
+
 	await get_tree().create_timer(0.15).timeout
+	
 	await _animate_buttons()
 
 
