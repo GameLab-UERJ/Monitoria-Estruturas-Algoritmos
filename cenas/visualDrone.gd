@@ -15,6 +15,10 @@ func aplicar_escala(escala: int) -> void:
 func definir_velocidade(nova_vel: float) -> void:
 	animacao.speed_scale = nova_vel
 
+func animar_parado() -> void:
+	if animacao.animation != "parado":
+		animacao.play("parado")
+		
 func animar_decolagem() -> void:
 	# O som começa junto com a decolagem
 	if not som_drone.playing:

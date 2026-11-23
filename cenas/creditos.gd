@@ -29,4 +29,4 @@ func _ao_apertar_voltar() -> void:
 	voltando_ao_menu = true
 	som_clique.play()
 	await get_tree().create_timer(TEMPO_ESPERA_CLIQUE).timeout
-	get_tree().change_scene_to_file(CAMINHO_MENU)
+	EasyTransition.transition_to(CAMINHO_MENU,1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)

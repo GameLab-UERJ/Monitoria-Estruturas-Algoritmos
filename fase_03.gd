@@ -1,5 +1,8 @@
 extends FaseBase
-
+func _ready() -> void:
+	texto_objetivo_hub = "🎯 Missões Ativas:\n • Irrigue 2 células.\n • Use o comando if-else."
+	super._ready() 
+	
 func verificar_vitoria() -> bool:
 	# Pega o texto do editor da cena base
 	var codigo_aluno = code_edit.text.to_lower()

@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://c6ly1pgpxtssa"]
 
-[ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_principal.tscn" id="1_gdlfm"]
+[ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_base.tscn" id="1_gdlfm"]
 [ext_resource type="PackedScene" uid="uid://b6fb41pjvyujn" path="res://cenas/Fase_03.tscn" id="2_gdlfm"]
 [ext_resource type="Script" uid="uid://bo5auuhcxu8vo" path="res://fase_02.gd" id="2_pbduc"]
 
@@ -9,25 +9,27 @@ script = ExtResource("2_pbduc")
 colunas_terreno = 6
 sementes_iniciais = Array[String](["milho", "milho", "milho"])
 exibir_tutorial_inicio = true
-texto_tutorial = "Hora de cobrir uma área maior!
+texto_tutorial = "[center][color=#83D98C][b]DESAFIO: IRRIGAÇÃO EM ÁREA 3x3[/b][/color][/center]
 
-Objetivo: Irrigue um bloco quadrado de 3x3 (9 células juntas) em qualquer parte do terreno.
+[color=#F5D76E][b]HORA DE COBRIR UMA ÁREA MAIOR![/b][/color]
 
-Comandos de movimento:
-• mover_cima()
-• mover_baixo()
-• mover_esquerda()
-• mover_direita()
+Agora seu drone precisa irrigar uma área inteira do terreno.
 
-Dica: Faça um trajeto em zigue-zague para gastar menos bateria."
+[color=#F5D76E][b]OBJETIVO[/b][/color]
+
+Irrigue um bloco quadrado de [color=#83D98C][b]3x3 (9 células)[/b][/color], localizado em qualquer parte do terreno.
+
+[color=#F5D76E][b]COMANDOS DE MOVIMENTO[/b][/color]
+
+[color=#8BD5FF]mover_cima()[/color]
+[color=#8BD5FF]mover_baixo()[/color]
+[color=#8BD5FF]mover_esquerda()[/color]
+[color=#8BD5FF]mover_direita()[/color]
+
+[color=#F5D76E][b]DICA DO PILOTO[/b][/color]
+
+Faça um trajeto em [color=#83D98C][b]ZIGUE-ZAGUE[/b][/color] para percorrer todas as células e gastar menos bateria!
+
+[center][color=#F5D76E]PLANEJE SEU TRAJETO E BOA IRRIGAÇÃO![/color][/center]"
 texto_objetivo_hub = "🎯 • Irrigue uma área quadrada de 3x3 células"
 cena_proxima_fase = ExtResource("2_gdlfm")
-
-[node name="LabelTexto" parent="JanelaTutorial" parent_id_path=PackedInt32Array(615636438) index="0" unique_id=2146359888]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2

@@ -1,5 +1,10 @@
 extends FaseBase
 
+func _ready() -> void:
+	texto_objetivo_hub = "🎯 Missões Ativas:\n • Irrigue uma área quadrada \nde 3x3 células."
+	super._ready() 
+
+
 func verificar_vitoria() -> bool:
 	var atingiu_objetivo = false
 	

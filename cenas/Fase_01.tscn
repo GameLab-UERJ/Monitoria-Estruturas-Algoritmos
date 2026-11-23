@@ -1,22 +1,50 @@
 [gd_scene format=3 uid="uid://cddfxkqc1brdx"]
 
-[ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_principal.tscn" id="1_ywspm"]
+[ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_base.tscn" id="1_ywspm"]
 [ext_resource type="Script" uid="uid://1avlj0y0yd38" path="res://cenas/fase_01.gd" id="2_sxpl0"]
-[ext_resource type="PackedScene" uid="uid://c6ly1pgpxtssa" path="res://cenas/fase_02.tscn" id="3_ut8of"]
+[ext_resource type="PackedScene" uid="uid://c6ly1pgpxtssa" path="res://cenas/Fase_02.tscn" id="3_ut8of"]
 
 [node name="Fase_01" unique_id=1828590507 instance=ExtResource("1_ywspm")]
 script = ExtResource("2_sxpl0")
-colunas_terreno = 6
 exibir_tutorial_inicio = true
-texto_tutorial = "Bem-vindo à Fase 1! Use o comando decolar(), pousar(), mover_esquerda(), mover_direita(), mover_cima() e mover_baixo() e irrigar() para irrigar exatamente 4 células do terreno"
-texto_objetivo_hub = "🎯• Irrigue 4 células do terreno"
-cena_proxima_fase = ExtResource("3_ut8of")
+texto_tutorial = "[center][color=#83D98C][b]SEJA BEM-VINDO![/b][/color][/center]
 
-[node name="LabelTexto" parent="JanelaTutorial" parent_id_path=PackedInt32Array(615636438) index="0" unique_id=2146359888]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
+Neste jogo você será um piloto e controlará um drone irrigador. Você deverá usar o editor de código para dar instruções ao drone.
+
+[color=#F5D76E][b]1. COMANDOS DE VOO[/b][/color]
+
+Os comandos básicos do drone são:
+
+[color=#8BD5FF]decolar()[/color]  - Inicia o voo.
+[color=#8BD5FF]pousar()[/color]   - Finaliza o voo.
+
+[color=#F5D76E][b]2. COMANDOS DE MOVIMENTO[/b][/color]
+
+Cada comando movimenta o drone uma célula na direção escolhida:
+
+[color=#8BD5FF]mover_direita()[/color]
+[color=#8BD5FF]mover_esquerda()[/color]
+[color=#8BD5FF]mover_acima()[/color]
+[color=#8BD5FF]mover_baixo()[/color]
+
+[color=#F5D76E][b]3. COMANDO DE IRRIGAÇÃO[/b][/color]
+
+O comando [color=#83D98C]irrigar()[/color] irriga o terreno na posição atual do drone.
+
+[color=#F5D76E][b]4. EXEMPLO DE PROGRAMA[/b][/color]
+
+[code]
+decolar()
+mover_direita()
+irrigar()
+pousar()
+[/code]
+
+[color=#83D98C][b]COMO FUNCIONA?[/b][/color]
+
+O drone decola, movimenta-se uma célula para a direita, irriga o terreno e, em seguida, pousa.
+
+[center][color=#F5D76E]BOM TRABALHO, PILOTO![/color][/center]
+"
+texto_objetivo_hub = "🎯 Missões Ativas:\\n • Irrigue 4 células do terreno"
+cena_proxima_fase = ExtResource("3_ut8of")
