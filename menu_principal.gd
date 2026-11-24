@@ -12,6 +12,7 @@ const SOM_CLIQUE: AudioStream = preload("res://assets/sounds/emilianodleon-selec
 @onready var lista_de_fases: VBoxContainer = $MarginContainer/VBoxContainer/VBoxContainer
 
 # Assumindo que criou os botões das fases dentro do VBoxContainer secundário
+@onready var btn_fase_0: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase0
 @onready var btn_fase_1: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase1
 @onready var btn_fase_2: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase2
 @onready var btn_fase_3: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase3
@@ -53,6 +54,7 @@ func _ready():
 	btn_sair.pressed.connect(_on_sair_pressed)
 	
 	# Liga os botões da lista aos caminhos exatos dos seus ficheiros
+	btn_fase_0.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_00.tscn", "Tutorial"))
 	btn_fase_1.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_01.tscn", "Fase 1"))
 	btn_fase_2.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_02.tscn", "Fase 2"))
 	btn_fase_3.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_03.tscn", "Fase 3"))

@@ -17,12 +17,6 @@ const CAMINHO_MENU: String = "res://cenas/menu_principal.tscn"
 @export var capacidade_agua: float = 10.0
 @export var sementes_iniciais: Array[String] = []
 
-#@export_category("Tutorial e Progressão")
-#@export var exibir_tutorial_inicio: bool = false ## Ative para as fases 1, 3, 5 e 7
-#@export_multiline var texto_tutorial: String = "Objetivo: ...\nComandos: ..."
-#@export var texto_objetivo_hub: String = "🎯 Missões Ativas:\n• 1. Concluir a fase"
-#@export var cena_proxima_fase: PackedScene ## Arraste a cena da próxima fase aqui (ou tela de créditos na última)
-
 # ==========================================
 # REFERÊNCIAS DE NÓS
 # ==========================================
