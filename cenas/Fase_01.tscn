@@ -7,9 +7,10 @@
 [node name="Fase_01" unique_id=1828590507 instance=ExtResource("1_ywspm")]
 script = ExtResource("2_sxpl0")
 exibir_tutorial_inicio = true
-texto_tutorial = "[center][color=#83D98C][b]SEJA BEM-VINDO![/b][/color][/center]
+titulo_tutorial = "Fase 1"
+texto_tutorial = "[center][color=#83D98C][b]PRIMEIRO PROGRAMA![/b][/color][/center]
 
-Neste jogo você será um piloto e controlará um drone irrigador. Você deverá usar o editor de código para dar instruções ao drone.
+Nesta primeira fase você  deverá usar o editor de código para dar instruções ao drone irrigador.
 
 [color=#F5D76E][b]1. COMANDOS DE VOO[/b][/color]
 

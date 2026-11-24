@@ -2,13 +2,14 @@
 
 [ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_base.tscn" id="1_gdlfm"]
 [ext_resource type="PackedScene" uid="uid://b6fb41pjvyujn" path="res://cenas/Fase_03.tscn" id="2_gdlfm"]
-[ext_resource type="Script" uid="uid://bo5auuhcxu8vo" path="res://fase_02.gd" id="2_pbduc"]
+[ext_resource type="Script" uid="uid://bo5auuhcxu8vo" path="res://cenas/fase_02.gd" id="2_pbduc"]
 
 [node name="FaseBase" unique_id=1828590507 instance=ExtResource("1_gdlfm")]
 script = ExtResource("2_pbduc")
 colunas_terreno = 6
 sementes_iniciais = Array[String](["milho", "milho", "milho"])
 exibir_tutorial_inicio = true
+titulo_tutorial = "Fase 2"
 texto_tutorial = "[center][color=#83D98C][b]DESAFIO: IRRIGAÇÃO EM ÁREA 3x3[/b][/color][/center]
 
 [color=#F5D76E][b]HORA DE COBRIR UMA ÁREA MAIOR![/b][/color]

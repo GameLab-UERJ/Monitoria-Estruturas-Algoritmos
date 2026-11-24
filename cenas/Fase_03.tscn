@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b6fb41pjvyujn"]
 
 [ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_base.tscn" id="1_5h6fd"]
-[ext_resource type="Script" uid="uid://d25ngn375kt03" path="res://fase_03.gd" id="2_xjtj7"]
+[ext_resource type="Script" uid="uid://d25ngn375kt03" path="res://cenas/fase_03.gd" id="2_xjtj7"]
 [ext_resource type="PackedScene" uid="uid://cog2kgrc102jf" path="res://cenas/creditos.tscn" id="3_xjtj7"]
 
 [node name="FaseBase" unique_id=1828590507 instance=ExtResource("1_5h6fd")]
@@ -9,6 +9,7 @@ script = ExtResource("2_xjtj7")
 linhas_terreno = 8
 capacidade_agua = 2.0
 exibir_tutorial_inicio = true
+titulo_tutorial = "Fase 3"
 texto_tutorial = "[center][color=#83D98C][b]DESAFIO: CONTROLE DO RESERVATÓRIO[/b][/color][/center]
 
 [color=#F5D76E][b]ATENÇÃO AO NÍVEL DO TANQUE![/b][/color]

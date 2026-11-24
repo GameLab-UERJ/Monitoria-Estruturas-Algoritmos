@@ -9,11 +9,14 @@ script = ExtResource("2_7r0v0")
 colunas_terreno = 5
 linhas_terreno = 5
 exibir_tutorial_inicio = true
+titulo_tutorial = "Fase tutorial"
 texto_tutorial = "[center][color=#83D98C][b]BEM-VINDO, PILOTO![/b][/color][/center]
 
 Prepare-se para uma missão especial!
 
 Seu objetivo neste jogo é [color=#83D98C][b]programar drones autônomos[/b][/color] para cuidar da plantação, utilizando comandos e lógica de programação.
+
+Nesta demo você controlará um drone irrigador. Você deverá usar o editor de código para dar instruções ao drone.
 
 [color=#F5D76E][b]CONHEÇA A INTERFACE[/b][/color]
 
@@ -27,12 +30,11 @@ Mostra as informações da missão: bateria, água, posição do drone, objetivo
 
 [color=#8BD5FF][b]3. LADO DIREITO[/b][/color]
 
-É o [color=#83D98C][b]EDITOR DE CÓDIGO[/b][/color], onde você escreve os comandos e acompanha as mensagens do console.
+É o [color=#83D98C][b]TEMINAL DEL CONTROLE DO DRONE[/b][/color], onde você escreve os comandos e acompanha as mensagens do console.
 
 [color=#F5D76E][b]PRONTO PARA COMEÇAR?[/b][/color]
 
-Feche esta janela e clique no botão [color=#83D98C][b]EXECUTAR[/b][/color], que estará piscando, para ver seu primeiro código em ação!
+Feche esta janela e clique no botão [color=#83D98C][b]EXECUTAR[/b][/color], do terminal de comandos do drone, para ver seu primeiro código em ação!
 
-[center][color=#F5D76E]SUA AVENTURA NA PROGRAMAÇÃO COMEÇA AGORA![/color][/center]
-"
+[center][color=#F5D76E]SUA AVENTURA NA PROGRAMAÇÃO COMEÇA AGORA![/color][/center]"
 cena_proxima_fase = ExtResource("3_lu8yt")

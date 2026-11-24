@@ -4,12 +4,8 @@ func _ready() -> void:
 	super._ready() 
 	texto_objetivo_hub = "🎯 Missões Ativas:\n • Clique no botão Executar"
 	titulo_tutorial = "Bem-vindo ao Jogo!"
-
 	# Sobrescreve o código padrão do editor com a demonstração da Fase 0
 	code_edit.text = "# Código de demonstração - Clique em Executar!\ndecolar()\nmover_cima()\nirrigar()\npousar()"
-
-
-
 
 ## A apresentação é concluída quando o drone irriga (0, 1) e pousa sem erros
 func verificar_vitoria() -> bool:
