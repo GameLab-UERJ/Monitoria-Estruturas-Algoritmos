@@ -231,7 +231,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_881qe")
 }],
-"loop": false,
+"loop": 0,
 "name": &"batendo",
 "speed": 5.0
 }, {
@@ -266,7 +266,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ptwyy")
 }],
-"loop": false,
+"loop": 0,
 "name": &"decolando",
 "speed": 5.0
 }, {
@@ -274,7 +274,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_paad7")
 }],
-"loop": false,
+"loop": 0,
 "name": &"parado",
 "speed": 5.0
 }, {
@@ -309,7 +309,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_187te")
 }],
-"loop": false,
+"loop": 0,
 "name": &"pousando",
 "speed": 5.0
 }, {
@@ -326,7 +326,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_3hbbr")
 }],
-"loop": true,
+"loop": 1,
 "name": &"voando",
 "speed": 5.0
 }]
@@ -373,17 +373,38 @@ texture_margin_bottom = 22.0
 script = ExtResource("1_5qald")
 linhas_terreno = 10
 capacidade_agua = 5.0
-texto_tutorial = "Hora de automatizar o trabalho!
+exibir_tutorial_inicio = true
+titulo_tutorial = "Fase 4"
+texto_tutorial = "[center][color=#83D98C][b]DESAFIO: AUTOMATIZANDO A IRRIGAÇÃO[/b][/color][/center]
 
-Objetivo: Irrigue uma fileira reta de 5 células consecutivas no terreno.
+[color=#F5D76E][b]HORA DE AUTOMATIZAR O TRABALHO![/b][/color]
 
-Dica: Em vez de repetir os mesmos comandos várias vezes, você pode usar um laço de repetição (while) enquanto ainda houver água no tanque:
+Chegou a hora de deixar o drone trabalhar sozinho usando um laço de repetição!
 
+[color=#F5D76E][b]OBJETIVO[/b][/color]
+
+Irrigue uma fileira reta de [color=#83D98C][b]5 células consecutivas[/b][/color] no terreno.
+
+[color=#F5D76E][b]DICA DO PILOTO[/b][/color]
+
+Em vez de repetir os mesmos comandos várias vezes, você pode utilizar um laço de repetição [color=#8BD5FF][b]while[/b][/color].
+
+O drone continuará irrigando e se movimentando enquanto ainda houver água no tanque:
+
+[color=#F5D76E][b]EXEMPLO DE ESTRUTURA[/b][/color]
+
+[code]
 while tem_agua():
 	irrigar()
 	mover_direita()
+[/code]
 
-Lembre-se de usar a tecla TAB dentro do while!"
+[color=#F5D76E][b]IMPORTANTE![/b][/color]
+
+Use a tecla [color=#83D98C][b]TAB[/b][/color] para indentar os comandos que ficam dentro do bloco [color=#8BD5FF]while[/color].
+
+[center][color=#F5D76E]MENOS REPETIÇÃO, MAIS AUTOMAÇÃO![/color][/center]
+"
 texto_objetivo_hub = "🎯 • Irrigue uma fileira de 5 células seguidas"
 cena_proxima_fase = ExtResource("2_a7v4b")
 

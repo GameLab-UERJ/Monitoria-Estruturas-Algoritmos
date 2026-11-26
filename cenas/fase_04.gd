@@ -1,5 +1,8 @@
 extends FaseBase
-
+func _ready() -> void:
+	texto_objetivo_hub = "🎯 Missões Ativas:\n • Irrigue uma fileira de 5 células \n seguidas usando o comando while."
+	super._ready() 
+	
 func verificar_vitoria() -> bool:
 	var cols = terreno_logico.colunas
 	var lins = terreno_logico.linhas

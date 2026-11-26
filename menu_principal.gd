@@ -29,7 +29,7 @@ const SOM_CLIQUE: AudioStream = preload("res://assets/sounds/emilianodleon-selec
 	]
 
 # O caminho padrão passa a ser a sua Fase_01 na pasta cenas
-var caminho_fase_selecionada = "res://cenas/Fase_01.tscn"
+var caminho_fase_selecionada = "res://cenas/Fase_00.tscn"
 
 # Player de áudio criado por código para o som de clique
 var som_clique: AudioStreamPlayer
