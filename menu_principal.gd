@@ -16,7 +16,7 @@ const SOM_CLIQUE: AudioStream = preload("res://assets/sounds/emilianodleon-selec
 @onready var btn_fase_1: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase1
 @onready var btn_fase_2: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase2
 @onready var btn_fase_3: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase3
-
+@onready var btn_fase_4: Button = $MarginContainer/VBoxContainer/VBoxContainer/BtnFase4
 @onready var intro_layer: CanvasLayer = $IntroLayer
 @onready var black_screen: ColorRect = $IntroLayer/BlackScreen
 @onready var developer_logo: TextureRect = $IntroLayer/DeveloperLogo
@@ -58,7 +58,7 @@ func _ready():
 	btn_fase_1.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_01.tscn", "Fase 1"))
 	btn_fase_2.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_02.tscn", "Fase 2"))
 	btn_fase_3.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_03.tscn", "Fase 3"))
-
+	btn_fase_4.pressed.connect(func(): _selecionar_fase("res://cenas/Fase_04.tscn", "Fase 4"))
 	_setup_intro()
 	await _play_intro()
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="PackedScene" uid="uid://dorcxdfsixsbb" path="res://cenas/cena_base.tscn" id="1_5h6fd"]
 [ext_resource type="Script" uid="uid://d25ngn375kt03" path="res://cenas/fase_03.gd" id="2_xjtj7"]
-[ext_resource type="PackedScene" uid="uid://cog2kgrc102jf" path="res://cenas/creditos.tscn" id="3_xjtj7"]
+[ext_resource type="PackedScene" uid="uid://dcbkoox8yg2aw" path="res://cenas/Fase_04.tscn" id="3_xjtj7"]
 
 [node name="FaseBase" unique_id=1828590507 instance=ExtResource("1_5h6fd")]
 script = ExtResource("2_xjtj7")

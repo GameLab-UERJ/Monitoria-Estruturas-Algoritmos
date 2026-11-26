@@ -4,6 +4,7 @@ extends RefCounted
 signal execucao_concluida
 signal linha_executada(numero_linha: int, mensagem: String)
 signal comando_sucesso(comando: String, args: Array)
+signal bateria_esgotada # <--- ADICIONE ESTA LINHA
 var velocidade_multiplicador: float = 1.0
 
 var drone: Drone
@@ -168,12 +169,28 @@ func _executar_bloco_recursivo(comandos: Array, indice_inicio: int, total_linhas
 		
 		if not sucesso:
 			editor.set_line_background_color(cmd.linha_real, Color(1.0, 0.2, 0.2, 0.4))
-			_log("[ERRO] Falha na execução da linha %d." % [cmd.linha_real + 1])
+			
+			# Verifica se a falha ocorreu por falta de bateria
+			var faltou_bateria = (drone.bateria <= 0) or (cmd.texto_limpo == "irrigar()" and drone.bateria < 5)
+			if faltou_bateria:
+				_log("[DERROTA] Bateria insuficiente na linha %d!" % [cmd.linha_real + 1])
+				bateria_esgotada.emit()
+			else:
+				_log("[ERRO] Falha na execução da linha %d." % [cmd.linha_real + 1])
+				
 			linha_progresso = cmd.linha_real
 			erro_detectado = true
 			break
 			
 		cenario.atualizar_posicao_drone()
+		
+		# Verifica se a bateria zerou com o drone ainda no ar
+		if drone.bateria <= 0 and drone.estado_voo == Drone.EstadoVoo.EM_VOO:
+			_log("[DERROTA] A bateria acabou em pleno voo!")
+			erro_detectado = true
+			bateria_esgotada.emit()
+			break
+			
 		await cenario.get_tree().create_timer(0.6 / velocidade_multiplicador).timeout
 		i += 1
 		

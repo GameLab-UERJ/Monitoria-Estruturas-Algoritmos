@@ -4,8 +4,11 @@ func _ready() -> void:
 	super._ready() 
 	
 func verificar_vitoria() -> bool:
-	# Pega o texto do editor da cena base
 	var codigo_aluno = code_edit.text.to_lower()
+	if not ("while " in codigo_aluno):
+		return false
+	# Pega o texto do editor da cena base
+	
 	
 	# 1. Verifica uso de IF e acha onde está o ELSE
 	var usou_if = ("if " in codigo_aluno) or ("if(" in codigo_aluno)

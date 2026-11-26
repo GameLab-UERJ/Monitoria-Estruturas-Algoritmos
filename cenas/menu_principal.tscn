@@ -105,6 +105,10 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("3_0w2hc")
 text = "Fase 3"
 
+[node name="BtnFase4" type="Button" parent="MarginContainer/VBoxContainer/VBoxContainer" unique_id=1251137572]
+layout_mode = 2
+text = "Fase 4"
+
 [node name="BtncCreditos" type="Button" parent="MarginContainer/VBoxContainer" unique_id=239734020]
 custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
@@ -141,3 +145,5 @@ stream = ExtResource("5_eyjon")
 volume_db = -12.0
 autoplay = true
 parameters/looping = true
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/VBoxContainer/BtnFase4" to="." method="_on_btn_fase_4_pressed"]

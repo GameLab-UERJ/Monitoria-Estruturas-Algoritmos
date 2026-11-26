@@ -42,14 +42,14 @@ const CAMINHO_MENU: String = "res://cenas/menu_principal.tscn"
 @export var texto_objetivo_hub: String = "🎯 Missões Ativas:\n• 1. Concluir a fase"
 @export var cena_proxima_fase: PackedScene
 
-# janela tutorial customizada
+# Janela tutorial customizada
 @onready var tutorial_popup: TutorialPopup = $TutorialPopup
-
 
 var drone_logico: Drone
 var interpretador: InterpretadorComandos
 var terreno_logico: Terreno
 var grade_overlay: GradeOverlay
+var derrota_acionada: bool = false
 
 func _ready() -> void:
 	# 1. Inicializa Lógica Base
@@ -58,10 +58,13 @@ func _ready() -> void:
 		drone_logico = DroneAgricultor.new(terreno_logico, 0, 0, 20.0)
 	else:
 		drone_logico = DroneIrrigador.new(terreno_logico, 0, 0, capacidade_agua)
+	drone_logico.bateria_maxima = bateria_inicial
 	drone_logico.bateria = bateria_inicial
+	
 	if drone_logico is DroneAgricultor:
 		for especie in sementes_iniciais:
 			drone_logico.inventario.adicionar(Cultura.new(especie, Cultura.Estagio.SEMENTE))
+			
 	# 2. Configurações Visuais
 	camada_terreno.scale = Vector2(ESCALA_TILE, ESCALA_TILE)
 	drone_visual.scale = Vector2(ESCALA_TILE, ESCALA_TILE)
@@ -86,11 +89,12 @@ func _ready() -> void:
 	# 5. Conexões de Sinais
 	_conectar_sinais_hud()
 	
-	# Conecta a checagem de vitória ao fim da execução do código
+	# Conecta a checagem de vitória e derrota ao interpretador
 	interpretador.execucao_concluida.connect(_ao_concluir_execucao)
+	interpretador.bateria_esgotada.connect(_on_derrota_bateria)
 
 # ==========================================
-# GESTÃO DE FASES E VITÓRIA (Novo)
+# GESTÃO DE FASES, VITÓRIA E DERROTA
 # ==========================================
 
 ## MÉTODO VIRTUAL: Deve ser sobrescrito nos scripts específicos de cada fase
@@ -98,17 +102,59 @@ func verificar_vitoria() -> bool:
 	# Exemplo: return drone_logico.posicao == Vector2i(4, 0)
 	return false
 
+## Verifica se a condição de derrota foi atingida (bateria zerada)
+func verificar_derrota() -> bool:
+	return drone_logico != null and drone_logico.bateria <= 0
+
 ## Chamado sempre que o interpretador termina de rodar o código do aluno
 func _ao_concluir_execucao() -> void:
+	atualizar_telemetria_geral()
+	
+	if derrota_acionada or verificar_derrota():
+		if not derrota_acionada:
+			_on_derrota_bateria()
+		return
+		
+	if interpretador.erro_detectado:
+		print("Execução interrompida por erro.")
+		return
+		
 	if verificar_vitoria():
 		print("Objetivo Concluído!")
 		_transicao_proxima_fase()
 	else:
 		print("Objetivo não atingido.")
 
+func _on_derrota_bateria() -> void:
+	if derrota_acionada:
+		return
+	derrota_acionada = true
+	
+	atualizar_telemetria_geral()
+	botao_executar.disabled = true
+	print("DERROTA: A bateria do drone acabou!")
+	
+	var popup_derrota = ConfirmationDialog.new()
+	popup_derrota.title = "Bateria Esgotada!"
+	popup_derrota.dialog_text = "A bateria do drone acabou antes de concluir a missão.\nDeseja tentar novamente?"
+	popup_derrota.ok_button_text = "Tentar Novamente"
+	popup_derrota.cancel_button_text = "Voltar ao Menu"
+	popup_derrota.confirmed.connect(_reiniciar_fase)
+	popup_derrota.canceled.connect(_ao_clicar_menu)
+	add_child(popup_derrota)
+	popup_derrota.popup_centered()
+
+func _reiniciar_fase() -> void:
+	get_tree().paused = false
+	janela_editor.visible = false
+	if not scene_file_path.is_empty():
+		EasyTransition.transition_to(scene_file_path, 0.8, EasyTransition.TransitionAnim.FADE, Color.CORAL)
+	else:
+		get_tree().reload_current_scene()
+
 func _transicao_proxima_fase() -> void:
 	if cena_proxima_fase:
-		EasyTransition.transition_to(cena_proxima_fase.resource_path,1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
+		EasyTransition.transition_to(cena_proxima_fase.resource_path, 1.0, EasyTransition.TransitionAnim.FADE, Color.CORAL)
 	else:
 		print("Fim de Jogo ou Cena não configurada!") # Pode carregar a cena de Créditos aqui
 
@@ -116,12 +162,10 @@ func _transicao_proxima_fase() -> void:
 func _ao_clicar_menu() -> void:
 	get_tree().paused = false # Garante que o menu não nasça pausado, caso você use pausa
 	janela_editor.visible = false
-	#janela_tutorial.visible = false
-	EasyTransition.transition_to(CAMINHO_MENU,1.0,EasyTransition.TransitionAnim.FADE,Color.CORAL)
-	
+	EasyTransition.transition_to(CAMINHO_MENU, 1.0, EasyTransition.TransitionAnim.FADE, Color.CORAL)
 
 # ==========================================
-# JANELA DE TUTORIAL (Novo)
+# JANELA DE TUTORIAL
 # ==========================================
 func _configurar_janela_tutorial() -> void:
 	if not tutorial_popup:
@@ -160,7 +204,6 @@ func _conectar_sinais_hud() -> void:
 	hud.grade_clicada.connect(_alternar_grade)
 	hud.editor_clicado.connect(_alternar_janela_editor)
 	hud.menu_clicado.connect(_ao_clicar_menu)
-	#hud.tutorial_clicado.connect(_alternar_janela_tutorial)
 	
 	if hud.has_signal("tutorial_clicado"):
 		hud.tutorial_clicado.connect(_alternar_janela_tutorial)
@@ -224,9 +267,12 @@ func _configurar_editor_codigo() -> void:
 	interpretador.comando_sucesso.connect(_ao_comando_sucesso)
 
 func _ao_clicar_executar() -> void:
+	if derrota_acionada:
+		return
 	botao_executar.disabled = true
 	await interpretador.executar_codigo(code_edit.text)
-	botao_executar.disabled = false
+	if not derrota_acionada:
+		botao_executar.disabled = false
 
 # ==========================================
 # LÓGICA DE TERRENO E MOVIMENTO
