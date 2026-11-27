@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://c6exde3qos7an"]
+
+[ext_resource type="AudioStream" uid="uid://ba25uksmggvx" path="res://assets/sounds/atlasaudio-soothing-587607.mp3" id="1_vjghf"]
+
+[node name="GlobalMusic" type="AudioStreamPlayer" unique_id=6662597]
+stream = ExtResource("1_vjghf")
+volume_db = -12.0
+autoplay = true
+parameters/looping = true

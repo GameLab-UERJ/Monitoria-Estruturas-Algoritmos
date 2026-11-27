@@ -18,11 +18,11 @@ config/icon="res://icon.svg"
 [autoload]
 
 EasyTransition="*uid://cq0t7o8xelk4k"
+GlobalMusic="*uid://c6exde3qos7an"
 
 [display]
 
 window/stretch/mode="canvas_items"
-window/stretch/aspect="expand"
 
 [editor_plugins]
 
